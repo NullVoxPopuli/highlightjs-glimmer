@@ -9,20 +9,13 @@ Description: Matcher for EmberJS and Glimmer.
   Regex copied from highlight.js for portability
 */
 
-
 /** @type LanguageFn */
-export function configureGlimmer(hljs) {
+export function glimmer(hljs) {
   // this is invoked and returned at the bottom of configureGlimmer
   function definition() {
     return {
       name: 'Ember.JS, Glimmer',
-      aliases: [
-        'glimmer',
-        'hbs',
-        'html.hbs',
-        'html.handlebars',
-        'htmlbars'
-      ],
+      aliases: ['glimmer', 'hbs', 'html.hbs', 'html.handlebars', 'htmlbars'],
       case_insensitive: true,
       keywords: KEYWORDS,
       contains: [
@@ -36,7 +29,7 @@ export function configureGlimmer(hljs) {
         TAG_COMMENT,
         ...ANGLE_BRACKET_BLOCK,
         // ...MUSTACHE_BLOCK,
-      ]
+      ],
     };
   }
 
@@ -61,13 +54,12 @@ export function configureGlimmer(hljs) {
 
   // -------------------------------------------------
 
-
   const KEYWORDS = {
     $pattern: /\b[\w][\w-]+\b/,
     keyword: `${_SPECIAL} ${_MODIFIERS} ${_DEBUG_HELPERS}`,
     built_in: _BLOCK_HELPERS,
     function: `${_OTHER_OPERATORS} ${_INLINE_HELPERS} ${_EQUALITY_HELPERS} ${_NUMERIC_COMPARISON_HELPERS} ${_LOGICAL_OPERATOR_HELPERS}`,
-    literal: _LITERALS
+    literal: _LITERALS,
   };
 
   const TAG_NAME = regex.either(
@@ -88,88 +80,77 @@ export function configureGlimmer(hljs) {
 
   const XML_ENTITIES = {
     className: 'symbol',
-    begin: /&[a-z]+;|&#[0-9]+;|&#x[a-f0-9]+;/
+    begin: /&[a-z]+;|&#[0-9]+;|&#x[a-f0-9]+;/,
   };
 
   const PUNCTUATION = {
     className: 'punctuation',
-    match: regex.either(/\./, /\{\{\{?#?\/?/, /\}\}\}?/, /\(/, /\)/, /::/, /\|/, /~/)
+    match: regex.either(/\./, /\{\{\{?#?\/?/, /\}\}\}?/, /\(/, /\)/, /::/, /\|/, /~/),
   };
 
   const BLOCK_PARAMS = {
     begin: /as\s+\|/,
     keywords: {
-      keyword: 'as'
+      keyword: 'as',
     },
     end: /\|/,
     contains: [
       {
         className: 'template-variable',
-        begin: ATTR_REGEX
-      }
-    ]
-
+        begin: ATTR_REGEX,
+      },
+    ],
   };
 
   const OPERATORS = {
     className: 'operator',
-    match: /=/
+    match: /=/,
   };
 
   const ARGUMENTS = {
     className: {
       1: 'punctuation',
-      2: 'params'
+      2: 'params',
     },
-    match: [
-      /@/,
-      /[\w\d-_]+/
-    ]
+    match: [/@/, /[\w\d-_]+/],
   };
 
   const ATTRIBUTES = {
     className: {
       1: 'attribute',
-      2: 'operator'
+      2: 'operator',
     },
-    match: [
-      /[A-Za-z0-9-_]+/,
-      /=/
-    ]
+    match: [/[A-Za-z0-9-_]+/, /=/],
   };
 
   const THIS_EXPRESSION = {
     className: {
       1: 'class',
       2: 'punctuation',
-      3: 'variable'
+      3: 'variable',
     },
-    match: [
-      /this/,
-      /\./,
-      /\S+/
-    ],
+    match: [/this/, /\./, /\S+/],
   };
 
   const NAME = {
     className: 'name',
-    match: /\b\w+\b/
+    match: /\b\w+\b/,
   };
 
   const ABS_NAME = {
     className: 'title',
-    match: COMPONENT_NAME
+    match: COMPONENT_NAME,
   };
 
   const CURLY_NAME = {
     className: 'title',
     match: CURLY_BLOCK_NAME,
-    keywords: KEYWORDS
+    keywords: KEYWORDS,
   };
 
   const NUMBER = {
     className: 'number',
-    match: /[\d]+((\.[\d]+))?/
+    match: /[\d]+((\.[\d]+))?/,
   };
 
   const TAG_COMMENT = {
@@ -178,13 +159,13 @@ export function configureGlimmer(hljs) {
     contains: [
       {
         className: 'comment',
-        match: /.+/
+        match: /.+/,
       },
       {
         begin: /--\}\}/,
-        endsParent: true
-      }
-    ]
+        endsParent: true,
+      },
+    ],
   };
 
   const STRING = {
@@ -196,17 +177,17 @@ export function configureGlimmer(hljs) {
         contains: [
           XML_ENTITIES,
           /* MUSTACHE_EXPRESSION added later */
-        ]
+        ],
       },
       {
         begin: /'/,
         end: /'/,
         contains: [
-          XML_ENTITIES
+          XML_ENTITIES,
           /* MUSTACHE_EXPRESSION added later */
-        ]
-      }
-    ]
+        ],
+      },
+    ],
   };
 
   const MUSTACHE_AND_SUB_EXPRESSION_INTERNALS = [
@@ -236,10 +217,12 @@ export function configureGlimmer(hljs) {
     keywords: KEYWORDS,
     begin: regex.concat(
       /\(/,
-      regex.lookahead(regex.concat(
-        // /[^)]+/,
-        /\)/
-      ))
+      regex.lookahead(
+        regex.concat(
+          // /[^)]+/,
+          /\)/
+        )
+      )
     ),
     end: /\)/,
     contains: [
@@ -247,9 +230,9 @@ export function configureGlimmer(hljs) {
       'self',
       {
         begin: /\)/,
-        endsParent: true
-      }
-    ]
+        endsParent: true,
+      },
+    ],
   };
 
   MUSTACHE_AND_SUB_EXPRESSION_INTERNALS.push(SUB_EXPRESSION);
@@ -258,49 +241,34 @@ export function configureGlimmer(hljs) {
     {
       className: 'mustache',
       keywords: KEYWORDS,
-      begin: regex.concat(
-        /\{\{\{?#?/,
-      ),
+      begin: regex.concat(/\{\{\{?#?/),
       end: /\}\}\}?/,
       contains: [
         {
           begin: /\}\}\}?/,
-          endsParent: true
+          endsParent: true,
         },
         ...MUSTACHE_AND_SUB_EXPRESSION_INTERNALS,
         SUB_EXPRESSION,
-      ]
-    }
+      ],
+    },
   ];
 
-  STRING.variants.forEach(variant => variant.contains.push(...MUSTACHE_EXPRESSION));
+  STRING.variants.forEach((variant) => variant.contains.push(...MUSTACHE_EXPRESSION));
 
   const MUSTACHE_BLOCK = [
     // open curly block
     {
       begin: regex.concat(/\{\{#/, regex.lookahead(CURLY_BLOCK_NAME)),
       end: /\}\}/,
-      contains: [
-        PUNCTUATION,
-        ...MUSTACHE_AND_SUB_EXPRESSION_INTERNALS,
-        CURLY_NAME,
-        NAME
-      ]
+      contains: [PUNCTUATION, ...MUSTACHE_AND_SUB_EXPRESSION_INTERNALS, CURLY_NAME, NAME],
     },
     // close curly block
     {
-      begin: regex.concat(
-        /\{\{\//,
-        regex.lookahead(regex.concat(
-          /\}\}/
-        ))
-      ),
+      begin: regex.concat(/\{\{\//, regex.lookahead(regex.concat(/\}\}/))),
       end: /\}\}/,
-      contains: [
-        OPERATORS,
-        CURLY_NAME
-      ]
-    }
+      contains: [OPERATORS, CURLY_NAME],
+    },
   ];
 
   const ANGLE_BRACKET_BLOCK = [
@@ -308,10 +276,7 @@ export function configureGlimmer(hljs) {
       className: 'tag',
       begin: regex.concat(
         /<:?/,
-        regex.lookahead(regex.concat(
-          TAG_NAME,
-          regex.either(/\/>/, />/, /\s/)
-        ))
+        regex.lookahead(regex.concat(TAG_NAME, regex.either(/\/>/, />/, /\s/)))
       ),
       end: /\/?>/,
       contains: [
@@ -322,26 +287,20 @@ export function configureGlimmer(hljs) {
         ...MUSTACHE_EXPRESSION,
         ATTRIBUTES,
         STRING,
-        ABS_NAME
-      ]
+        ABS_NAME,
+      ],
     },
     // close tag
     {
       className: 'tag',
-      begin: regex.concat(
-        /<\/:?/,
-        regex.lookahead(regex.concat(
-          TAG_NAME, />/
-        ))
-      ),
+      begin: regex.concat(/<\/:?/, regex.lookahead(regex.concat(TAG_NAME, />/))),
       end: /\>/,
-      contains: [ABS_NAME]
-    }
+      contains: [ABS_NAME],
+    },
   ];
 
   return definition();
 }
-
 
 /**
  * @param {RegExp | string } re
@@ -350,7 +309,6 @@ export function configureGlimmer(hljs) {
 function lookahead(re) {
   return concat('(?=', re, ')');
 }
-
 
 /**
  * @param {RegExp | string } re
@@ -365,7 +323,8 @@ function optional(re) {
  * @returns {string}
  */
 function concat(...args) {
-  const joined = args.map((x) => source(x)).join("");
+  const joined = args.map((x) => source(x)).join('');
+
   return joined;
 }
 
@@ -377,10 +336,10 @@ function concat(...args) {
  * @returns {string}
  */
 function either(...args) {
-  const joined = '(' + args.map((x) => source(x)).join("|") + ")";
+  const joined = '(' + args.map((x) => source(x)).join('|') + ')';
+
   return joined;
 }
-
 
 /**
  * @param {RegExp | string } re
@@ -388,9 +347,9 @@ function either(...args) {
  */
 export function source(re) {
   if (!re) return null;
-  if (typeof re === "string") return re;
+  if (typeof re === 'string') return re;
 
   return re.source;
 }
 
-const regex = {lookahead, either, optional, concat};
+const regex = { lookahead, either, optional, concat };

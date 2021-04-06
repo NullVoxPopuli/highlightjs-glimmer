@@ -7,7 +7,7 @@ on:
       - main
       - master
   schedule:
-    - cron: '0 3 * * 0' # every Sunday at 3am
+    - cron: "0 3 * * 0" # every Sunday at 3am
 
 env:
   CI: true
@@ -21,18 +21,20 @@ jobs:
     strategy:
       matrix:
         node:
-        - "12"
-        - "14"
+          # - "12"
+          - "14"
     steps:
-    - uses: actions/checkout@v2
-    - uses: volta-cli/action@v1
-      with:
-        node-version: ${{ matrix.node }}
+      - uses: actions/checkout@v2
+      - uses: volta-cli/action@v1
+        with:
+          node-version: ${{ matrix.node }}
 
-    - run: yarn install
+      - run: yarn install
 
-    - name: Test with Node ${{ matrix.node }}
-      run: yarn test
+      - name: Test with ${{ matrix.node }}
+        env:
+          NODE_OPTIONS: '--experimental-vm-modules'
+        run: yarn test
 
   ember-cli-update:
     if: github.event_name == 'pull_request' && github.event.pusher.name == 'renovate-bot'
@@ -40,15 +42,15 @@ jobs:
     needs: [tests, try-scenarios, floating-dependencies]
 
     steps:
-    - uses: actions/checkout@v2
-      with:
-        ref: ${{ github.head_ref }}
-        token: ${{ secrets.GitHubToken }}
-    - uses: actions/setup-node@v2
-    - uses: kellyselden/ember-cli-update-action@v2
-      with:
-        autofix_command: yarn lint:fix
-        ignore_to: true
+      - uses: actions/checkout@v2
+        with:
+          ref: ${{ github.head_ref }}
+          token: ${{ secrets.GitHubToken }}
+      - uses: actions/setup-node@v2
+      - uses: kellyselden/ember-cli-update-action@v2
+        with:
+          autofix_command: yarn lint:fix
+          ignore_to: true
 
   publish:
     name: Release
