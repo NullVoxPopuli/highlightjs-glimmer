@@ -13,13 +13,32 @@
   "engines": {
     "node": "> 10"
   },
+  "devDependencies": {
+    "@nullvoxpopuli/eslint-configs": "^1.1.2",
+    "jest": "^26.6.3",
+    "@commitlint/cli": "^11.0.0",
+    "@commitlint/config-conventional": "^11.0.0",
+    "@semantic-release/changelog": "^5.0.1",
+    "@semantic-release/git": "^9.0.0",
+    "semantic-release": "^17.3.7"
+  },
+  "release": {
+    "branches": [
+      "main",
+      "master"
+    ],
+    "plugins": [
+      "@semantic-release/commit-analyzer",
+      "@semantic-release/release-notes-generator",
+      "@semantic-release/changelog",
+      "@semantic-release/npm",
+      "@semantic-release/github",
+      "@semantic-release/git"
+    ]
+  },
   "volta": {
     "node": "14.16.0",
     "yarn": "1.22.10",
     "npm": "7.8.0"
-  },
-  "devDependencies": {
-    "@nullvoxpopuli/eslint-configs": "^1.1.2",
-    "jest": "^26.6.3"
   }
 }
