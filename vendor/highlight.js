@@ -3,7 +3,7 @@
   (c) 2006-2021 Ivan Sagalaev and other contributors
   License: BSD-3-Clause
  */
-var hljs = (function () {
+export var hljs = (function () {
     'use strict';
 
     function deepFreeze(obj) {
@@ -36,7 +36,7 @@ var hljs = (function () {
     var _default = deepFreeze;
     deepFreezeEs6.default = _default;
 
-    
+
     class Response {
       /**
        * @param {CompiledMode} mode
