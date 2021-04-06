@@ -1,5 +1,5 @@
-import {stripIndent} from 'common-tags';
-import {parse, tag} from './-utils';
+import { stripIndent } from 'common-tags';
+import { parse, tag } from './-utils';
 
 describe('Component Invocation', () => {
   test('self-closed', () => {
