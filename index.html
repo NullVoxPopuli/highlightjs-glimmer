@@ -4,8 +4,8 @@
     <meta title="description" content="Glimmer syntax highlighting powered by Highlight.js" />
 
     <link rel="stylesheet" href="/path/to/styles/default.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10/styles/vs2015.min.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10/styles/tomorrow-night.min.css">
+    <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10/styles/vs2015.min.css"> -->
+    <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10/styles/tomorrow-night.min.css"> -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10/styles/atom-one-dark-reasonable.min.css">
 
 
@@ -17,8 +17,45 @@
       hljs.registerLanguage('glimmer', glimmer);
       hljs.highlightAll();
     </script>
+    <style>
+      html, body {
+        background-color: #181c24;
+        color: white;
+        padding: 0;
+        margin: 0;
+        font-family: system-ui, arial, sans-serif;
+      }
+      pre {
+        margin: 0;
+      }
+      section {
+        padding: 1rem;
+      }
+      section nav {
+        display: flex;
+        gap: 0.5rem;
+      }
+      section div {
+        display: flex;
+        gap: 1rem;
+        align-items:center;
+      }
+      nav a {
+        color: #61aeee;
+      }
+    </style>
   </head>
   <body>
+    <section>
+      <h1>Glimmer for highlight.js</h1>
+      <div>
+        <nav>
+          <a href="https://github.com/NullVoxPopuli/highlightjs-glimmer">GitHub</a>
+          <a href="https://www.npmjs.com/package/highlightjs-glimmer">NPM</a>
+        </nav>
+        <code>npm install highlightjs-glimmer</code>
+      </div>
+    </section>
     <pre>
       <code class="language-glimmer">
 &lt;Nested::Component
