@@ -1,3 +1,10 @@
+## [1.0.1](https://github.com/NullVoxPopuli/highlightjs-glimmer/compare/v1.0.0...v1.0.1) (2021-04-06)
+
+
+### Bug Fixes
+
+* **internal:** update demo page and prep for GH pages ([55f49f4](https://github.com/NullVoxPopuli/highlightjs-glimmer/commit/55f49f450fc97c081d18e6d2d93778b28cae946e))
+
 # 1.0.0 (2021-04-06)
 
 
