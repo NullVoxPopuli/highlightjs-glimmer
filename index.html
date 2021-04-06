@@ -10,26 +10,12 @@
 
 
     <!-- For testing this library -->
-    <script type="text/javascript">
-      let rootURL = '/';
+    <script type="module">
+      import { hljs } from '/vendor/highlight.js';
+      import { glimmer } from '/src/glimmer.js';
 
-      if (location.origin.includes('github.io')) {
-        rootURL = '/highlightjs-glimmer';
-      }
-
-      const template = `
-        import { hljs } from '${rootURL}vendor/highlight.js';
-        import { glimmer } from '${rootURL}src/glimmer.js';
-
-        hljs.registerLanguage('glimmer', glimmer);
-        hljs.highlightAll();
-      `;
-
-      let script = document.createElement('script');
-      script.setAttribute('type', 'module');
-      script.innerHTML = template;
-
-      document.head.append(script);
+      hljs.registerLanguage('glimmer', glimmer);
+      hljs.highlightAll();
     </script>
   </head>
   <body>
