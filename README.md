@@ -38,6 +38,6 @@ where `{tag}` could be:
 ## Contributing
 
 Debug with `npx html-pages . -p 4201`
-Visit `http://10.0.2.15:4201/demo.html`
+Visit `http://10.0.2.15:4201`
 
 Run Tets with `yarn test` or `npm run test`

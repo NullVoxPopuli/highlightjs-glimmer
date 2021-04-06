@@ -4,7 +4,6 @@
     <meta title="description" content="Glimmer syntax highlighting powered by Highlight.js" />
 
     <link rel="stylesheet" href="/path/to/styles/default.css">
-    <script src="./vendor/highlight.js"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10/styles/vs2015.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10/styles/tomorrow-night.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10/styles/atom-one-dark-reasonable.min.css">
@@ -12,14 +11,11 @@
 
     <!-- For testing this library -->
     <script type="module">
-      async function setup() {
-        let { configureGlimmer } = await import('/src/glimmer.js');
+      import { hljs } from '/vendor/highlight.js';
+      import { glimmer } from '/src/glimmer.js';
 
-        hljs.registerLanguage('glimmer', configureGlimmer);
-        hljs.highlightAll();
-      }
-
-      setup();
+      hljs.registerLanguage('glimmer', glimmer);
+      hljs.highlightAll();
     </script>
   </head>
   <body>
