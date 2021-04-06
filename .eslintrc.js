@@ -13,7 +13,11 @@ module.exports = {
       files: ['src/**'],
       parserOptions: {
         sourceType: 'module',
-      }
+      },
+      rules: {
+        'import/exports-last': 'off',
+        'node/no-unsupported-features/es-syntax': 'off',
+      },
     },
   ],
 };
