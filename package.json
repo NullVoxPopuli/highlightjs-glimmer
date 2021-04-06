@@ -1,6 +1,6 @@
 {
   "name": "highlightjs-glimmer",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "description": "Glimmer syntax highlighting with Highlight.JS",
   "main": "src/glimmer.js",
   "type": "module",
