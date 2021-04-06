@@ -2,7 +2,7 @@
   "name": "highlightjs-glimmer",
   "version": "0.0.0",
   "description": "Glimmer syntax highlighting with Highlight.JS",
-  "main": "src/index.js",
+  "main": "src/glimmer.js",
   "repository": "git@github.com:NullVoxPopuli/highlightjs-glimmer.git",
   "author": "NullVoxPopuli",
   "license": "MIT",

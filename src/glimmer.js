@@ -10,7 +10,7 @@ Description: Matcher for EmberJS and Glimmer.
 */
 
 /** @type LanguageFn */
-export function configureGlimmer(hljs) {
+export function glimmer(hljs) {
   // this is invoked and returned at the bottom of configureGlimmer
   function definition() {
     return {

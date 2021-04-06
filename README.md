@@ -10,6 +10,29 @@ yarn add highlightjs-glimmer
 npm install highlightjs-glimmer
 ```
 
+## Usage
+
+```js
+import hljs from 'highlight.js';
+import { glimmer } from 'highlightjs-glimmer';
+
+hljs.registerLanguage('glimmer', glimmer);
+hljs.highlightAll();
+```
+
+Supported language tags:
+
+```html
+<pre>
+  <code class="language-{tag}">
+```
+where `{tag}` could be:
+ - glimmer
+ - hbs
+ - html.hbs
+ - html.handlebars
+ - htmlbars
+
 ## Contributing
 
 Debug with `npx html-pages . -p 4201`
