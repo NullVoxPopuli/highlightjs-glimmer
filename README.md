@@ -10,6 +10,8 @@ yarn add highlightjs-glimmer
 npm install highlightjs-glimmer
 ```
 
+Requires: [highlight.js >= v11](https://github.com/highlightjs/highlight.js)
+
 ## Usage
 
 ```js
