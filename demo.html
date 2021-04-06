@@ -1,0 +1,90 @@
+<html lang="en">
+  <head>
+    <title>Glimmer w/ Highlight.js</title>
+    <meta title="description" content="Glimmer syntax highlighting powered by Highlight.js" />
+
+    <link rel="stylesheet" href="/path/to/styles/default.css">
+    <script src="https://cdn.jsdelivr.net/npm/@highlightjs/cdn-assets@10/highlight.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10/styles/vs2015.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10/styles/tomorrow-night.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10/styles/atom-one-dark-reasonable.min.css">
+
+
+    <!-- For testing this library -->
+    <script type="module">
+      async function setup() {
+        let { configureGlimmer } = await import('/src/glimmer.js');
+        let glimmer = configureGlimmer(hljs);
+
+        hljs.registerLanguage('glimmer', glimmer);
+        hljs.highlightAll();
+      }
+
+      setup();
+    </script>
+  </head>
+  <body>
+    <pre>
+      <code class="language-glimmer">
+&lt;Nested::Component
+  class="some classes
+    {{if (this.someHelper this.foo 12)
+       "classes when true"
+       "classes when false"
+    }}
+  "
+  @doAction={{fn this.someAction 120}}
+  @argB={{hash
+    foo="string"
+    bar=true
+    baz=120
+    yolo=(array 12 "string" (hash foo=this.something))
+    bax=(fn this.someAction 120)
+  }}
+  {{resize this.handleResize (fn this.idk 2 "str")}}
+  as |foo|
+>
+  &lt;:block as |foo, baz|>
+    {{foo}}
+
+    {{#let foo.bar 12 as |fooBar num|}}
+      &lt;fooBar @num={{num}} @arg={{12}} />
+    {{/let}}
+
+    &lt;baz.component />
+  &lt;/:block>
+&lt;/Nested::Component>
+
+{{#block-component property=@value  prop-erty=this.value string="testing" onClick=(action "someAction" withParam) as |returnValue|}}
+  {{#each-in foo as |bar, baz|}}
+    {{inline-component foo=bar}}
+  {{else if value}}
+  {{else with foo}}
+    \{{escaped handlebars}}
+  {{else}}
+    {{! comment }}
+    {{!-- block }}
+      TODO: Indentation is broken after that
+      comment --}}
+
+    &lt;a href class="{{if inside 'still highlight'}}"
+      onclick={{action foo}}>
+      {{escaped}}
+      {{{unescaped}}}
+    &lt;/a>
+
+    &lt;MyIput type="text" oninput={{action (mut fooBar) value="target.value"}} />
+    &lt;input type="text" oninput={{action (mut (fn fooBar 200)) value="target.value"}}>
+    &lt;input {{on 'input' (fn this.doSomething 12 "string")}}
+
+    {{helper "string" 123}}
+    {{input value="foo"}}
+
+    {{textarea}}
+  {{/each-in}}
+{{/block-component}}
+
+      </code>
+    </pre>
+  </body>
+</html>

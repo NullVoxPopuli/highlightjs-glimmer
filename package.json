@@ -1,0 +1,25 @@
+{
+  "name": "highlightjs-glimmer",
+  "version": "0.0.0",
+  "description": "Glimmer syntax highlighting with Highlight.JS",
+  "main": "src/index.js",
+  "type": "module",
+  "repository": "git@github.com:NullVoxPopuli/highlightjs-glimmer.git",
+  "author": "NullVoxPopuli",
+  "license": "MIT",
+  "scripts": {
+    "test": "jest"
+  },
+  "engines": {
+    "node": "> 10"
+  },
+  "volta": {
+    "node": "14.16.0",
+    "yarn": "1.22.10",
+    "npm": "7.8.0"
+  },
+  "devDependencies": {
+    "@nullvoxpopuli/eslint-configs": "^1.1.2",
+    "jest": "^26.6.3"
+  }
+}
