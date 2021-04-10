@@ -35,6 +35,8 @@ where `{tag}` could be:
  - html.handlebars
  - htmlbars
 
+**NOTE** highlightjs-glimmer cannot be used at the same time as highlightjs' handlebars syntax highlighting.
+
 ## Contributing
 
 Debug with `npx html-pages . -p 4201`
