@@ -1,3 +1,10 @@
+# [1.1.0](https://github.com/NullVoxPopuli/highlightjs-glimmer/compare/v1.0.1...v1.1.0) (2021-04-10)
+
+
+### Features
+
+* setup CDN support ([fb940cd](https://github.com/NullVoxPopuli/highlightjs-glimmer/commit/fb940cda950798b6a49fbf6ae6dee8f439abbc16))
+
 ## [1.0.1](https://github.com/NullVoxPopuli/highlightjs-glimmer/compare/v1.0.0...v1.0.1) (2021-04-06)
 
 

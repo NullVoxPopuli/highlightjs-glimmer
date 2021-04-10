@@ -1,6 +1,6 @@
 {
   "name": "highlightjs-glimmer",
-  "version": "1.0.1",
+  "version": "1.1.0",
   "description": "Glimmer syntax highlighting with Highlight.JS",
   "main": "src/glimmer.js",
   "type": "module",
@@ -18,7 +18,9 @@
   },
   "jest": {
     "transform": {},
-    "testRegex": ["\\.test\\."]
+    "testRegex": [
+      "\\.test\\."
+    ]
   },
   "devDependencies": {
     "@commitlint/cli": "^11.0.0",
