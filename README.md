@@ -37,6 +37,26 @@ where `{tag}` could be:
 
 **NOTE** highlightjs-glimmer cannot be used at the same time as highlightjs' handlebars syntax highlighting.
 
+## HTML via CDN
+
+```html
+<script type="text/javascript" src="/cdn/path/to/highlight.min.js"></script>
+<script type="text/javascript" src="/cdn/path/to/highlightjs-glimmer/glimmer.js"></script>
+<script type="text/javascript">hljs.highlightAll();</script>
+```
+
+## HTML via ES Modules
+
+```html
+<script type="text/javascript" src="/cdn/path/to/highlight.min.js"></script>
+<script type="module">
+  import { glimmer } from '/cdn/path/to/highlightjs-glimmer/glimmer.esm.js';
+
+  hljs.registerLanguage('glimmer', glimmer);
+  hljs.highlightAll();
+</script>
+```
+
 ## Contributing
 
 Debug with `npx html-pages . -p 4201`

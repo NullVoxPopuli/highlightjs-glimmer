@@ -13,7 +13,7 @@ module.exports = {
   overrides: [
     ...config.overrides,
     {
-      files: ['src/**', 'tests/**'],
+      files: ['src/**', 'tests/**', 'scripts/cdn-bootstrap.js'],
       parserOptions: {
         sourceType: 'module',
       },
