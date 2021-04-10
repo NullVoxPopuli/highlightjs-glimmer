@@ -35,7 +35,12 @@ where `{tag}` could be:
  - html.handlebars
  - htmlbars
 
-**NOTE** highlightjs-glimmer cannot be used at the same time as highlightjs' handlebars syntax highlighting.
+**NOTE** because highlightjs-glimmer overrides the same aliases as highlightjs' handlebars grammar,
+to use the handlebars grammar align with the glimmer grammar, you'll need to use the full name in class
+```html
+<pre><code class="lang-glimmer">...</code></pre>
+<pre><code class="lang-handlebars">...</code></pre>
+```
 
 ## HTML via CDN
 
