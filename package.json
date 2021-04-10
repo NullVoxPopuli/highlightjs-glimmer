@@ -9,6 +9,7 @@
   "license": "MIT",
   "scripts": {
     "build": "node ./scripts/build.cjs",
+    "debug": "npx html-pages .",
     "lint:js": "eslint .",
     "test": "jest"
   },

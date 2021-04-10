@@ -1,6 +1,8 @@
 # highlightjs-glimmer
 
-glimmer syntax highlighting with highlight.js
+[![npm version](https://badge.fury.io/js/highlightjs-glimmer.svg)](https://www.npmjs.com/package/highlightjs-glimmer)
+
+glimmer syntax highlighting with [highlight.js](https://github.com/highlightjs/highlight.js)
 
 ## Install
 
@@ -92,7 +94,7 @@ NODE_OPTIONS="--experimental-vm-modules" node your-module-script.js
 
 ## Contributing
 
-Debug with `npx html-pages . -p 4201`
+Debug with `yarn debug -p 4201`
 Visit `http://10.0.2.15:4201`
 
 Run Tets with `yarn test` or `npm run test`
