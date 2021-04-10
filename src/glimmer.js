@@ -345,7 +345,7 @@ function either(...args) {
  * @param {RegExp | string } re
  * @returns {string}
  */
-export function source(re) {
+function source(re) {
   if (!re) return null;
   if (typeof re === 'string') return re;
 
