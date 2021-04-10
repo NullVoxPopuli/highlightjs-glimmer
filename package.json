@@ -8,7 +8,7 @@
   "author": "NullVoxPopuli",
   "license": "MIT",
   "scripts": {
-    "build:cdn": "node ./scripts/build.cjs",
+    "build": "node ./scripts/build.cjs",
     "lint:js": "eslint .",
     "test": "jest"
   },

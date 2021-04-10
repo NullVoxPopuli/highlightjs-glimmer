@@ -42,7 +42,7 @@ to use the handlebars grammar align with the glimmer grammar, you'll need to use
 <pre><code class="lang-handlebars">...</code></pre>
 ```
 
-## HTML via CDN
+## HTML via traditional CDN script tags
 
 ```html
 <script type="text/javascript" src="/cdn/path/to/highlight.min.js"></script>
@@ -60,6 +60,34 @@ to use the handlebars grammar align with the glimmer grammar, you'll need to use
   hljs.registerLanguage('glimmer', glimmer);
   hljs.highlightAll();
 </script>
+```
+
+## Node / cjs / `require`
+
+```js
+const hljs = require('highlight.js');
+const { glimmer } = require('highlightjs-glimmer');
+
+hljs.registerLanguage('glimmer', glimmer);
+hljs.highlightAll();
+```
+
+Only Node 14 is supported
+
+## Node ES Modules / `import`
+
+```js
+import hljs from 'highlight.js';
+import { glimmer } from 'highlightjs-glimmer';
+
+hljs.registerLanguage('glimmer', glimmer);
+hljs.highlightAll();
+```
+
+With Node 14, launch with
+
+```bash
+NODE_OPTIONS="--experimental-vm-modules" node your-module-script.js
 ```
 
 ## Contributing

@@ -21,7 +21,6 @@ jobs:
     strategy:
       matrix:
         node:
-          # - "12"
           - "14"
     steps:
       - uses: actions/checkout@v2
@@ -35,6 +34,18 @@ jobs:
         env:
           NODE_OPTIONS: '--experimental-vm-modules'
         run: yarn test
+
+  highlightjs-tests:
+    if: "! contains(toJSON(github.event.commits.*.message), '[skip ci]')"
+    name: "Highlight.js Tests"
+    timeout-minutes: 5
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: volta-cli/action@v1
+      - run: yarn install
+      - run: scripts/hljs-test.sh
+
 
   ember-cli-update:
     if: github.event_name == 'pull_request' && github.event.pusher.name == 'renovate-bot'
