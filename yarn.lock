@@ -808,10 +808,10 @@
     node-gyp "^7.1.0"
     read-package-json-fast "^2.0.1"
 
-"@nullvoxpopuli/eslint-configs@^1.1.3":
-  version "1.1.3"
-  resolved "https://registry.npmjs.org/@nullvoxpopuli/eslint-configs/-/eslint-configs-1.1.3.tgz#373f8f4f582ca64d97715db863fae340e4566c74"
-  integrity sha512-Ch+KIpaYTO1CUSHP/cvqGN3s+vUtshsQJ3fjNh3HKugUzQkSs1Z/eCR5pJQHcqZYfsB0dwzEFFbz1dMP8UTXHg==
+"@nullvoxpopuli/eslint-configs@^1.2.0":
+  version "1.2.0"
+  resolved "https://registry.npmjs.org/@nullvoxpopuli/eslint-configs/-/eslint-configs-1.2.0.tgz#cc13b621094da01c4499d8518dfc845a6918c1e4"
+  integrity sha512-beCKfMh6vVVR6WFtfzD256zxxv59KWW0+x9v6hSzhbcniFTzv+ddhBvAcilo20ppaTuStWZq4zfrKnd5VcelCQ==
   dependencies:
     "@typescript-eslint/eslint-plugin" "4.20.0"
     "@typescript-eslint/parser" "4.20.0"
@@ -2521,10 +2521,10 @@ es-to-primitive@^1.2.1:
     is-date-object "^1.0.1"
     is-symbol "^1.0.2"
 
-esbuild@^0.11.6:
-  version "0.11.6"
-  resolved "https://registry.npmjs.org/esbuild/-/esbuild-0.11.6.tgz#20961309c4cfed00b71027e18806150358d0cbb0"
-  integrity sha512-L+nKW9ftVS/N2CVJMR9YmXHbkm+vHzlNYuo09rzipQhF7dYNvRLfWoEPSDRTl10and4owFBV9rJ2CTFNtLIOiw==
+esbuild@^0.11.7:
+  version "0.11.7"
+  resolved "https://registry.npmjs.org/esbuild/-/esbuild-0.11.7.tgz#c32ee844d3b0db489e62ea0ad028e109f6f205c7"
+  integrity sha512-rY+jA0TiCFVLcvxUbbp+yQ9EEBXDsfIU4rsY7RKJEsx/fjjRFjyGnamRCBwUZQspK37G9We6xAkX7IibGA24AA==
 
 escalade@^3.1.1:
   version "3.1.1"

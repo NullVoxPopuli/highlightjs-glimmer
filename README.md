@@ -44,7 +44,9 @@ to use the handlebars grammar align with the glimmer grammar, you'll need to use
 <pre><code class="lang-handlebars">...</code></pre>
 ```
 
-## HTML via traditional CDN script tags
+## CDN Usage
+
+### Traditional Script Tags
 
 ```html
 <script type="text/javascript" src="/cdn/path/to/highlight.min.js"></script>
@@ -52,7 +54,7 @@ to use the handlebars grammar align with the glimmer grammar, you'll need to use
 <script type="text/javascript">hljs.highlightAll();</script>
 ```
 
-## HTML via ES Modules
+### ES Modules
 
 ```html
 <script type="text/javascript" src="/cdn/path/to/highlight.min.js"></script>

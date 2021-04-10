@@ -4,8 +4,8 @@ const path = require('path');
 const esbuild = require('esbuild');
 
 /**
-  * CDN / script-only auto-registration
-  */
+ * CDN / script-only auto-registration
+ */
 esbuild.buildSync({
   entryPoints: [path.join(__dirname, 'cdn-bootstrap.js')],
   bundle: true,
@@ -17,8 +17,8 @@ esbuild.buildSync({
 });
 
 /**
-  * CDN / import
-  */
+ * CDN / import
+ */
 esbuild.buildSync({
   entryPoints: [path.join(__dirname, '../src/glimmer.js')],
   bundle: false,
@@ -30,8 +30,8 @@ esbuild.buildSync({
 });
 
 /**
-  * Node / require
-  */
+ * Node / require
+ */
 esbuild.buildSync({
   entryPoints: [path.join(__dirname, '../src/glimmer.js')],
   bundle: false,
@@ -39,4 +39,4 @@ esbuild.buildSync({
   format: 'cjs',
   sourcemap: false,
   outfile: path.join(__dirname, '../dist/glimmer.cjs.js'),
-})
+});
