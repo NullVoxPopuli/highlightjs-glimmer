@@ -84,15 +84,20 @@
         display: flex;
         gap: 1rem;
         align-items:center;
+        flex-wrap: wrap;
       }
       nav a {
         color: #61aeee;
       }
+      hr {
+        margin: 1rem 0;
+        border: 1px solid black;
+      }
       #samples {
-        padding: 1rem;
         display: flex;
         flex-direction: row;
         gap: 1rem;
+        flex-wrap: wrap;
       }
     </style>
   </head>
@@ -106,6 +111,7 @@
         </nav>
         <code>npm install highlightjs-glimmer</code>
       </div>
+      <hr />
       <nav id="samples">
         <span>Samples:</span>
       </nav>
