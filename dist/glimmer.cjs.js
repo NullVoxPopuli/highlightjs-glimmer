@@ -81,7 +81,7 @@ function glimmer(hljs) {
   };
   const OPERATORS = {
     className: "operator",
-    match: /=/
+    match: /\=/
   };
   const ARGUMENTS = {
     className: {
@@ -103,7 +103,7 @@ function glimmer(hljs) {
       2: "punctuation",
       3: "variable"
     },
-    match: [/this/, /\./, /\S+/]
+    match: [/this/, /\./, /[^\s}]+/]
   };
   const NAME = {
     className: "name",
@@ -215,6 +215,7 @@ function glimmer(hljs) {
       begin: regex.concat(/<:?/, regex.lookahead(regex.concat(TAG_NAME, regex.either(/\/>/, />/, /\s/)))),
       end: /\/?>/,
       contains: [
+        OPERATORS,
         ARGUMENTS,
         TAG_COMMENT,
         BLOCK_PARAMS,
