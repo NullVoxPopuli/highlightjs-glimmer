@@ -12,7 +12,7 @@
     "debug": "npx html-pages .",
     "lint:js": "eslint .",
     "lint": "eslint .",
-    "test": "yarn build && jest ."
+    "test": "yarn build && export NODE_OPTIONS='--experimental-vm-modules' && jest ."
   },
   "engines": {
     "node": "> 10"
