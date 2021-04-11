@@ -29,7 +29,6 @@ export default function glimmer(hljs) {
         ARGUMENTS,
         TAG_COMMENT,
         ...ANGLE_BRACKET_BLOCK,
-        // ...MUSTACHE_BLOCK,
       ],
     };
   }
@@ -131,11 +130,6 @@ export default function glimmer(hljs) {
       3: 'variable',
     },
     match: [/this/, /\./, /[^\s}]+/],
-  };
-
-  const NAME = {
-    className: 'name',
-    match: /\b\w+\b/,
   };
 
   const ABS_NAME = {
@@ -256,21 +250,6 @@ export default function glimmer(hljs) {
   ];
 
   STRING.variants.forEach((variant) => variant.contains.push(...MUSTACHE_EXPRESSION));
-
-  const MUSTACHE_BLOCK = [
-    // open curly block
-    {
-      begin: regex.concat(/\{\{#/, regex.lookahead(CURLY_BLOCK_NAME)),
-      end: /\}\}/,
-      contains: [PUNCTUATION, ...MUSTACHE_AND_SUB_EXPRESSION_INTERNALS, CURLY_NAME, NAME],
-    },
-    // close curly block
-    {
-      begin: regex.concat(/\{\{\//, regex.lookahead(regex.concat(/\}\}/))),
-      end: /\}\}/,
-      contains: [OPERATORS, CURLY_NAME],
-    },
-  ];
 
   const ANGLE_BRACKET_BLOCK = [
     {

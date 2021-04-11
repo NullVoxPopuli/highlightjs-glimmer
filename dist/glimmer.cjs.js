@@ -105,10 +105,6 @@ function glimmer(hljs) {
     },
     match: [/this/, /\./, /[^\s}]+/]
   };
-  const NAME = {
-    className: "name",
-    match: /\b\w+\b/
-  };
   const ABS_NAME = {
     className: "title",
     match: COMPONENT_NAME
@@ -197,18 +193,6 @@ function glimmer(hljs) {
     }
   ];
   STRING.variants.forEach((variant) => variant.contains.push(...MUSTACHE_EXPRESSION));
-  const MUSTACHE_BLOCK = [
-    {
-      begin: regex.concat(/\{\{#/, regex.lookahead(CURLY_BLOCK_NAME)),
-      end: /\}\}/,
-      contains: [PUNCTUATION, ...MUSTACHE_AND_SUB_EXPRESSION_INTERNALS, CURLY_NAME, NAME]
-    },
-    {
-      begin: regex.concat(/\{\{\//, regex.lookahead(regex.concat(/\}\}/))),
-      end: /\}\}/,
-      contains: [OPERATORS, CURLY_NAME]
-    }
-  ];
   const ANGLE_BRACKET_BLOCK = [
     {
       className: "tag",
