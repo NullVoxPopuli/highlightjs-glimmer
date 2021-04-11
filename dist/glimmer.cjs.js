@@ -182,7 +182,7 @@ function glimmer(hljs) {
   MUSTACHE_AND_SUB_EXPRESSION_INTERNALS.push(SUB_EXPRESSION);
   const MUSTACHE_EXPRESSION = [
     {
-      className: "mustache",
+      className: "punctuation mustache",
       keywords: KEYWORDS,
       begin: regex.concat(/\{\{\{?#?/),
       end: /\}\}\}?/,

@@ -240,7 +240,7 @@ export default function glimmer(hljs) {
 
   const MUSTACHE_EXPRESSION = [
     {
-      className: 'mustache',
+      className: 'punctuation mustache',
       keywords: KEYWORDS,
       begin: regex.concat(/\{\{\{?#?/),
       end: /\}\}\}?/,
