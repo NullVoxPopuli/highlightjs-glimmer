@@ -1,3 +1,10 @@
+# [1.3.0](https://github.com/NullVoxPopuli/highlightjs-glimmer/compare/v1.2.0...v1.3.0) (2021-04-11)
+
+
+### Features
+
+* **grammar:** support template tags in js ([c0517f5](https://github.com/NullVoxPopuli/highlightjs-glimmer/commit/c0517f5c74a6d00a33090133b38a9a66cace1dca))
+
 # [1.2.0](https://github.com/NullVoxPopuli/highlightjs-glimmer/compare/v1.1.1...v1.2.0) (2021-04-11)
 
 
