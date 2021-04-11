@@ -11,6 +11,7 @@
     "build": "node ./scripts/build.cjs",
     "debug": "npx html-pages .",
     "lint:js": "eslint .",
+    "lint": "eslint .",
     "test": "yarn build && jest ."
   },
   "engines": {

@@ -12,10 +12,10 @@
 
   <!-- For testing this library -->
   <script type="module">
-    import {hljs} from './vendor/highlight.js';
-    import {javascript} from './vendor/javascript.min.js';
-    import {setup} from './src/index.js';
     import * as samples from './demo/samples.js';
+    import { setup } from './src/index.js';
+    import { hljs } from './vendor/highlight.js';
+    import { javascript } from './vendor/javascript.min.js';
 
     hljs.registerLanguage('javascript', javascript);
     setup(hljs);
@@ -43,7 +43,7 @@
       navigateTo = (href, title = document.title) => {
         history.pushState(null, title, href);
         renderer.render();
-      }
+      };
     }
 
     class Renderer {
@@ -57,7 +57,7 @@
         this._updatePreview();
         this._updateDebug();
         this._updateSampleNav();
-      }
+      };
 
       _updatePreview = () => {
         let sampleInfo = state.currentSample;
@@ -67,7 +67,7 @@
         preview.classList = `language-${sampleInfo.language}`;
 
         hljs.highlightAll();
-      }
+      };
 
       _setupSampleNav = () => {
         let sampleNav = document.querySelector('#samples');
@@ -89,18 +89,18 @@
         });
 
         sampleNav.append(...sampleLinks);
-      }
+      };
 
       _setupDebug = () => {
-        document.querySelector('#dev a').addEventListener('click', e => {
+        document.querySelector('#dev a').addEventListener('click', (e) => {
           e.preventDefault();
 
           state.navigateTo(e.target.href);
         });
-      }
+      };
 
       _updateSampleNav = () => {
-        document.querySelectorAll('#samples a').forEach(link => {
+        document.querySelectorAll('#samples a').forEach((link) => {
           let qps = new URLSearchParams(state.qps);
           let linkQPs = new URLSearchParams(new URL(link.href).search);
           let sampleKey = linkQPs.get('sample');
@@ -108,31 +108,29 @@
           qps.set('sample', sampleKey);
           link.href = `?${qps}`;
 
-
           if (sampleKey === state.currentSampleKey) {
             return link.classList.add('active');
           }
 
           link.classList.remove('active');
         });
-      }
+      };
 
       _updateDebug = () => {
         let debugMode = document.querySelector('#dev a');
 
         let qps = state.qps;
-        qps.set('debug', !state.isDebugging)
+        qps.set('debug', !state.isDebugging);
 
         debugMode.href = `/?${qps}`;
-      }
+      };
     }
-
 
     let state = new State();
     let renderer = new Renderer();
 
     // for debugging / inspecting
-    Object.assign(window, {hljs, state, renderer});
+    Object.assign(window, { hljs, state, renderer });
 
     renderer.render();
   </script>
