@@ -4,10 +4,17 @@
   <title>Glimmer w/ Highlight.js</title>
   <meta title="description" content="Glimmer syntax highlighting powered by Highlight.js" />
 
-  <link rel="stylesheet" href="/path/to/styles/default.css">
   <!-- Hybrid Theme! -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10/styles/tomorrow-night.min.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10/styles/atom-one-dark-reasonable.min.css">
+  <!-- We need to highlight some new features of hljs -->
+  <style type="text/css">
+    .hljs-punctuation { color: #ae633f }
+    .hljs-class { color: #88f; }
+    .hljs-operator { color: #959; }
+    /* custom, usually these inherit the tag or text */
+    .hljs-mustache { color: #d8c; }
+  </style>
 
 
   <!-- For testing this library -->
