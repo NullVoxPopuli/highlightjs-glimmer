@@ -20,8 +20,8 @@ esbuild.buildSync({
  * CDN / import
  */
 esbuild.buildSync({
-  entryPoints: [path.join(__dirname, '../src/glimmer.js')],
-  bundle: false,
+  entryPoints: [path.join(__dirname, '../src/index.js')],
+  bundle: true,
   minify: true,
   format: 'esm',
   sourcemap: false,
@@ -33,10 +33,11 @@ esbuild.buildSync({
  * Node / require
  */
 esbuild.buildSync({
-  entryPoints: [path.join(__dirname, '../src/glimmer.js')],
-  bundle: false,
+  entryPoints: [path.join(__dirname, '../src/index.js')],
+  bundle: true,
   minify: false,
   format: 'cjs',
   sourcemap: false,
+  target: ['node14'],
   outfile: path.join(__dirname, '../dist/glimmer.cjs.js'),
 });
