@@ -1,7 +1,7 @@
 # highlightjs-glimmer
 
 [![npm version](https://badge.fury.io/js/highlightjs-glimmer.svg)](https://www.npmjs.com/package/highlightjs-glimmer)
-[![code quality](https://badgen.net/lgtm/grade/github/NullVoxPopuli/highlightjs-glimmer/js?label=code+quality)](https://lgtm.com/projects/github/NullVoxPopuli/highlightjs-glimmer/?mode=list)
+[![code quality](https://badgen.net/lgtm/grade/github/NullVoxPopuli/highlightjs-glimmer/js?label=code+quality)](https://lgtm.com/projects/g/NullVoxPopuli/highlightjs-glimmer/)
 
 glimmer syntax highlighting with [highlight.js](https://github.com/highlightjs/highlight.js)
 
