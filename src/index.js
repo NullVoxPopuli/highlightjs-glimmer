@@ -26,14 +26,18 @@ function registerJavaScriptInjections(hljs) {
 
   js = js.rawDefinition(hljs);
 
-  let index = js.contains.findIndex((rule) => rule?.begin === 'css`');
-  let css = js.contains[index];
+  let cssIndex = js.contains.findIndex((rule) => rule?.begin === 'css`');
+  let css = js.contains[cssIndex];
+
+  // The default JSX grammar is actually just XML, which... is also wrong :D
+  js.contains
+    .flatMap((contains) => contains?.contains || contains)
+    .filter((rule) => rule.subLanguage === 'xml')
+    .forEach((rule) => (rule.subLanguage = 'glimmer'));
 
   const HBS_TEMPLATE = hljs.inherit(css, { begin: /hbs`/ });
 
   HBS_TEMPLATE.starts.subLanguage = 'glimmer';
-
-  js.contains.splice(index, 0, HBS_TEMPLATE);
-
+  js.contains.splice(cssIndex, 0, HBS_TEMPLATE);
   hljs.registerLanguage('javascript', () => js);
 }

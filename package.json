@@ -11,7 +11,8 @@
     "build": "node ./scripts/build.cjs",
     "debug": "npx html-pages .",
     "lint:js": "eslint .",
-    "test": "yarn build && jest ."
+    "lint": "eslint .",
+    "test": "yarn build && export NODE_OPTIONS='--experimental-vm-modules' && jest ."
   },
   "engines": {
     "node": "> 10"
@@ -31,6 +32,7 @@
     "common-tags": "^1.8.0",
     "esbuild": "^0.11.8",
     "eslint": "^7.23.0",
+    "eslint-plugin-html": "^6.1.2",
     "jest": "^26.6.3",
     "semantic-release": "^17.4.2"
   },

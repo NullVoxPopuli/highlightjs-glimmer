@@ -31,8 +31,6 @@ jobs:
       - run: yarn install
 
       - name: Test with ${{ matrix.node }}
-        env:
-          NODE_OPTIONS: '--experimental-vm-modules'
         run: yarn test
 
   hljs-tests:
