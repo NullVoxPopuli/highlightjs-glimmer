@@ -1,3 +1,10 @@
+# [1.2.0](https://github.com/NullVoxPopuli/highlightjs-glimmer/compare/v1.1.1...v1.2.0) (2021-04-11)
+
+
+### Features
+
+* **syntax:** hbs template literal support in JS ([0e35950](https://github.com/NullVoxPopuli/highlightjs-glimmer/commit/0e359503853964894f23b44a118724ecc1e5a627))
+
 ## [1.1.1](https://github.com/NullVoxPopuli/highlightjs-glimmer/compare/v1.1.0...v1.1.1) (2021-04-11)
 
 
