@@ -29,17 +29,9 @@ function registerJavaScriptInjections(hljs) {
   let index = js.contains.findIndex((rule) => rule?.begin === 'css`');
   let css = js.contains[index];
 
-  const SUBST = css.starts.contains.find((rule) => rule.className === 'subst');
-  const HBS_TEMPLATE = {
-    begin: 'hbs`',
-    end: '',
-    starts: {
-      end: '`',
-      returnEnd: false,
-      contains: [hljs.BACKSLASH_ESCAPE, SUBST],
-      subLanguage: 'glimmer',
-    },
-  };
+  const HBS_TEMPLATE = hljs.inherit(css, { begin: /hbs`/ });
+
+  HBS_TEMPLATE.starts.subLanguage = 'glimmer';
 
   js.contains.splice(index, 0, HBS_TEMPLATE);
 
