@@ -33,7 +33,12 @@ function registerJavaScriptInjections(hljs) {
 
   HBS_TEMPLATE.starts.subLanguage = 'glimmer';
 
+  const HBS_TEMPLATE_TAG = hljs.inherit(HBS_TEMPLATE, { begin: `<template>` });
+
+  HBS_TEMPLATE_TAG.starts.end = `</template>`;
+
   js.contains.splice(index, 0, HBS_TEMPLATE);
+  js.contains.unshift(HBS_TEMPLATE_TAG);
 
   hljs.registerLanguage('javascript', () => js);
 }

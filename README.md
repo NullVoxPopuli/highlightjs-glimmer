@@ -126,6 +126,6 @@ NODE_OPTIONS="--experimental-vm-modules" node your-module-script.js
 ## Contributing
 
 Debug with `yarn debug -p 4201`
-Visit `http://10.0.2.15:4201`
+Visit `http://localhost:4201`
 
 Run Tets with `yarn test` or `npm run test`

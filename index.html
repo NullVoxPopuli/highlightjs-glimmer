@@ -1,28 +1,66 @@
 <html lang="en">
-  <head>
-    <title>Glimmer w/ Highlight.js</title>
-    <meta title="description" content="Glimmer syntax highlighting powered by Highlight.js" />
 
-    <link rel="stylesheet" href="/path/to/styles/default.css">
-    <!-- Hybrid Theme! -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10/styles/tomorrow-night.min.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10/styles/atom-one-dark-reasonable.min.css">
+<head>
+  <title>Glimmer w/ Highlight.js</title>
+  <meta title="description" content="Glimmer syntax highlighting powered by Highlight.js" />
+
+  <link rel="stylesheet" href="/path/to/styles/default.css">
+  <!-- Hybrid Theme! -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10/styles/tomorrow-night.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10/styles/atom-one-dark-reasonable.min.css">
 
 
-    <!-- For testing this library -->
-    <script type="module">
-      import { hljs } from './vendor/highlight.js';
-      import { javascript } from './vendor/javascript.min.js';
-      import { setup } from './src/index.js';
-      import * as samples from './demo/samples.js';
+  <!-- For testing this library -->
+  <script type="module">
+    import {hljs} from './vendor/highlight.js';
+    import {javascript} from './vendor/javascript.min.js';
+    import {setup} from './src/index.js';
+    import * as samples from './demo/samples.js';
 
-      // for debugging / inspecting
-      window.hljs = hljs;
+    hljs.registerLanguage('javascript', javascript);
+    setup(hljs);
 
-      hljs.registerLanguage('javascript', javascript);
-      setup(hljs);
+    class State {
+      get qps() {
+        return new URLSearchParams(location.search);
+      }
 
-      function updatePreview(sampleInfo) {
+      get isDebugging() {
+        return this.qps.get('debug') === 'true';
+      }
+
+      get currentSampleKey() {
+        let validKeys = Object.keys(samples);
+        let fromQP = this.qps.get('sample');
+
+        return validKeys.includes(fromQP) ? fromQP : 'glimmer';
+      }
+
+      get currentSample() {
+        return samples[this.currentSampleKey];
+      }
+
+      navigateTo = (href, title = document.title) => {
+        history.pushState(null, title, href);
+        renderer.render();
+      }
+    }
+
+    class Renderer {
+      constructor() {
+        this._setupSampleNav();
+        this._setupDebug();
+        this._updateSampleNav();
+      }
+
+      render = () => {
+        this._updatePreview();
+        this._updateDebug();
+        this._updateSampleNav();
+      }
+
+      _updatePreview = () => {
+        let sampleInfo = state.currentSample;
         let preview = document.querySelector('pre code');
 
         preview.innerText = sampleInfo.sample;
@@ -31,96 +69,165 @@
         hljs.highlightAll();
       }
 
-      let sampleNav = document.querySelector('#samples');
-      let sampleLinks = Object.entries(samples).map(([key, data]) => {
-        let link = document.createElement('a');
+      _setupSampleNav = () => {
+        let sampleNav = document.querySelector('#samples');
+        let sampleLinks = Object.entries(samples).map(([key, data]) => {
+          let link = document.createElement('a');
+          let qps = new URLSearchParams(location.search);
 
-        link.href = `/?sample=${key}`;
-        link.innerText = data.name;
-        link.addEventListener('click', (e) => {
-          e.preventDefault();
+          qps.set('sample', key);
 
-          history.pushState(null, data.name, e.target.href);
-          updatePreview(data);
+          link.href = `?${qps}`;
+          link.innerText = data.name;
+          link.addEventListener('click', (e) => {
+            e.preventDefault();
+
+            state.navigateTo(e.target.href, data.name);
+          });
+
+          return link;
         });
 
-        return link;
-      });
+        sampleNav.append(...sampleLinks);
+      }
 
-      sampleNav.append(...sampleLinks);
+      _setupDebug = () => {
+        document.querySelector('#dev a').addEventListener('click', e => {
+          e.preventDefault();
 
-      let qps = new URLSearchParams(location.search);
-      let initialKey = qps.get('sample') || 'glimmer';
-      let initialSample = samples[initialKey] ;
+          state.navigateTo(e.target.href);
+        });
+      }
 
-      updatePreview(initialSample);
-    </script>
-    <style>
-      @font-face {
-        font-family: dejavu-sans-mono;
-        src: url('./demo/DejaVuSansMono.ttf');
+      _updateSampleNav = () => {
+        document.querySelectorAll('#samples a').forEach(link => {
+          let qps = new URLSearchParams(state.qps);
+          let linkQPs = new URLSearchParams(new URL(link.href).search);
+          let sampleKey = linkQPs.get('sample');
+
+          qps.set('sample', sampleKey);
+          link.href = `?${qps}`;
+
+
+          if (sampleKey === state.currentSampleKey) {
+            return link.classList.add('active');
+          }
+
+          link.classList.remove('active');
+        });
       }
-      html, body {
-        background-color: #181c24;
-        color: white;
-        padding: 0;
-        margin: 0;
-        font-family: system-ui, arial, sans-serif;
+
+      _updateDebug = () => {
+        let debugMode = document.querySelector('#dev a');
+
+        let qps = state.qps;
+        qps.set('debug', !state.isDebugging)
+
+        debugMode.href = `/?${qps}`;
       }
-      code {
-        font-family: dejavu-sans-mono, ui-monospace, monospace, sans-serif;
-      }
-      pre {
-        margin: 0;
-      }
-      pre code.hljs {
-        padding: 1rem;
-      }
-      section {
-        padding: 1rem;
-      }
-      section nav {
-        display: flex;
-        gap: 0.5rem;
-      }
-      section div {
-        display: flex;
-        gap: 1rem;
-        align-items:center;
-        flex-wrap: wrap;
-      }
-      nav a {
-        color: #61aeee;
-      }
-      hr {
-        margin: 1rem 0;
-        border: 1px solid black;
-      }
-      #samples {
-        display: flex;
-        flex-direction: row;
-        gap: 1rem;
-        flex-wrap: wrap;
-      }
-    </style>
-  </head>
-  <body>
-    <section>
-      <h1>Glimmer for highlight.js</h1>
-      <div>
-        <nav>
-          <a href="https://github.com/NullVoxPopuli/highlightjs-glimmer">GitHub</a>
-          <a href="https://www.npmjs.com/package/highlightjs-glimmer">NPM</a>
-        </nav>
-        <code>npm install highlightjs-glimmer</code>
-      </div>
-      <hr />
-      <nav id="samples">
-        <span>Samples:</span>
+    }
+
+
+    let state = new State();
+    let renderer = new Renderer();
+
+    // for debugging / inspecting
+    Object.assign(window, {hljs, state, renderer});
+
+    renderer.render();
+  </script>
+  <style>
+    @font-face {
+      font-family: dejavu-sans-mono;
+      src: url('./demo/DejaVuSansMono.ttf');
+    }
+
+    html,
+    body {
+      background-color: #181c24;
+      color: white;
+      padding: 0;
+      margin: 0;
+      font-family: system-ui, arial, sans-serif;
+    }
+
+    code {
+      font-family: dejavu-sans-mono, ui-monospace, monospace, sans-serif;
+    }
+
+    pre {
+      margin: 0;
+    }
+
+    pre code.hljs {
+      padding: 1rem;
+    }
+
+    section {
+      padding: 1rem;
+    }
+
+    section nav {
+      display: flex;
+      gap: 0.5rem;
+    }
+
+    section div {
+      display: flex;
+      gap: 1rem;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    a {
+      color: #61aeee;
+    }
+
+    a.active {
+      color: #71beae;
+    }
+
+    hr {
+      margin: 1rem 0;
+      border: 1px solid black;
+    }
+
+    #samples {
+      display: flex;
+      flex-direction: row;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    #dev {
+      position: fixed;
+      bottom: 1rem;
+      right: 1rem;
+    }
+  </style>
+</head>
+
+<body>
+  <section>
+    <h1>Glimmer for highlight.js</h1>
+    <div>
+      <nav>
+        <a href="https://github.com/NullVoxPopuli/highlightjs-glimmer">GitHub</a>
+        <a href="https://www.npmjs.com/package/highlightjs-glimmer">NPM</a>
       </nav>
-    </section>
-    <pre>
+      <code>npm install highlightjs-glimmer</code>
+    </div>
+    <hr />
+    <nav id="samples">
+      <span>Samples:</span>
+    </nav>
+  </section>
+  <pre>
       <code class="language-glimmer"></code>
     </pre>
-  </body>
+  <div id="dev">
+    <a href="#">Debug</a>
+  </div>
+</body>
+
 </html>

@@ -2,10 +2,21 @@
 'use strict';
 
 const { configs } = require('@nullvoxpopuli/eslint-configs');
-const { baseConfig } = require('@nullvoxpopuli/eslint-configs/configs/node');
 
 const mjs = configs.nodeES();
 
 module.exports = {
   ...mjs,
+  overrides: [
+    ...mjs.overrides,
+    // pull this in to eslint-configs?
+    {
+      files: ['*.html'],
+      plugins: ['html'],
+      parserOptions: {
+        sourceType: 'module',
+        ecmaVersion: 2021,
+      },
+    },
+  ],
 };
