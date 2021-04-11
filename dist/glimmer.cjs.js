@@ -4,10 +4,15 @@ var __export = (target, all) => {
   for (var name in all)
     __defProp(target, name, {get: all[name], enumerable: true});
 };
+
+// src/index.js
 __markAsModule(exports);
 __export(exports, {
-  glimmer: () => glimmer
+  glimmer: () => glimmer2,
+  registerLanguage: () => registerLanguage
 });
+
+// src/glimmer.js
 function glimmer(hljs) {
   function definition() {
     return {
@@ -15,6 +20,7 @@ function glimmer(hljs) {
       aliases: ["glimmer", "hbs", "html.hbs", "html.handlebars", "htmlbars"],
       case_insensitive: true,
       keywords: KEYWORDS,
+      disableAutodetect: true,
       contains: [
         hljs.COMMENT(/\{\{!--/, /--\}\}/),
         hljs.COMMENT(/\{\{!/, /\}\}/),
@@ -247,4 +253,10 @@ function source(re) {
     return re;
   return re.source;
 }
-const regex = {lookahead, either, optional, concat};
+var regex = {lookahead, either, optional, concat};
+
+// src/index.js
+var glimmer2 = glimmer;
+function registerLanguage(hljs) {
+  hljs.registerLanguage("glimmer", glimmer);
+}

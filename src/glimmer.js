@@ -10,7 +10,7 @@ Description: Matcher for EmberJS and Glimmer.
 */
 
 /** @type LanguageFn */
-export function glimmer(hljs) {
+export default function glimmer(hljs) {
   // this is invoked and returned at the bottom of configureGlimmer
   function definition() {
     return {
@@ -18,6 +18,7 @@ export function glimmer(hljs) {
       aliases: ['glimmer', 'hbs', 'html.hbs', 'html.handlebars', 'htmlbars'],
       case_insensitive: true,
       keywords: KEYWORDS,
+      disableAutodetect: true,
       contains: [
         hljs.COMMENT(/\{\{!--/, /--\}\}/),
         hljs.COMMENT(/\{\{!/, /\}\}/),
