@@ -9,7 +9,9 @@ var __export = (target, all) => {
 __markAsModule(exports);
 __export(exports, {
   glimmer: () => glimmer2,
-  registerLanguage: () => registerLanguage
+  registerInjections: () => registerInjections,
+  registerLanguage: () => registerLanguage,
+  setup: () => setup
 });
 
 // src/glimmer.js
@@ -257,6 +259,27 @@ var regex = {lookahead, either, optional, concat};
 
 // src/index.js
 var glimmer2 = glimmer;
+function setup(hljs) {
+  registerLanguage(hljs);
+  registerInjections(hljs);
+}
 function registerLanguage(hljs) {
   hljs.registerLanguage("glimmer", glimmer);
+}
+function registerInjections(hljs) {
+  registerJavaScriptInjections(hljs);
+}
+function registerJavaScriptInjections(hljs) {
+  let js = hljs.getLanguage("javascript");
+  if (!js) {
+    console.warn(`JavaScript grammar not loaded`);
+    return;
+  }
+  js = js.rawDefinition(hljs);
+  let index = js.contains.findIndex((rule) => (rule == null ? void 0 : rule.begin) === "css`");
+  let css = js.contains[index];
+  const HBS_TEMPLATE = hljs.inherit(css, {begin: /hbs`/});
+  HBS_TEMPLATE.starts.subLanguage = "glimmer";
+  js.contains.splice(index, 0, HBS_TEMPLATE);
+  hljs.registerLanguage("javascript", () => js);
 }

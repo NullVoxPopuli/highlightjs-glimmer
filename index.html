@@ -13,11 +13,14 @@
     <script type="module">
       import { hljs } from './vendor/highlight.js';
       import { javascript } from './vendor/javascript.min.js';
-      import { registerLanguage as glimmer } from './src/index.js';
+      import { setup } from './src/index.js';
       import * as samples from './demo/samples.js';
 
+      // for debugging / inspecting
+      window.hljs = hljs;
+
       hljs.registerLanguage('javascript', javascript);
-      glimmer(hljs);
+      setup(hljs);
 
       function updatePreview(sampleInfo) {
         let preview = document.querySelector('pre code');
