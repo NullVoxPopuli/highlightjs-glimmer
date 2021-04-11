@@ -1,3 +1,10 @@
+## [1.1.1](https://github.com/NullVoxPopuli/highlightjs-glimmer/compare/v1.1.0...v1.1.1) (2021-04-11)
+
+
+### Bug Fixes
+
+* **tests:** hljs tests now includes glimmer ([a0d12d8](https://github.com/NullVoxPopuli/highlightjs-glimmer/commit/a0d12d8fd44ba419a61f749b28a3c38c81a7e4b0))
+
 # [1.1.0](https://github.com/NullVoxPopuli/highlightjs-glimmer/compare/v1.0.1...v1.1.0) (2021-04-10)
 
 
