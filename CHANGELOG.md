@@ -1,3 +1,10 @@
+## [1.3.2](https://github.com/NullVoxPopuli/highlightjs-glimmer/compare/v1.3.1...v1.3.2) (2021-04-11)
+
+
+### Bug Fixes
+
+* **colors:** punctuation fix for curlies ([29d295f](https://github.com/NullVoxPopuli/highlightjs-glimmer/commit/29d295ffe16e5aabfc32bc351414f089b7a10b7b))
+
 ## [1.3.1](https://github.com/NullVoxPopuli/highlightjs-glimmer/compare/v1.3.0...v1.3.1) (2021-04-11)
 
 
