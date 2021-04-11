@@ -105,10 +105,6 @@ function glimmer(hljs) {
     },
     match: [/this/, /\./, /[^\s}]+/]
   };
-  const NAME = {
-    className: "name",
-    match: /\b\w+\b/
-  };
   const ABS_NAME = {
     className: "title",
     match: COMPONENT_NAME
