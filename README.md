@@ -18,11 +18,15 @@ Requires: [highlight.js >= v11](https://github.com/highlightjs/highlight.js)
 
 ```js
 import hljs from 'highlight.js';
-import { glimmer } from 'highlightjs-glimmer';
+import { setup } from 'highlightjs-glimmer';
 
-hljs.registerLanguage('glimmer', glimmer);
+setup(hljs);
+
 hljs.highlightAll();
 ```
+
+ - the `javascript` language must be registered before `setup` is called.
+ - `setup` _must_ be called before any highlighting occurs.
 
 Supported language tags:
 
@@ -43,6 +47,29 @@ to use the handlebars grammar align with the glimmer grammar, you'll need to use
 <pre><code class="lang-glimmer">...</code></pre>
 <pre><code class="lang-handlebars">...</code></pre>
 ```
+
+## API
+
+- `setup`
+
+    The convenience method for configuring everything related to
+    glimmer highlighting. This wraps `registerLanguage` and `registerInjections`.
+    For most use cases, this should be the only method you need.
+
+- `registerLanguage`
+
+    Convenience method for registering the glimmer syntax with
+    highlight.js under the name "glimmer"
+
+- `registerInjections`
+
+    Configures injections in supported languages where it's common to use glimmer
+    syntax.
+
+- `glimmer`
+
+    The highlight.js grammar function. This can be used to register
+    the glimmer grammar under a name other than "glimmer".
 
 ## CDN Usage
 
@@ -70,9 +97,10 @@ to use the handlebars grammar align with the glimmer grammar, you'll need to use
 
 ```js
 const hljs = require('highlight.js');
-const { glimmer } = require('highlightjs-glimmer');
+const { setup } = require('highlightjs-glimmer');
 
-hljs.registerLanguage('glimmer', glimmer);
+setup(hljs);
+
 hljs.highlightAll();
 ```
 
@@ -82,9 +110,10 @@ Only Node 14 is supported
 
 ```js
 import hljs from 'highlight.js';
-import { glimmer } from 'highlightjs-glimmer';
+import { setup } from 'highlightjs-glimmer';
 
-hljs.registerLanguage('glimmer', glimmer);
+setup(hljs);
+
 hljs.highlightAll();
 ```
 

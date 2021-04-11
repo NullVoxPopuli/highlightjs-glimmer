@@ -2,12 +2,14 @@
 //       This is because the glimmer syntax requires a to-be-released
 //       version of highlight.js at the time of writing
 import { hljs } from '../vendor/highlight';
+import { javascript } from '../vendor/javascript.min';
 import { registerLanguage } from '../src';
 
 registerLanguage(hljs);
+hljs.registerLanguage('javascript', javascript);
 
-export function parse(code) {
-  return hljs.highlight(code, { language: 'glimmer' }).value;
+export function parse(code, lang = 'glimmer') {
+  return hljs.highlight(code, { language: lang }).value;
 }
 
 export function tag(klass, children = []) {
