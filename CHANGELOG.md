@@ -1,3 +1,10 @@
+## [1.3.1](https://github.com/NullVoxPopuli/highlightjs-glimmer/compare/v1.3.0...v1.3.1) (2021-04-11)
+
+
+### Bug Fixes
+
+* **colors:** fix issues with punctuation, this, operator, and mustache ([ddacc29](https://github.com/NullVoxPopuli/highlightjs-glimmer/commit/ddacc293ca64b64ff33e0a415a08337a86fc106a))
+
 # [1.3.0](https://github.com/NullVoxPopuli/highlightjs-glimmer/compare/v1.2.0...v1.3.0) (2021-04-11)
 
 
