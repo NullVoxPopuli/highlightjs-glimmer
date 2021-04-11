@@ -1,4 +1,4 @@
-import _glimmer from './glimmer';
+import _glimmer from './glimmer.js';
 
 export const glimmer = _glimmer;
 
