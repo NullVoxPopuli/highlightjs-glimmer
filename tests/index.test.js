@@ -24,3 +24,17 @@ describe('Component Invocation', () => {
     );
   });
 });
+
+describe('Expressions', () => {
+  describe('Mustache', () => {
+    test('this.property', () => {
+      let result = parse('{{this.property}}');
+
+      expect(result).toEqual(
+        stripIndent`
+          <span class="hljs-punctuation mustache">{{<span class="hljs-class">this</span><span class="hljs-punctuation">.</span><span class="hljs-property">property</span>}}</span>
+        `
+      );
+    });
+  });
+});
