@@ -1,3 +1,10 @@
+## [1.3.3](https://github.com/NullVoxPopuli/highlightjs-glimmer/compare/v1.3.2...v1.3.3) (2021-04-13)
+
+
+### Bug Fixes
+
+* **grammar:** this.property is now [class][punc][property] ([9492542](https://github.com/NullVoxPopuli/highlightjs-glimmer/commit/94925427ee10613e75b4239abcc0ed679f416e40))
+
 ## [1.3.2](https://github.com/NullVoxPopuli/highlightjs-glimmer/compare/v1.3.1...v1.3.2) (2021-04-11)
 
 
