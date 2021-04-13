@@ -127,7 +127,7 @@ export default function glimmer(hljs) {
     className: {
       1: 'class',
       2: 'punctuation',
-      3: 'variable',
+      3: 'property',
     },
     match: [/this/, /\./, /[^\s}]+/],
   };
