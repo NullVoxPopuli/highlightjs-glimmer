@@ -33,8 +33,12 @@
     "esbuild": "^0.11.10",
     "eslint": "^7.23.0",
     "eslint-plugin-html": "^6.1.2",
+    "highlight.js": ">= 11.0.0-alpha0",
     "jest": "^26.6.3",
     "semantic-release": "^17.4.2"
+  },
+  "peerDependencies": {
+    "highlight.js": ">= 11.0.0-alpha0"
   },
   "release": {
     "branches": [
