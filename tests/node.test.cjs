@@ -1,8 +1,9 @@
 'use strict';
 
 const cwd = process.cwd();
-// TODO: we need highlight.js v11 to be published in order to do this test properly
-const { hljs } = require(`${cwd}/vendor/highlight.cjs`);
+
+const hljs = require('highlight.js');
+
 const { glimmer } = require(`${cwd}/dist/glimmer.cjs`);
 
 hljs.registerLanguage('glimmer', glimmer);

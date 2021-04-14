@@ -49,6 +49,37 @@ to use the handlebars grammar align with the glimmer grammar, you'll need to use
 <pre><code class="lang-handlebars">...</code></pre>
 ```
 
+## with `await import(...)`
+
+When using ES Modules in browsers with a packager
+
+```ts
+let HIGHLIGHT;
+
+async function getHighlighter() {
+  if (HIGHLIGHT) return HIGHLIGHT;
+
+  HIGHLIGHT = (await import('highlight.js')).default;
+
+  let { setup } = await import('highlightjs-glimmer');
+
+  setup(HIGHLIGHT);
+
+  return HIGHLIGHT;
+}
+
+
+async highlight() {
+  let hljs = await getHighlighter();
+
+  let element = document.querySelector('...');
+
+  hljs.highlightElement(element);
+}
+
+highlight();
+```
+
 ## API
 
 - `setup`
@@ -83,6 +114,8 @@ to use the handlebars grammar align with the glimmer grammar, you'll need to use
 ```
 
 ### ES Modules
+
+At this time, highlight.js does not ship ES Modules to CDNs
 
 ```html
 <script type="text/javascript" src="/cdn/path/to/highlight.min.js"></script>

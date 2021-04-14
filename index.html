@@ -7,9 +7,23 @@
   <meta name="description" content="Glimmer syntax highlighting powered by Highlight.js" />
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
+  <!-- Highlight.JS does not ship ES Modules to CDNs... yet! -->
+  <script src="https://cdn.jsdelivr.net/npm/@highlightjs/cdn-assets@11.0.0-alpha0/highlight.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@highlightjs/cdn-assets@11.0.0-alpha0/languages/javascript.min.js"></script>
+
+
   <!-- Hybrid Theme! -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10/styles/tomorrow-night.min.css">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10/styles/atom-one-dark-reasonable.min.css">
+  <link
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/@highlightjs/cdn-assets@11.0.0-alpha0/styles/tomorrow-night.min.css"
+    integrity="sha256-SamwRCKvsKZ8zqKto5n4ytPPKOhPbBTbJdhJJK4Fjhw="
+    crossorigin="anonymous">
+  <link
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/@highlightjs/cdn-assets@11.0.0-alpha0/styles/atom-one-dark-reasonable.min.css"
+    integrity="sha256-4rrI7w9n2l7crFHzQhumwTmY2FsIUlDA5JlQ8bRicmc="
+    crossorigin="anonymous">
+
   <!-- We need to highlight some new features of hljs -->
   <style type="text/css">
     .hljs-punctuation { color: #a9c; }
@@ -23,12 +37,10 @@
 
   <!-- For testing this library -->
   <script type="module">
+    /* global hljs */
     import * as samples from './demo/samples.js';
     import { setup } from './src/index.js';
-    import { hljs } from './vendor/highlight.js';
-    import { javascript } from './vendor/javascript.min.js';
 
-    hljs.registerLanguage('javascript', javascript);
     setup(hljs);
 
     class State {
@@ -72,13 +84,10 @@
       };
 
       _updatePreview = () => {
-        let sampleInfo = state.currentSample;
+        let { sample, language } = state.currentSample;
         let preview = document.querySelector('pre code');
 
-        preview.innerText = sampleInfo.sample;
-        preview.classList = `language-${sampleInfo.language}`;
-
-        hljs.highlightAll();
+        preview.innerHTML = hljs.highlight(sample.trim(), { language }).value;
       };
 
       _setupSampleNav = () => {
@@ -225,7 +234,7 @@
     }
 
     .debug-classes pre code span {
-      display: inline-flex;
+      display: inline-block;
       align-items: baseline;
       padding: 0.25rem;
       padding-bottom: 0.125rem;
@@ -247,18 +256,22 @@
       color:white;
       margin-right:0.25rem;
       font-weight: normal;
-
       position: absolute;
-      top: -0.75rem;
+      top: -0.5rem;
       left: -0.25rem;
     }
 
     .debug-classes pre code span:after {
+      /* this hidden element is for stretching the span
+         to be at least the width of the before pseudo element */
       display: block;
       opacity: 0;
       font-size: 70%;
       content: attr(class);
       margin-top: -1rem;
+      position: relative;
+      top: -1rem;
+      left: -100%;
     }
   </style>
 </head>
@@ -279,8 +292,9 @@
     </nav>
   </section>
   <pre>
-      <code class="language-glimmer"></code>
-    </pre>
+    <code class="language-glimmer hljs">
+    </code>
+  </pre>
   <div id="dev">
     <a href="#">Debug</a>
   </div>
