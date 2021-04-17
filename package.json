@@ -30,7 +30,7 @@
     "@semantic-release/changelog": "^5.0.1",
     "@semantic-release/git": "^9.0.0",
     "common-tags": "^1.8.0",
-    "esbuild": "^0.11.11",
+    "esbuild": "^0.11.12",
     "eslint": "^7.23.0",
     "eslint-plugin-html": "^6.1.2",
     "highlight.js": ">= 11.0.0-alpha0",
