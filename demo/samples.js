@@ -37,9 +37,29 @@ export const glimmer = {
       <fooBar @num={{num}} @arg={{12}} />
     {{/let}}
 
+    {{! comment }}
+    {{!-- block }}
+      TODO: Indentation is broken after that
+      comment --}}
+
     <baz.component />
   </:block>
 </Nested::Component>
+
+<input {{on 'input' (fn this.doSomething 12 "string")}}
+
+{{#each-in this.keyedCollection as |key value|}}
+  {{this.localHelper (global-helper key value)}}
+{{/each-in}}
+
+{{#each this.listCollection as |value|}}
+  <button
+    type="button"
+    {{on "click" (fn this.handleClick value)}}
+  >
+    {{value}}
+  </button>
+{{/each}}
 
 {{#block-component
     property=@value
@@ -48,32 +68,21 @@ export const glimmer = {
     onClick=(action "someAction" withParam)
     as |returnValue|
 }}
-  {{#each-in foo as |bar, baz|}}
-    {{inline-component foo=bar}}
-  {{else if value}}
-  {{else with foo}}
+  {{#if foo}}
     \{{escaped handlebars}}
   {{else}}
-    {{! comment }}
-    {{!-- block }}
-      TODO: Indentation is broken after that
-      comment --}}
+    <a
+      href="#"
+      class="{{if inside 'still highlight'}}"
+      onclick={{action foo}}
+    >
 
-    <a href class="{{if inside 'still highlight'}}"
-      onclick={{action foo}}>
       {{escaped}}
       {{{unescaped}}}
+
     </a>
-
-    <MyIput type="text" oninput={{action (mut fooBar) value="target.value"}} />
-    <input type="text" oninput={{action (mut (fn fooBar 200)) value="target.value"}}>
-    <input {{on 'input' (fn this.doSomething 12 "string")}}
-
-    {{helper "string" 123}}
-    {{input value="foo"}}
-
     {{textarea}}
-  {{/each-in}}
+  {{/if}}
 {{/block-component}}
 `,
 };
