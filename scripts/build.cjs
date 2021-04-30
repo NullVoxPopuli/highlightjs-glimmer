@@ -39,5 +39,5 @@ esbuild.buildSync({
   format: 'cjs',
   sourcemap: false,
   target: ['node14'],
-  outfile: path.join(__dirname, '../dist/glimmer.cjs.js'),
+  outfile: path.join(__dirname, '../dist/glimmer.cjs.cjs'),
 });
