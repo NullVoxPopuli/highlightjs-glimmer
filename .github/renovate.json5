@@ -15,6 +15,14 @@
     // This reduces overall PR count
     ////////////////////////////////////////
     {
+      "groupName": "Rehype",
+      "packagePatterns": ["^rehype"]
+    },
+    {
+      "groupName": "Remark",
+      "packagePatterns": ["^remark"]
+    },
+    {
       "groupName": "Type Definitions",
       "packagePatterns": ["^@types\/*"],
       "schedule": ["after 9pm on sunday"],
@@ -75,7 +83,12 @@
         "ember-qunit",
         "qunit",
         "jest",
-        "npm-run-all"
+        "npm-run-all",
+        "babel-jest",
+        "@babel/core",
+        "@babel/node",
+        "@babel/plugin-transform-modules-commonjs",
+        "@babel/preset-env"
       ]
     }
   ]

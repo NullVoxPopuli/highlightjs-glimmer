@@ -8,6 +8,7 @@ var __export = (target, all) => {
 // src/index.js
 __markAsModule(exports);
 __export(exports, {
+  externalSetup: () => externalSetup,
   glimmer: () => glimmer2,
   registerInjections: () => registerInjections,
   registerLanguage: () => registerLanguage,
@@ -248,8 +249,13 @@ function setup(hljs) {
   registerLanguage(hljs);
   registerInjections(hljs);
 }
+function externalSetup(hljs) {
+  let grammar = glimmer(hljs);
+  registerInjections(hljs);
+  return grammar;
+}
 function registerLanguage(hljs) {
-  hljs.registerLanguage("glimmer", glimmer);
+  return hljs.registerLanguage("glimmer", glimmer);
 }
 function registerInjections(hljs) {
   registerJavaScriptInjections(hljs);

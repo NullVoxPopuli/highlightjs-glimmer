@@ -2,9 +2,15 @@ import { stripIndent } from 'common-tags';
 import { parse, tag } from './-utils';
 
 describe('Component Invocation', () => {
+  test('argument', () => {
+    expect(parse('{{@arg}}')).toEqual(
+      tag('punctuation mustache', ['{{', tag('punctuation', '@'), tag('params', 'arg'), '}}'])
+    );
+  });
+
   test('self-closed', () => {
     expect(parse('<Component::Name />')).toEqual(
-      `${tag('tag', ['&lt;', tag('title', ['Component']), '::', tag('title', ['Name']), ' /&gt;'])}`
+      `${tag('tag', ['&lt;', tag('title', 'Component'), '::', tag('title', 'Name'), ' /&gt;'])}`
     );
   });
 
