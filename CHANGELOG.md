@@ -1,3 +1,10 @@
+## [1.3.4](https://github.com/NullVoxPopuli/highlightjs-glimmer/compare/v1.3.3...v1.3.4) (2021-04-30)
+
+
+### Bug Fixes
+
+* **dist:** rename cjs output to end in cjs extension ([1c20168](https://github.com/NullVoxPopuli/highlightjs-glimmer/commit/1c201682fb769bce5040817ffd1119993ef0734b))
+
 ## [1.3.3](https://github.com/NullVoxPopuli/highlightjs-glimmer/compare/v1.3.2...v1.3.3) (2021-04-13)
 
 
