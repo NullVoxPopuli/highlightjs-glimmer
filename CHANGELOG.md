@@ -1,3 +1,10 @@
+# [1.4.0](https://github.com/NullVoxPopuli/highlightjs-glimmer/compare/v1.3.4...v1.4.0) (2021-05-01)
+
+
+### Features
+
+* **internal:** setup CJS testing with remark and rehype ([631af9d](https://github.com/NullVoxPopuli/highlightjs-glimmer/commit/631af9d1c3ee09644acc7151e26586b399ab0ca2))
+
 ## [1.3.4](https://github.com/NullVoxPopuli/highlightjs-glimmer/compare/v1.3.3...v1.3.4) (2021-04-30)
 
 
