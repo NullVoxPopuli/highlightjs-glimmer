@@ -7,8 +7,16 @@ export function setup(hljs) {
   registerInjections(hljs);
 }
 
+export function externalSetup(hljs) {
+  let grammar = _glimmer(hljs);
+
+  registerInjections(hljs);
+
+  return grammar;
+}
+
 export function registerLanguage(hljs) {
-  hljs.registerLanguage('glimmer', _glimmer);
+  return hljs.registerLanguage('glimmer', _glimmer);
 }
 
 export function registerInjections(hljs) {

@@ -30,8 +30,10 @@ jobs:
 
       - run: yarn install
 
-      - name: Test with ${{ matrix.node }}
-        run: yarn test
+      - name: Test Modules with ${{ matrix.node }}
+        run: yarn test:modules
+      - name: Test CJS with ${{ matrix.node }}
+        run: yarn test:cjs
 
   hljs-tests:
     if: "! contains(toJSON(github.event.commits.*.message), '[skip ci]')"

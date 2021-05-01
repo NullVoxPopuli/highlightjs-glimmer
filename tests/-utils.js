@@ -11,5 +11,7 @@ export function parse(code, lang = 'glimmer') {
 }
 
 export function tag(klass, children = []) {
-  return `<span class="hljs-${klass}">${children.join('')}</span>`;
+  let _children = Array.isArray(children) ? children : [children];
+
+  return `<span class="hljs-${klass}">${_children.join('')}</span>`;
 }
