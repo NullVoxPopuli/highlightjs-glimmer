@@ -30,7 +30,7 @@ describe('Injections | JS', () => {
 
       expect(result).toEqual(
         stripIndent`
-          <span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> Name = <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">template</span>&gt;</span>
+          <span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> <span class="hljs-title class_">Name</span> = <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">template</span>&gt;</span>
             {{@name}}
           <span class="hljs-tag">&lt;/<span class="hljs-name">template</span>&gt;</span></span>;
         `
