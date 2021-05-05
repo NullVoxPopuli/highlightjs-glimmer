@@ -8564,10 +8564,10 @@ vfile@^4.0.0:
     unist-util-stringify-position "^2.0.0"
     vfile-message "^2.0.0"
 
-vfile@^5.0.0:
-  version "5.0.0"
-  resolved "https://registry.yarnpkg.com/vfile/-/vfile-5.0.0.tgz#0a7d36198069c8cfcb8ff77cb2252279c65bd745"
-  integrity sha512-7RQI2eGterrF7M0c3bOCS49bpnrt1t+f/rpDPyBEpuLFy4jzUiWkftgjTAy/aO/RGxJys79NX1qslU35gL5xFw==
+vfile@^5.0.1:
+  version "5.0.1"
+  resolved "https://registry.yarnpkg.com/vfile/-/vfile-5.0.1.tgz#41c6d50d419e700424ef577fbc00dd6bc6487b7e"
+  integrity sha512-lbcf0k66x96Syy36HG+nIBFaSD/fAk589q4nETZTr0JW7eRRmrVo1vHwbD8NlHszUM5ICtFSWQ5xHC292hYZ/w==
   dependencies:
     "@types/unist" "^2.0.0"
     is-buffer "^2.0.0"
