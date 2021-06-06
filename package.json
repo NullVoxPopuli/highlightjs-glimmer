@@ -39,7 +39,7 @@
     "eslint": "^7.23.0",
     "eslint-plugin-html": "^6.1.2",
     "highlight.js": ">= 11.0.1",
-    "jest": "^27.0.3",
+    "jest": "^27.0.4",
     "lowlight": "github:wooorm/lowlight",
     "rehype": "^11.0.0",
     "rehype-highlight": "^4.1.0",
