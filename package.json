@@ -49,7 +49,7 @@
     "remark-parse": "^9.0.0",
     "remark-rehype": "^8.1.0",
     "semantic-release": "^17.4.4",
-    "unified": "^9.2.1",
+    "unified": "^9.2.2",
     "vfile": "^5.0.2"
   },
   "peerDependencies": {
