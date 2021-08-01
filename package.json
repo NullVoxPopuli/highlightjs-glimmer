@@ -24,9 +24,9 @@
   "jest": {},
   "devDependencies": {
     "@babel/core": "^7.14.8",
-    "@babel/node": "^7.14.7",
+    "@babel/node": "^7.14.9",
     "@babel/plugin-transform-modules-commonjs": "^7.14.5",
-    "@babel/preset-env": "^7.14.8",
+    "@babel/preset-env": "^7.14.9",
     "@commitlint/cli": "^13.1.0",
     "@commitlint/config-conventional": "^13.1.0",
     "@nullvoxpopuli/eslint-configs": "^1.2.0",
