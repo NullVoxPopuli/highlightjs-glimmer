@@ -48,7 +48,7 @@
     "remark-html": "^13.0.1",
     "remark-parse": "^9.0.0",
     "remark-rehype": "^8.1.0",
-    "semantic-release": "^17.4.7",
+    "semantic-release": "^18.0.0",
     "unified": "^9.2.2",
     "vfile": "^5.1.0"
   },
