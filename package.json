@@ -38,7 +38,7 @@
     "esbuild": "^0.13.8",
     "eslint": "^7.23.0",
     "eslint-plugin-html": "^6.1.2",
-    "highlight.js": ">= 11.2.0",
+    "highlight.js": ">= 11.3.1",
     "jest": "^27.2.5",
     "lowlight": "github:wooorm/lowlight",
     "rehype": "^11.0.0",
@@ -53,7 +53,7 @@
     "vfile": "^5.1.1"
   },
   "peerDependencies": {
-    "highlight.js": ">= 11.2.0"
+    "highlight.js": ">= 11.3.1"
   },
   "release": {
     "branches": [
