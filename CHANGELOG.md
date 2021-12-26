@@ -1,3 +1,10 @@
+## [1.4.1](https://github.com/NullVoxPopuli/highlightjs-glimmer/compare/v1.4.0...v1.4.1) (2021-12-26)
+
+
+### Bug Fixes
+
+* **support:** widen highlight.js peerDep ([86e3b83](https://github.com/NullVoxPopuli/highlightjs-glimmer/commit/86e3b83230d0aa5bf79d2e7f219cbb725af769d9))
+
 # [1.4.0](https://github.com/NullVoxPopuli/highlightjs-glimmer/compare/v1.3.4...v1.4.0) (2021-05-01)
 
 
