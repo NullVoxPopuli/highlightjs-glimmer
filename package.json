@@ -34,7 +34,7 @@
     "@semantic-release/git": "^10.0.0",
     "@types/jest": "^27.0.3",
     "babel-jest": "^27.3.1",
-    "common-tags": "^1.8.0",
+    "common-tags": "^1.8.2",
     "esbuild": "^0.13.10",
     "eslint": "^7.23.0",
     "eslint-plugin-html": "^6.1.2",
