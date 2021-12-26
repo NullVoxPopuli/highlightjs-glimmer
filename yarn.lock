@@ -943,9 +943,9 @@
   resolved "https://registry.npmjs.org/@bcoe/v8-coverage/-/v8-coverage-0.2.3.tgz#75a2e8b51cb758a7553d6804a5932d7aace75c39"
   integrity sha512-0hYQ8SB4Db5zvZB4axdMHGwEaQjkZzFjQiN9LVYvIFB2nSUHW9tYpxWriPrWDASIxiaXax83REcLxuSdnGPZtw==
 
-"@commitlint/cli@^13.1.0":
+"@commitlint/cli@^13.2.1":
   version "13.2.1"
-  resolved "https://registry.npmjs.org/@commitlint/cli/-/cli-13.2.1.tgz#80ebd46beef6ceed3bb0c0842bcda8d02a3c91de"
+  resolved "https://registry.yarnpkg.com/@commitlint/cli/-/cli-13.2.1.tgz#80ebd46beef6ceed3bb0c0842bcda8d02a3c91de"
   integrity sha512-JGzYk2ay5JkRS5w+FLQzr0u/Kih52ds4HPpa3vnwVOQN8Q+S1VYr8Nk/6kRm6uNYsAcC1nejtuDxRdLcLh/9TA==
   dependencies:
     "@commitlint/format" "^13.2.0"
@@ -958,9 +958,9 @@
     resolve-global "1.0.0"
     yargs "^17.0.0"
 
-"@commitlint/config-conventional@^13.1.0":
+"@commitlint/config-conventional@^13.2.0":
   version "13.2.0"
-  resolved "https://registry.npmjs.org/@commitlint/config-conventional/-/config-conventional-13.2.0.tgz#2ad24fecc56ae9619dbe0934b98a98b18ace0bec"
+  resolved "https://registry.yarnpkg.com/@commitlint/config-conventional/-/config-conventional-13.2.0.tgz#2ad24fecc56ae9619dbe0934b98a98b18ace0bec"
   integrity sha512-7u7DdOiF+3qSdDlbQGfpvCH8DCQdLFvnI2+VucYmmV7E92iD6t9PBj+UjIoSQCaMAzYp27Vkall78AkcXBh6Xw==
   dependencies:
     conventional-changelog-conventionalcommits "^4.3.1"
@@ -3429,9 +3429,9 @@ eslint-plugin-es@^3.0.0:
     eslint-utils "^2.0.0"
     regexpp "^3.0.0"
 
-eslint-plugin-html@^6.1.2:
+eslint-plugin-html@^6.2.0:
   version "6.2.0"
-  resolved "https://registry.npmjs.org/eslint-plugin-html/-/eslint-plugin-html-6.2.0.tgz#715bc00b50bbd0d996e28f953c289a5ebec69d43"
+  resolved "https://registry.yarnpkg.com/eslint-plugin-html/-/eslint-plugin-html-6.2.0.tgz#715bc00b50bbd0d996e28f953c289a5ebec69d43"
   integrity sha512-vi3NW0E8AJombTvt8beMwkL1R/fdRWl4QSNRNMhVQKWm36/X0KF0unGNAY4mqUF06mnwVWZcIcerrCnfn9025g==
   dependencies:
     htmlparser2 "^7.1.2"
@@ -3532,7 +3532,7 @@ eslint-visitor-keys@^3.0.0:
   resolved "https://registry.npmjs.org/eslint-visitor-keys/-/eslint-visitor-keys-3.1.0.tgz#eee4acea891814cda67a7d8812d9647dd0179af2"
   integrity sha512-yWJFpu4DtjsWKkt5GeNBBuZMlNcYVs6vRCLoCVEJrTjaSB6LC98gFipNK/erM2Heg/E8mIK+hXG/pJMLK+eRZA==
 
-eslint@7.32.0, eslint@^7.23.0:
+eslint@7.32.0, eslint@^7.32.0:
   version "7.32.0"
   resolved "https://registry.npmjs.org/eslint/-/eslint-7.32.0.tgz#c6d328a14be3fb08c8d1d21e12c02fdb7a2a812d"
   integrity sha512-VHZ8gX+EDfz+97jGcgyGCyRia/dPOd6Xh9yPv8Bl1+SoaIwD+a/vlrOmGRUyOYu7MwUhc7CxqeaDZU13S4+EpA==
@@ -6912,9 +6912,9 @@ remark-highlight.js@^6.0.0:
     lowlight "^1.2.0"
     unist-util-visit "^2.0.0"
 
-remark-html@^13.0.1:
+remark-html@^13.0.2:
   version "13.0.2"
-  resolved "https://registry.npmjs.org/remark-html/-/remark-html-13.0.2.tgz#de5f052749ff61fc904c9708c155c88a2e2655dc"
+  resolved "https://registry.yarnpkg.com/remark-html/-/remark-html-13.0.2.tgz#de5f052749ff61fc904c9708c155c88a2e2655dc"
   integrity sha512-LhSRQ+3RKdBqB/RGesFWkNNfkGqprDUCwjq54SylfFeNyZby5kqOG8Dn/vYsRoM8htab6EWxFXCY6XIZvMoRiQ==
   dependencies:
     hast-util-sanitize "^3.0.0"
