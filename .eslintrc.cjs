@@ -8,7 +8,7 @@ const {
   baseRulesAppliedLast,
 } = require('@nullvoxpopuli/eslint-configs/configs/base');
 
-const mjs = configs.nodeES();
+const mjs = configs.node();
 
 module.exports = {
   ...mjs,
