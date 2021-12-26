@@ -32,7 +32,7 @@
     "@nullvoxpopuli/eslint-configs": "^1.2.0",
     "@semantic-release/changelog": "^6.0.0",
     "@semantic-release/git": "^10.0.0",
-    "@types/jest": "^27.0.2",
+    "@types/jest": "^27.0.3",
     "babel-jest": "^27.3.1",
     "common-tags": "^1.8.0",
     "esbuild": "^0.13.10",
