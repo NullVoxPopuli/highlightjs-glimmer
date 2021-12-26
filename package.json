@@ -53,7 +53,7 @@
     "vfile": "^5.2.0"
   },
   "peerDependencies": {
-    "highlight.js": ">= 11.3.1"
+    "highlight.js": ">= 11.0.0"
   },
   "release": {
     "branches": [
