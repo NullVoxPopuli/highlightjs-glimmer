@@ -90,6 +90,17 @@
         "@babel/plugin-transform-modules-commonjs",
         "@babel/preset-env"
       ]
+    },
+    {
+      // changing peerDependencies *at all* is a breaking change
+      "matchDepTypes": ["peerDependencies"],
+      "enabled": false
+    },
+    {
+      // changing engines forces other people to need to upgrade their minimum node
+      // therefor engine changes are breaking changes
+      "depTypeList": ["engines"],
+      "enabled": false
     }
   ]
 }
