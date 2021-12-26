@@ -1495,9 +1495,9 @@
     node-gyp "^7.1.0"
     read-package-json-fast "^2.0.1"
 
-"@nullvoxpopuli/eslint-configs@^1.2.0":
+"@nullvoxpopuli/eslint-configs@^1.5.8":
   version "1.5.8"
-  resolved "https://registry.npmjs.org/@nullvoxpopuli/eslint-configs/-/eslint-configs-1.5.8.tgz#f7e639df2c52325d09c484277f5ac5ee7b07e263"
+  resolved "https://registry.yarnpkg.com/@nullvoxpopuli/eslint-configs/-/eslint-configs-1.5.8.tgz#f7e639df2c52325d09c484277f5ac5ee7b07e263"
   integrity sha512-UUQy9dBTOdk9sMptb0E+NQf/NICSUIRzBc2ZH8hYZwgI6MUTsuDtkP4lJOmjqO5OTAzsu5qDNMlq1E5j0lCgxA==
   dependencies:
     "@typescript-eslint/eslint-plugin" "5.2.0"
