@@ -35,7 +35,7 @@
     "@types/jest": "^27.0.3",
     "babel-jest": "^27.4.5",
     "common-tags": "^1.8.2",
-    "esbuild": "^0.14.8",
+    "esbuild": "^0.14.9",
     "eslint": "^7.32.0",
     "eslint-plugin-html": "^6.2.0",
     "highlight.js": ">= 11.3.1",
