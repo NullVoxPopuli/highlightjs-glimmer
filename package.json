@@ -50,7 +50,7 @@
     "remark-rehype": "^8.1.0",
     "semantic-release": "^18.0.1",
     "unified": "^9.0.0",
-    "vfile": "^5.2.0"
+    "vfile": "^5.2.1"
   },
   "peerDependencies": {
     "highlight.js": ">= 11.0.0"
