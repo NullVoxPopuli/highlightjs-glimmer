@@ -24,7 +24,7 @@ jobs:
           - "14"
           - "16"
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
       - uses: volta-cli/action@v1
         with:
           node-version: ${{ matrix.node }}
@@ -42,7 +42,7 @@ jobs:
     timeout-minutes: 5
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
       - uses: volta-cli/action@v1
       - run: yarn install
       - run: scripts/hljs-test.sh
@@ -54,7 +54,7 @@ jobs:
     needs: [tests, hljs-tests]
 
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
         with:
           ref: ${{ github.head_ref }}
           token: ${{ secrets.GitHubToken }}
@@ -71,7 +71,7 @@ jobs:
     needs: [tests, hljs-tests]
 
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
         with:
           persist-credentials: false
       - uses: volta-cli/action@v1
