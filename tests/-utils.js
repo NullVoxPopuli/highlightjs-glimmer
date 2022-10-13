@@ -2,7 +2,7 @@
 //       This is because the glimmer syntax requires a to-be-released
 //       version of highlight.js at the time of writing
 import hljs from 'highlight.js';
-import { registerLanguage } from '../src';
+import { registerLanguage } from 'highlightjs-glimmer';
 
 registerLanguage(hljs);
 

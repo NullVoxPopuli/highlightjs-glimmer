@@ -16,6 +16,7 @@
     }
   },
   "scripts": {
+    "prepare": "node ./scripts/build.cjs",
     "build": "node ./scripts/build.cjs",
     "debug": "npx html-pages .",
     "lint:js": "eslint .",

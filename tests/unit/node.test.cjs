@@ -1,12 +1,8 @@
 'use strict';
 
-const path = require('path');
-
-const top = path.join(__dirname, '../..');
-
 const hljs = require('highlight.js');
 
-const { glimmer } = require(`${top}/dist/glimmer.cjs`);
+const { glimmer } = require(`highlightjs-glimmer`);
 
 hljs.registerLanguage('glimmer', glimmer);
 

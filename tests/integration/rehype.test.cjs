@@ -6,7 +6,7 @@ const remark2rehype = require('remark-rehype');
 const highlight = require('rehype-highlight');
 const html = require('rehype-stringify');
 
-const { externalSetup } = require('../../dist/glimmer.cjs.cjs');
+const { externalSetup } = require('highlightjs-glimmer');
 const { tag } = require('../-utils');
 
 function parse(text) {
