@@ -3,7 +3,7 @@
   "private": true,
   "type": "commonjs",
   "scripts": {
-    "test:cjs": "vitest run --coverage"
+    "test": "vitest run --coverage"
   },
   "dependencies": {
     "highlightjs-glimmer": "workspace:../"
