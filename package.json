@@ -20,9 +20,7 @@
     "debug": "npx html-pages .",
     "lint:js": "eslint .",
     "lint": "eslint .",
-    "lint:fix": "eslint . --fix",
-    "test:modules": "vitest run --coverage --config ./tests/vitest.config.esm.ts",
-    "test:cjs": "vitest run --coverage --config ./tests/vitest.config.cjs.ts"
+    "lint:fix": "eslint . --fix"
   },
   "engines": {
     "node": "> 10"
@@ -37,13 +35,11 @@
     "@nullvoxpopuli/eslint-configs": "^2.1.18",
     "@semantic-release/changelog": "^6.0.1",
     "@semantic-release/git": "^10.0.1",
-    "@vitest/coverage-c8": "^0.24.1",
     "common-tags": "^1.8.2",
     "esbuild": "^0.14.12",
     "eslint": "^8.7.0",
     "eslint-plugin-html": "^6.2.0",
     "lowlight": "^2.7.0",
-    "vitest": "^0.24.1",
     "highlight.js": ">= 11.4.0",
     "prettier": "^2.7.1",
     "rehype": "^11.0.0",

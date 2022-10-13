@@ -1,0 +1,19 @@
+{
+  "name": "hljs-glimmer-tests",
+  "private": true,
+  "scripts": {
+    "test": "concurrently 'npm:test:*'",
+    "test:modules": "vitest run --coverage --config ./vitest.config.esm.ts",
+    "test:cjs": "vitest run --coverage --config ./vitest.config.cjs.ts"
+  },
+  "dependencies": {
+    "highlightjs-glimmer": "workspace:../"
+  },
+  "devDependencies": {
+    "@vitest/coverage-c8": "^0.24.1",
+    "common-tags": "^1.8.2",
+    "concurrently": "^7.4.0",
+    "highlight.js": ">= 11.4.0",
+    "vitest": "^0.24.1"
+  }
+}

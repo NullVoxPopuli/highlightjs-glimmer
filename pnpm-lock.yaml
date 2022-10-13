@@ -1,66 +1,81 @@
 lockfileVersion: 5.4
 
-specifiers:
-  '@babel/core': ^7.16.7
-  '@babel/node': ^7.16.8
-  '@babel/plugin-transform-modules-commonjs': ^7.16.8
-  '@babel/preset-env': ^7.16.8
-  '@commitlint/cli': ^16.1.0
-  '@commitlint/config-conventional': ^16.0.0
-  '@nullvoxpopuli/eslint-configs': ^2.1.18
-  '@semantic-release/changelog': ^6.0.1
-  '@semantic-release/git': ^10.0.1
-  '@vitest/coverage-c8': ^0.24.1
-  common-tags: ^1.8.2
-  esbuild: ^0.14.12
-  eslint: ^8.7.0
-  eslint-plugin-html: ^6.2.0
-  highlight.js: '>= 11.4.0'
-  lowlight: ^2.7.0
-  prettier: ^2.7.1
-  rehype: ^11.0.0
-  rehype-highlight: ^4.1.0
-  rehype-stringify: ^8.0.0
-  remark-highlight.js: ^7.0.1
-  remark-html: ^15.0.1
-  remark-parse: ^10.0.1
-  remark-rehype: ^10.1.0
-  semantic-release: ^19.0.2
-  typescript: ^4.8.4
-  unified: ^10.1.1
-  vfile: ^5.3.0
-  vitest: ^0.24.1
+importers:
 
-devDependencies:
-  '@babel/core': 7.19.3
-  '@babel/node': 7.19.1_@babel+core@7.19.3
-  '@babel/plugin-transform-modules-commonjs': 7.18.6_@babel+core@7.19.3
-  '@babel/preset-env': 7.19.4_@babel+core@7.19.3
-  '@commitlint/cli': 16.3.0
-  '@commitlint/config-conventional': 16.2.4
-  '@nullvoxpopuli/eslint-configs': 2.2.60_typescript@4.8.4
-  '@semantic-release/changelog': 6.0.1_semantic-release@19.0.5
-  '@semantic-release/git': 10.0.1_semantic-release@19.0.5
-  '@vitest/coverage-c8': 0.24.1
-  common-tags: 1.8.2
-  esbuild: 0.14.54
-  eslint: 8.25.0
-  eslint-plugin-html: 6.2.0
-  highlight.js: 11.6.0
-  lowlight: 2.7.0
-  prettier: 2.7.1
-  rehype: 11.0.0
-  rehype-highlight: 4.1.0
-  rehype-stringify: 8.0.0
-  remark-highlight.js: 7.0.1
-  remark-html: 15.0.1
-  remark-parse: 10.0.1
-  remark-rehype: 10.1.0
-  semantic-release: 19.0.5
-  typescript: 4.8.4
-  unified: 10.1.2
-  vfile: 5.3.5
-  vitest: 0.24.1
+  .:
+    specifiers:
+      '@babel/core': ^7.16.7
+      '@babel/node': ^7.16.8
+      '@babel/plugin-transform-modules-commonjs': ^7.16.8
+      '@babel/preset-env': ^7.16.8
+      '@commitlint/cli': ^16.1.0
+      '@commitlint/config-conventional': ^16.0.0
+      '@nullvoxpopuli/eslint-configs': ^2.1.18
+      '@semantic-release/changelog': ^6.0.1
+      '@semantic-release/git': ^10.0.1
+      common-tags: ^1.8.2
+      esbuild: ^0.14.12
+      eslint: ^8.7.0
+      eslint-plugin-html: ^6.2.0
+      highlight.js: '>= 11.4.0'
+      lowlight: ^2.7.0
+      prettier: ^2.7.1
+      rehype: ^11.0.0
+      rehype-highlight: ^4.1.0
+      rehype-stringify: ^8.0.0
+      remark-highlight.js: ^7.0.1
+      remark-html: ^15.0.1
+      remark-parse: ^10.0.1
+      remark-rehype: ^10.1.0
+      semantic-release: ^19.0.2
+      typescript: ^4.8.4
+      unified: ^10.1.1
+      vfile: ^5.3.0
+    devDependencies:
+      '@babel/core': 7.19.3
+      '@babel/node': 7.19.1_@babel+core@7.19.3
+      '@babel/plugin-transform-modules-commonjs': 7.18.6_@babel+core@7.19.3
+      '@babel/preset-env': 7.19.4_@babel+core@7.19.3
+      '@commitlint/cli': 16.3.0
+      '@commitlint/config-conventional': 16.2.4
+      '@nullvoxpopuli/eslint-configs': 2.2.60_typescript@4.8.4
+      '@semantic-release/changelog': 6.0.1_semantic-release@19.0.5
+      '@semantic-release/git': 10.0.1_semantic-release@19.0.5
+      common-tags: 1.8.2
+      esbuild: 0.14.54
+      eslint: 8.25.0
+      eslint-plugin-html: 6.2.0
+      highlight.js: 11.6.0
+      lowlight: 2.7.0
+      prettier: 2.7.1
+      rehype: 11.0.0
+      rehype-highlight: 4.1.0
+      rehype-stringify: 8.0.0
+      remark-highlight.js: 7.0.1
+      remark-html: 15.0.1
+      remark-parse: 10.0.1
+      remark-rehype: 10.1.0
+      semantic-release: 19.0.5
+      typescript: 4.8.4
+      unified: 10.1.2
+      vfile: 5.3.5
+
+  tests:
+    specifiers:
+      '@vitest/coverage-c8': ^0.24.1
+      common-tags: ^1.8.2
+      concurrently: ^7.4.0
+      highlight.js: '>= 11.4.0'
+      highlightjs-glimmer: workspace:../
+      vitest: ^0.24.1
+    dependencies:
+      highlightjs-glimmer: link:..
+    devDependencies:
+      '@vitest/coverage-c8': 0.24.1
+      common-tags: 1.8.2
+      concurrently: 7.4.0
+      highlight.js: 11.6.0
+      vitest: 0.24.1
 
 packages:
 
@@ -2650,6 +2665,22 @@ packages:
     resolution: {integrity: sha1-2Klr13/Wjfd5OnMDajug1UBdR3s=}
     dev: true
 
+  /concurrently/7.4.0:
+    resolution: {integrity: sha512-M6AfrueDt/GEna/Vg9BqQ+93yuvzkSKmoTixnwEJkH0LlcGrRC2eCmjeG1tLLHIYfpYJABokqSGyMcXjm96AFA==}
+    engines: {node: ^12.20.0 || ^14.13.0 || >=16.0.0}
+    hasBin: true
+    dependencies:
+      chalk: 4.1.2
+      date-fns: 2.29.3
+      lodash: 4.17.21
+      rxjs: 7.5.7
+      shell-quote: 1.7.3
+      spawn-command: 0.0.2-1
+      supports-color: 8.1.1
+      tree-kill: 1.2.2
+      yargs: 17.6.0
+    dev: true
+
   /conventional-changelog-angular/5.0.13:
     resolution: {integrity: sha512-i/gipMxs7s8L/QeuavPF2hLnJgH6pEZAttySB6aiQLWcX3puWDL3ACVmvBhJGxnAy52Qc15ua26BufY6KpmrVA==}
     engines: {node: '>=10'}
@@ -2779,6 +2810,11 @@ packages:
   /dargs/7.0.0:
     resolution: {integrity: sha512-2iy1EkLdlBzQGvbweYRFxmFath8+K7+AKB0TlhHWkNuH+TmovaMH/Wp7V7R4u7f4SnX3OgLsU9t1NI9ioDnUpg==}
     engines: {node: '>=8'}
+    dev: true
+
+  /date-fns/2.29.3:
+    resolution: {integrity: sha512-dDCnyH2WnnKusqvZZ6+jA1O51Ibt8ZMRNkDZdyAyK4YfbDwa/cEmuztzG5pk6hqlp9aSBPYcjOlktquahGwGeA==}
+    engines: {node: '>=0.11'}
     dev: true
 
   /dateformat/3.0.3:
@@ -6111,6 +6147,12 @@ packages:
       queue-microtask: 1.2.3
     dev: true
 
+  /rxjs/7.5.7:
+    resolution: {integrity: sha512-z9MzKh/UcOqB3i20H6rtrlaE/CgjLOvheWK/9ILrbhROGTweAi1BaFsTT9FbwZi5Trr1qNRs+MXkhmR06awzQA==}
+    dependencies:
+      tslib: 2.4.0
+    dev: true
+
   /sade/1.8.1:
     resolution: {integrity: sha512-xal3CZX1Xlo/k4ApwCFrHVACi9fBqJ7V+mwhBsuf/1IOKbBy098Fex+Wa/5QMubw09pSZ/u8EY8PWgevJsXp1A==}
     engines: {node: '>=6'}
@@ -6229,6 +6271,10 @@ packages:
     engines: {node: '>=8'}
     dev: true
 
+  /shell-quote/1.7.3:
+    resolution: {integrity: sha512-Vpfqwm4EnqGdlsBFNmHhxhElJYrdfcxPThu+ryKS5J8L/fhAwLazFZtq+S+TWZ9ANj2piSQLGj6NQg+lKPmxrw==}
+    dev: true
+
   /side-channel/1.0.4:
     resolution: {integrity: sha512-q5XPytqFEIKHkGdiMIrY10mvLRvnQh42/+GoBlFW3b2LXLE2xxJpZFdm94we0BaoV3RwJyGqg5wS7epxTv0Zvw==}
     dependencies:
@@ -6294,6 +6340,10 @@ packages:
 
   /space-separated-tokens/2.0.1:
     resolution: {integrity: sha512-ekwEbFp5aqSPKaqeY1PGrlGQxPNaq+Cnx4+bE2D8sciBQrHpbwoBbawqTN2+6jPs9IdWxxiUcN0K2pkczD3zmw==}
+    dev: true
+
+  /spawn-command/0.0.2-1:
+    resolution: {integrity: sha512-n98l9E2RMSJ9ON1AKisHzz7V42VDiBQGY6PB1BwRglz99wpVsSuGzQ+jOi6lFXBGVTCrRpltvjm+/XA+tpeJrg==}
     dev: true
 
   /spawn-error-forwarder/1.0.0:
@@ -6457,6 +6507,13 @@ packages:
       has-flag: 4.0.0
     dev: true
 
+  /supports-color/8.1.1:
+    resolution: {integrity: sha512-MpUEN2OodtUzxvKQl72cUF7RQ5EiHsGvSsVG0ia9c5RbWGL2CI4C7EpPS8UTBIplnlzZiNuV56w+FuNxy3ty2Q==}
+    engines: {node: '>=10'}
+    dependencies:
+      has-flag: 4.0.0
+    dev: true
+
   /supports-hyperlinks/2.3.0:
     resolution: {integrity: sha512-RpsAZlpWcDwOPQA22aCH4J0t7L8JmAvsCxfOSEwm7cQs3LshN36QaTkwd70DnBOXDWGssw2eUoc8CaRWT0XunA==}
     engines: {node: '>=8'}
@@ -6564,6 +6621,11 @@ packages:
 
   /traverse/0.6.6:
     resolution: {integrity: sha512-kdf4JKs8lbARxWdp7RKdNzoJBhGUcIalSYibuGyHJbmk40pOysQ0+QPvlkCOICOivDWU2IJo2rkrxyTK2AH4fw==}
+    dev: true
+
+  /tree-kill/1.2.2:
+    resolution: {integrity: sha512-L0Orpi8qGpRG//Nd+H90vFB+3iHnue1zSSGmNOOCh1GLJ7rUKVwV2HvijphGQS2UmhUZewS9VgvxYIdgr+fG1A==}
+    hasBin: true
     dev: true
 
   /trim-lines/3.0.1:
