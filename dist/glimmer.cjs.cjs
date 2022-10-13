@@ -1,19 +1,31 @@
 var __defProp = Object.defineProperty;
-var __markAsModule = (target) => __defProp(target, "__esModule", {value: true});
+var __getOwnPropDesc = Object.getOwnPropertyDescriptor;
+var __getOwnPropNames = Object.getOwnPropertyNames;
+var __hasOwnProp = Object.prototype.hasOwnProperty;
 var __export = (target, all) => {
   for (var name in all)
-    __defProp(target, name, {get: all[name], enumerable: true});
+    __defProp(target, name, { get: all[name], enumerable: true });
 };
+var __copyProps = (to, from, except, desc) => {
+  if (from && typeof from === "object" || typeof from === "function") {
+    for (let key of __getOwnPropNames(from))
+      if (!__hasOwnProp.call(to, key) && key !== except)
+        __defProp(to, key, { get: () => from[key], enumerable: !(desc = __getOwnPropDesc(from, key)) || desc.enumerable });
+  }
+  return to;
+};
+var __toCommonJS = (mod) => __copyProps(__defProp({}, "__esModule", { value: true }), mod);
 
 // src/index.js
-__markAsModule(exports);
-__export(exports, {
+var src_exports = {};
+__export(src_exports, {
   externalSetup: () => externalSetup,
   glimmer: () => glimmer2,
   registerInjections: () => registerInjections,
   registerLanguage: () => registerLanguage,
   setup: () => setup
 });
+module.exports = __toCommonJS(src_exports);
 
 // src/glimmer.js
 function glimmer(hljs) {
@@ -54,9 +66,17 @@ function glimmer(hljs) {
     function: `${_OTHER_OPERATORS} ${_INLINE_HELPERS} ${_EQUALITY_HELPERS} ${_NUMERIC_COMPARISON_HELPERS} ${_LOGICAL_OPERATOR_HELPERS}`,
     literal: _LITERALS
   };
-  const TAG_NAME = regex.either(regex.concat(/[a-zA-Z_]/, regex.optional(/[A-Z0-9:_.-]*:/), /[A-Z0-9_.-]*/), /[a-z]/);
+  const TAG_NAME = regex.either(
+    regex.concat(/[a-zA-Z_]/, regex.optional(/[A-Z0-9:_.-]*:/), /[A-Z0-9_.-]*/),
+    /[a-z]/
+  );
   const COMPONENT_NAME_SEGMENT = /[A-Z][A-Za-z0-9]+/;
-  const COMPONENT_NAME = regex.either(COMPONENT_NAME_SEGMENT, /[a-zA-Z0-9]*\.[a-zA-Z0-9-]*/, regex.concat(COMPONENT_NAME_SEGMENT, /::/, /-?/, COMPONENT_NAME_SEGMENT), /[a-z]/);
+  const COMPONENT_NAME = regex.either(
+    COMPONENT_NAME_SEGMENT,
+    /[a-zA-Z0-9]*\.[a-zA-Z0-9-]*/,
+    regex.concat(COMPONENT_NAME_SEGMENT, /::/, /-?/, COMPONENT_NAME_SEGMENT),
+    /[a-z]/
+  );
   const CURLY_BLOCK_NAME = /[a-z-][a-z\d-_]+\b/;
   const ATTR_REGEX = /[@A-Za-z0-9._:-]+/;
   const XML_ENTITIES = {
@@ -165,7 +185,14 @@ function glimmer(hljs) {
   ];
   const SUB_EXPRESSION = {
     keywords: KEYWORDS,
-    begin: regex.concat(/\(/, regex.lookahead(regex.concat(/\)/))),
+    begin: regex.concat(
+      /\(/,
+      regex.lookahead(
+        regex.concat(
+          /\)/
+        )
+      )
+    ),
     end: /\)/,
     contains: [
       ...MUSTACHE_AND_SUB_EXPRESSION_INTERNALS,
@@ -197,7 +224,10 @@ function glimmer(hljs) {
   const ANGLE_BRACKET_BLOCK = [
     {
       className: "tag",
-      begin: regex.concat(/<:?/, regex.lookahead(regex.concat(TAG_NAME, regex.either(/\/>/, />/, /\s/)))),
+      begin: regex.concat(
+        /<:?/,
+        regex.lookahead(regex.concat(TAG_NAME, regex.either(/\/>/, />/, /\s/)))
+      ),
       end: /\/?>/,
       contains: [
         OPERATORS,
@@ -241,7 +271,7 @@ function source(re) {
     return re;
   return re.source;
 }
-var regex = {lookahead, either, optional, concat};
+var regex = { lookahead, either, optional, concat };
 
 // src/index.js
 var glimmer2 = glimmer;
@@ -270,7 +300,7 @@ function registerJavaScriptInjections(hljs) {
   let cssIndex = js.contains.findIndex((rule) => (rule == null ? void 0 : rule.begin) === "css`");
   let css = js.contains[cssIndex];
   js.contains.flatMap((contains) => (contains == null ? void 0 : contains.contains) || contains).filter((rule) => rule.subLanguage === "xml").forEach((rule) => rule.subLanguage = "glimmer");
-  const HBS_TEMPLATE = hljs.inherit(css, {begin: /hbs`/});
+  const HBS_TEMPLATE = hljs.inherit(css, { begin: /hbs`/ });
   HBS_TEMPLATE.starts.subLanguage = "glimmer";
   js.contains.splice(cssIndex, 0, HBS_TEMPLATE);
   hljs.registerLanguage("javascript", () => js);
