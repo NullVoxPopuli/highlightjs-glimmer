@@ -1,0 +1,23 @@
+{
+  "name": "hljs-glimmer-tests-cjs",
+  "private": true,
+  "type": "commonjs",
+  "scripts": {
+    "test:cjs": "vitest run --coverage"
+  },
+  "dependencies": {
+    "highlightjs-glimmer": "workspace:../"
+  },
+  "devDependencies": {
+    "@vitest/coverage-c8": "^0.24.1",
+    "common-tags": "^1.8.2",
+    "concurrently": "^6.4.0",
+    "highlight.js": ">= 11.4.0",
+    "rehype-highlight": "^5.0.0",
+    "rehype-stringify": "^9.0.0",
+    "remark-html": "^13.0.0",
+    "remark-parse": "^9.0.0",
+    "remark-rehype": "^9.0.0",
+    "vitest": "^0.24.1"
+  }
+}

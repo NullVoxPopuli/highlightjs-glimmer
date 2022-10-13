@@ -1,10 +1,9 @@
 {
-  "name": "hljs-glimmer-tests",
+  "name": "hljs-glimmer-tests-esm",
   "private": true,
+  "type": "module",
   "scripts": {
-    "test": "concurrently 'npm:test:*'",
-    "test:modules": "vitest run --coverage --config ./vitest.config.esm.ts",
-    "test:cjs": "vitest run --coverage --config ./vitest.config.cjs.ts"
+    "test": "vitest run --coverage"
   },
   "dependencies": {
     "highlightjs-glimmer": "workspace:../"
@@ -14,6 +13,11 @@
     "common-tags": "^1.8.2",
     "concurrently": "^7.4.0",
     "highlight.js": ">= 11.4.0",
+    "rehype-highlight": "^6.0.0",
+    "rehype-stringify": "^9.0.3",
+    "remark-html": "^15.0.1",
+    "remark-parse": "^10.0.1",
+    "remark-rehype": "^10.1.0",
     "vitest": "^0.24.1"
   }
 }

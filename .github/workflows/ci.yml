@@ -52,8 +52,8 @@ jobs:
       - run: pnpm install
 
       - name: Test Modules with ${{ matrix.node }}
-        run: pnpm test:modules
-        working-directory: tests
+        run: pnpm test
+        working-directory: tests-esm
 
   cjs_tests:
     name: CJS Tests
@@ -72,12 +72,9 @@ jobs:
         with:
           node-version: ${{ matrix.node}}
       - run: pnpm install
-      # Unified v10+ is not compatible with CJS
-      - run: pnpm add --save-dev unified@^9.0.0
-        working-directory: tests
       - name: Test CJS with ${{ matrix.node }}
-        run: pnpm test:cjs
-        working-directory: tests
+        run: pnpm test
+        working-directory: tests-cjs
 
 
   hljs_tests:
