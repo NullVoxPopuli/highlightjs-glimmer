@@ -18,7 +18,7 @@ function parse(text) {
 }
 
 describe('Remark', () => {
-  xit('works', async () => {
+  it.skip('works', async () => {
     expect(
       parse(stripIndent`
       \`\`\`glimmer

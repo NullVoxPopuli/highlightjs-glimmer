@@ -65,13 +65,15 @@ importers:
       '@vitest/coverage-c8': ^0.24.1
       common-tags: ^1.8.2
       concurrently: ^6.4.0
-      highlight.js: '>= 11.4.0'
+      highlight.js: ^11.4.0
       highlightjs-glimmer: workspace:../
-      rehype-highlight: ^5.0.0
-      rehype-stringify: ^9.0.0
+      rehype-highlight: ^4.0.0
+      rehype-stringify: ^8.0.0
+      remark-highlight.js: ^6.0.0
       remark-html: ^13.0.0
       remark-parse: ^9.0.0
-      remark-rehype: ^9.0.0
+      remark-rehype: ^8.0.0
+      unified: ^8.0.0
       vitest: ^0.24.1
     dependencies:
       highlightjs-glimmer: link:..
@@ -80,11 +82,13 @@ importers:
       common-tags: 1.8.2
       concurrently: 6.5.1
       highlight.js: 11.6.0
-      rehype-highlight: 5.0.2
-      rehype-stringify: 9.0.3
+      rehype-highlight: 4.1.0
+      rehype-stringify: 8.0.0
+      remark-highlight.js: 6.0.0
       remark-html: 13.0.2
       remark-parse: 9.0.0
-      remark-rehype: 9.1.0
+      remark-rehype: 8.1.0
+      unified: 8.4.2
       vitest: 0.24.1
 
   tests-esm:
@@ -2007,10 +2011,6 @@ packages:
     resolution: {integrity: sha512-W864tg/Osz1+9f4lrGTZpCSO5/z4608eUp19tbozkq2HJK6i3z1kT0H9tlADXuYIb1YYOBByU4Jsqkk75q48qA==}
     dependencies:
       '@types/unist': 2.0.6
-    dev: true
-
-  /@types/mdurl/1.0.2:
-    resolution: {integrity: sha512-eC4U9MlIcu2q0KQmXszyn5Akca/0jrQmwDRgpAMJai7qBWq4amIQhZyNau4VYGtCeALvW1/NtjzJJ567aZxfKA==}
     dev: true
 
   /@types/minimist/1.2.2:
@@ -5212,20 +5212,6 @@ packages:
       unist-util-visit: 2.0.3
     dev: true
 
-  /mdast-util-to-hast/11.3.0:
-    resolution: {integrity: sha512-4o3Cli3hXPmm1LhB+6rqhfsIUBjnKFlIUZvudaermXB+4/KONdd/W4saWWkC+LBLbPMqhFSSTSRgafHsT5fVJw==}
-    dependencies:
-      '@types/hast': 2.3.4
-      '@types/mdast': 3.0.10
-      '@types/mdurl': 1.0.2
-      mdast-util-definitions: 5.1.1
-      mdurl: 1.0.1
-      unist-builder: 3.0.0
-      unist-util-generated: 2.0.0
-      unist-util-position: 4.0.3
-      unist-util-visit: 4.1.1
-    dev: true
-
   /mdast-util-to-hast/12.2.4:
     resolution: {integrity: sha512-a21xoxSef1l8VhHxS1Dnyioz6grrJkoaCUgGzMD/7dWHvboYX3VW53esRUfB5tgTyz4Yos1n25SPcj35dJqmAg==}
     dependencies:
@@ -6181,16 +6167,6 @@ packages:
       unist-util-visit: 2.0.3
     dev: true
 
-  /rehype-highlight/5.0.2:
-    resolution: {integrity: sha512-ZNm8V8BQUDn05cJPzAu/PjiloaFFrh+Pt3bY+NCcdCggI7Uyl5mW0FGR7RATeIz5/ECUd1D8Kvjt4HaLPmnOMw==}
-    dependencies:
-      '@types/hast': 2.3.4
-      hast-util-to-text: 3.1.1
-      lowlight: 2.7.0
-      unified: 10.1.2
-      unist-util-visit: 4.1.1
-    dev: true
-
   /rehype-highlight/6.0.0:
     resolution: {integrity: sha512-q7UtlFicLhetp7K48ZgZiJgchYscMma7XjzX7t23bqEJF8m6/s+viXQEe4oHjrATTIZpX7RG8CKD7BlNZoh9gw==}
     dependencies:
@@ -6228,6 +6204,13 @@ packages:
       rehype-parse: 7.0.1
       rehype-stringify: 8.0.0
       unified: 9.2.2
+    dev: true
+
+  /remark-highlight.js/6.0.0:
+    resolution: {integrity: sha512-eNHP/ezuDKoeh3KV+rWLeBVzU3SYVt0uu1tHdsCB6TUJYHwTNMJWZ5+nU+2fJHQXb+7PtpfGXVtFS9zk/W6qdw==}
+    dependencies:
+      lowlight: 1.20.0
+      unist-util-visit: 2.0.3
     dev: true
 
   /remark-highlight.js/7.0.1:
@@ -6284,13 +6267,10 @@ packages:
       unified: 10.1.2
     dev: true
 
-  /remark-rehype/9.1.0:
-    resolution: {integrity: sha512-oLa6YmgAYg19zb0ZrBACh40hpBLteYROaPLhBXzLgjqyHQrN+gVP9N/FJvfzuNNuzCutktkroXEZBrxAxKhh7Q==}
+  /remark-rehype/8.1.0:
+    resolution: {integrity: sha512-EbCu9kHgAxKmW1yEYjx3QafMyGY3q8noUbNUI5xyKbaFP89wbhDrKxyIQNukNYthzjNHZu6J7hwFg7hRm1svYA==}
     dependencies:
-      '@types/hast': 2.3.4
-      '@types/mdast': 3.0.10
-      mdast-util-to-hast: 11.3.0
-      unified: 10.1.2
+      mdast-util-to-hast: 10.2.0
     dev: true
 
   /repeat-string/1.6.1:
@@ -7031,6 +7011,17 @@ packages:
       is-plain-obj: 4.1.0
       trough: 2.1.0
       vfile: 5.3.5
+    dev: true
+
+  /unified/8.4.2:
+    resolution: {integrity: sha512-JCrmN13jI4+h9UAyKEoGcDZV+i1E7BLFuG7OsaDvTXI5P0qhHX+vZO/kOhz9jn8HGENDKbwSeB0nVOg4gVStGA==}
+    dependencies:
+      '@types/unist': 2.0.6
+      bail: 1.0.5
+      extend: 3.0.2
+      is-plain-obj: 2.1.0
+      trough: 1.0.5
+      vfile: 4.2.1
     dev: true
 
   /unified/9.2.2:

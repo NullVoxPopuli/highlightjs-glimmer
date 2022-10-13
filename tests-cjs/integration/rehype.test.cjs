@@ -26,7 +26,7 @@ function parse(text) {
 }
 
 describe('Rehype', () => {
-  xit('works', async () => {
+  it.skip('works', async () => {
     expect(
       parse(stripIndent`
       \`\`\`hbs
