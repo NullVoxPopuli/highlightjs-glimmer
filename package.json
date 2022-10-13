@@ -23,7 +23,7 @@
     "lint:fix": "eslint . --fix"
   },
   "engines": {
-    "node": "> 10"
+    "node": "^14 || ^16 || ^18"
   },
   "devDependencies": {
     "@babel/core": "^7.16.7",
