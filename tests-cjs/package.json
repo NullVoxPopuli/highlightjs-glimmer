@@ -3,7 +3,11 @@
   "private": true,
   "type": "commonjs",
   "scripts": {
-    "test": "vitest run --coverage"
+    "test": "vitest run --coverage",
+    "lint:js": "eslint .",
+    "lint:js:fix": "eslint . --fix",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix"
   },
   "dependencies": {
     "highlightjs-glimmer": "workspace:../"
@@ -13,6 +17,7 @@
     "@vitest/coverage-c8": "^0.24.1",
     "common-tags": "^1.8.2",
     "concurrently": "^6.4.0",
+    "eslint": "^8.7.0",
     "highlight.js": "^11.4.0",
     "rehype-highlight": "^4.0.0",
     "rehype-stringify": "^8.0.0",
