@@ -20,8 +20,8 @@
     "build": "node ./scripts/build.cjs",
     "debug": "npx html-pages .",
     "lint:js": "eslint .",
-    "lint": "eslint .",
-    "lint:fix": "eslint . --fix"
+    "lint": "pnpm --filter '*' exec eslint .",
+    "lint:fix": "pnpm --filter '*' exec eslint . --fix"
   },
   "engines": {
     "node": "^14 || ^16 || ^18"

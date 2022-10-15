@@ -39,7 +39,8 @@ describe('Rehype', () => {
       `)
     ).toEqual(
       '<pre><code class="hljs language-glimmer">  ' +
-        tag('punctuation mustache', ['{{', tag('punctuation', '@'), tag('params', 'arg'), '}}']) + '\n' +
+        tag('punctuation mustache', ['{{', tag('punctuation', '@'), tag('params', 'arg'), '}}']) +
+        '\n' +
         '</code></pre>'
     );
   });

@@ -7,4 +7,4 @@ export default defineConfig({
   esbuild: {
     format: 'esm',
   },
-})
+});
