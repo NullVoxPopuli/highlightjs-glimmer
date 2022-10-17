@@ -1,6 +1,3 @@
-// NOTE: this highlight.js was manually built and had an export manually added
-//       This is because the glimmer syntax requires a to-be-released
-//       version of highlight.js at the time of writing
 import hljs from 'highlight.js';
 import { registerLanguage } from 'highlightjs-glimmer';
 
