@@ -9,7 +9,7 @@ import remark2rehype from 'remark-rehype';
 import highlight from 'rehype-highlight';
 import html from 'rehype-stringify';
 
-import { glimmer } from 'highlightjs-glimmer';
+import { externalSetup } from 'highlightjs-glimmer';
 import { tag } from '../-utils';
 
 function parse(text) {
@@ -21,7 +21,7 @@ function parse(text) {
       aliases: { hbs: 'glimmer', handlebars: 'glimmer' },
       languages: {
         // js: require('highlight.js/lib/languages/javascript'),
-        glimmer,
+        glimmer: externalSetup,
       },
     })
     .use(html)
@@ -33,7 +33,7 @@ describe('Rehype', () => {
   it('works', async () => {
     expect(
       parse(stripIndent`
-      \`\`\`hbs
+      \`\`\`glimmer
         {{@arg}}
       \`\`\`
       `)

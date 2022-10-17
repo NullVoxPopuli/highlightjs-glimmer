@@ -15,6 +15,7 @@ function parse(text) {
     .use(markdown)
     .use(remark2rehype)
     .use(highlight, {
+      aliases: { hbs: 'glimmer', handlebars: 'glimmer' },
       languages: {
         // js: require('highlight.js/lib/languages/javascript'),
         glimmer: externalSetup,
@@ -26,10 +27,10 @@ function parse(text) {
 }
 
 describe('Rehype', () => {
-  it.skip('works', async () => {
+  it('works', async () => {
     expect(
       parse(stripIndent`
-      \`\`\`hbs
+      \`\`\`glimmer
         {{@arg}}
       \`\`\`
       `)
