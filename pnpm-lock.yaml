@@ -69,6 +69,7 @@ importers:
       eslint: ^8.7.0
       highlight.js: ^11.4.0
       highlightjs-glimmer: workspace:../
+      markdown-it: ^13.0.1
       rehype-highlight: ^4.0.0
       rehype-stringify: ^8.0.0
       remark-highlight.js: ^6.0.0
@@ -87,6 +88,7 @@ importers:
       concurrently: 6.5.1
       eslint: 8.25.0
       highlight.js: 11.6.0
+      markdown-it: 13.0.1
       rehype-highlight: 4.1.0
       rehype-stringify: 8.0.0
       remark-highlight.js: 6.0.0
@@ -106,6 +108,7 @@ importers:
       eslint: ^8.7.0
       highlight.js: '>= 11.4.0'
       highlightjs-glimmer: workspace:../
+      markdown-it: ^13.0.1
       rehype: ^12.0.1
       rehype-highlight: ^6.0.0
       rehype-stringify: ^9.0.3
@@ -124,6 +127,7 @@ importers:
       concurrently: 7.4.0
       eslint: 8.25.0
       highlight.js: 11.6.0
+      markdown-it: 13.0.1
       rehype: 12.0.1
       rehype-highlight: 6.0.0
       rehype-stringify: 9.0.3
@@ -5030,6 +5034,12 @@ packages:
     resolution: {integrity: sha512-7ylylesZQ/PV29jhEDl3Ufjo6ZX7gCqJr5F7PKrqc93v7fzSymt1BpwEU8nAUXs8qzzvqhbjhK5QZg6Mt/HkBg==}
     dev: true
 
+  /linkify-it/4.0.1:
+    resolution: {integrity: sha512-C7bfi1UZmoj8+PQx22XyeXCuBlokoyWQL5pWSP+EI6nzRylyThouddufc2c1NDIcP9k5agmN9fLpA7VNJfIiqw==}
+    dependencies:
+      uc.micro: 1.0.6
+    dev: true
+
   /load-json-file/4.0.0:
     resolution: {integrity: sha512-Kx8hMakjX03tiGTLAIdJ+lL0htKnXjEZN6hk/tozf/WOuYGdZBJrZ+rCJRbVCugsjB3jMLn9746NsQIf5VjBMw==}
     engines: {node: '>=4'}
@@ -5180,6 +5190,17 @@ packages:
   /map-obj/4.3.0:
     resolution: {integrity: sha512-hdN1wVrZbb29eBGiGjJbeP8JbKjq1urkHJ/LIP/NY48MZ1QVXUsQBV1G1zvYFHn1XE06cwjBsOI2K3Ulnj1YXQ==}
     engines: {node: '>=8'}
+    dev: true
+
+  /markdown-it/13.0.1:
+    resolution: {integrity: sha512-lTlxriVoy2criHP0JKRhO2VDG9c2ypWCsT237eDiLqi09rmbKoUetyGHq2uOIRoRS//kfoJckS0eUzzkDR+k2Q==}
+    hasBin: true
+    dependencies:
+      argparse: 2.0.1
+      entities: 3.0.1
+      linkify-it: 4.0.1
+      mdurl: 1.0.1
+      uc.micro: 1.0.6
     dev: true
 
   /marked-terminal/5.1.1_marked@4.1.1:
@@ -7026,6 +7047,10 @@ packages:
     resolution: {integrity: sha512-QCh+85mCy+h0IGff8r5XWzOVSbBO+KfeYrMQh7NJ58QujwcE22u+NUSmUxqF+un70P9GXKxa2HCNiTTMJknyjQ==}
     engines: {node: '>=4.2.0'}
     hasBin: true
+    dev: true
+
+  /uc.micro/1.0.6:
+    resolution: {integrity: sha512-8Y75pvTYkLJW2hWQHXxoqRgV7qb9B+9vFEtidML+7koHUFapnVJAZ6cKs+Qjz5Aw3aZWHMC6u0wJE3At+nSGwA==}
     dev: true
 
   /uglify-js/3.17.3:
