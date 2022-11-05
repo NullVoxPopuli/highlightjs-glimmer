@@ -1,6 +1,6 @@
 {
   "name": "highlightjs-glimmer",
-  "version": "1.4.1",
+  "version": "2.0.0",
   "description": "Glimmer syntax highlighting with Highlight.JS",
   "main": "dist/glimmer.cjs.cjs",
   "browser": "dist/glimmer.esm.min.js",

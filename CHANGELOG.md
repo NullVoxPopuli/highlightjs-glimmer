@@ -1,3 +1,15 @@
+# [2.0.0](https://github.com/NullVoxPopuli/highlightjs-glimmer/compare/v1.4.1...v2.0.0) (2022-11-05)
+
+
+### chore
+
+* drop support for node < 14 ([18fd5b2](https://github.com/NullVoxPopuli/highlightjs-glimmer/commit/18fd5b24c64c49a8d68cd22a6c152cef14da2542))
+
+
+### BREAKING CHANGES
+
+* drop support for node < 14
+
 ## [1.4.1](https://github.com/NullVoxPopuli/highlightjs-glimmer/compare/v1.4.0...v1.4.1) (2021-12-26)
 
 
