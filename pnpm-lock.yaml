@@ -65,7 +65,7 @@ importers:
       '@nullvoxpopuli/eslint-configs': ^2.3.3
       '@vitest/coverage-c8': ^0.24.5
       common-tags: ^1.8.2
-      concurrently: ^6.4.0
+      concurrently: ^6.5.1
       eslint: ^8.26.0
       highlight.js: ^11.4.0
       highlightjs-glimmer: workspace:../
