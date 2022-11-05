@@ -1,13 +1,16 @@
 'use strict';
 
-const { stripIndent } = require('common-tags');
-const markdown = require('remark-parse');
-const remark2rehype = require('remark-rehype');
-const highlight = require('rehype-highlight');
-const html = require('rehype-stringify');
+import { describe, it, expect } from 'vitest';
 
-const { externalSetup } = require('../../dist/glimmer.cjs.cjs');
-const { tag } = require('../-utils');
+import { rehype } from 'rehype';
+import { stripIndent } from 'common-tags';
+import markdown from 'remark-parse';
+import remark2rehype from 'remark-rehype';
+import highlight from 'rehype-highlight';
+import html from 'rehype-stringify';
+
+import { externalSetup } from 'highlightjs-glimmer';
+import { tag } from '../-utils';
 
 function parse(text) {
   return rehype()
@@ -15,6 +18,7 @@ function parse(text) {
     .use(markdown)
     .use(remark2rehype)
     .use(highlight, {
+      aliases: { hbs: 'glimmer', handlebars: 'glimmer' },
       languages: {
         // js: require('highlight.js/lib/languages/javascript'),
         glimmer: externalSetup,
@@ -26,16 +30,17 @@ function parse(text) {
 }
 
 describe('Rehype', () => {
-  xit('works', async () => {
+  it('works', async () => {
     expect(
       parse(stripIndent`
-      \`\`\`hbs
+      \`\`\`glimmer
         {{@arg}}
       \`\`\`
       `)
     ).toEqual(
-      '<pre><code class="hljs language-glimmer">' +
+      '<pre><code class="hljs language-glimmer">  ' +
         tag('punctuation mustache', ['{{', tag('punctuation', '@'), tag('params', 'arg'), '}}']) +
+        '\n' +
         '</code></pre>'
     );
   });

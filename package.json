@@ -8,20 +8,25 @@
   "repository": "git@github.com:NullVoxPopuli/highlightjs-glimmer.git",
   "author": "NullVoxPopuli",
   "license": "MIT",
+  "exports": {
+    ".": {
+      "import": "./dist/glimmer.esm.min.js",
+      "require": "./dist/glimmer.cjs.cjs",
+      "types": "./index.d.ts"
+    }
+  },
   "scripts": {
+    "prepare": "node ./scripts/build.cjs",
     "build": "node ./scripts/build.cjs",
     "debug": "npx html-pages .",
     "lint:js": "eslint .",
-    "lint": "eslint .",
-    "test:modules": "yarn build && export NODE_OPTIONS='--experimental-vm-modules' && jest . --config tests/jest.config.cjs",
-    "test:modules:debug": "node --inspect-brk node_modules/.bin/jest --runInBand --watch --config tests/jest.config.cjs --testNamePattern",
-    "test:cjs": "jest . --config tests/jest.config-cjs.cjs",
-    "test:cjs:debug": "node --inspect-brk node_modules/.bin/jest --runInBand --watch --config tests/jest.config-cjs.cjs --testNamePattern"
+    "lint:js:fix": "eslint . --fix",
+    "lint": "pnpm lint:js && pnpm --filter '*' lint:js",
+    "lint:fix": "pnpm lint:js:fix && pnpm --filter '*' lint:js:fix"
   },
   "engines": {
-    "node": "> 10"
+    "node": "^14 || ^16 || ^18"
   },
-  "jest": {},
   "devDependencies": {
     "@babel/core": "^7.16.7",
     "@babel/node": "^7.16.8",
@@ -32,15 +37,13 @@
     "@nullvoxpopuli/eslint-configs": "^2.1.18",
     "@semantic-release/changelog": "^6.0.1",
     "@semantic-release/git": "^10.0.1",
-    "@types/jest": "^27.4.0",
-    "babel-jest": "^27.4.6",
     "common-tags": "^1.8.2",
     "esbuild": "^0.14.12",
     "eslint": "^8.7.0",
     "eslint-plugin-html": "^6.2.0",
+    "lowlight": "^2.7.0",
     "highlight.js": ">= 11.4.0",
-    "jest": "^27.4.7",
-    "lowlight": "github:wooorm/lowlight",
+    "prettier": "^2.7.1",
     "rehype": "^11.0.0",
     "rehype-highlight": "^4.1.0",
     "rehype-stringify": "^8.0.0",
@@ -49,6 +52,7 @@
     "remark-parse": "^10.0.1",
     "remark-rehype": "^10.1.0",
     "semantic-release": "^19.0.2",
+    "typescript": "^4.8.4",
     "unified": "^10.1.1",
     "vfile": "^5.3.0"
   },

@@ -7,9 +7,9 @@ const html = require('remark-html');
 const highlight = require('remark-highlight.js');
 const hljs = require('highlight.js');
 
-const { tag } = require('../-utils');
+const { setup } = require('highlightjs-glimmer');
 
-const { setup } = require('../../dist/glimmer.cjs.cjs');
+const { tag } = require('../-utils');
 
 setup(hljs);
 
@@ -18,7 +18,7 @@ function parse(text) {
 }
 
 describe('Remark', () => {
-  xit('works', async () => {
+  it.skip('works', async () => {
     expect(
       parse(stripIndent`
       \`\`\`glimmer

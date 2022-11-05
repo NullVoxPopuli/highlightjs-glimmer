@@ -13,7 +13,20 @@ yarn add highlightjs-glimmer
 npm install highlightjs-glimmer
 ```
 
+
+## Compatibility
+
 Requires: [highlight.js >= v11](https://github.com/highlightjs/highlight.js)
+
+|     | [Remark][1] | [Rehype][2] | [MarkdownIt][3] |
+| --  | ----------- | ----------- | --------------- |
+| cjs | ✅          | ✅          | ✅              |
+| esm | ❌[^1]      | ✅          | ✅              |
+
+[1]: https://github.com/remarkjs/remark-highlight.js
+[2]: https://github.com/rehypejs/rehype-highlight
+[3]: https://github.com/markdown-it/markdown-it
+[^1]: remark-highlight.js is deprecated and cjs only
 
 ## Usage
 

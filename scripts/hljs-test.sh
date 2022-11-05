@@ -22,8 +22,6 @@ cd $hljs
 
 set +x
 
-volta pin node@14
-volta pin npm@7
 export NODE_OPTIONS="--unhandled-rejections=strict"
 
 echo ""

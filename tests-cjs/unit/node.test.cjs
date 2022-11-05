@@ -1,10 +1,8 @@
 'use strict';
 
-const cwd = process.cwd();
-
 const hljs = require('highlight.js');
 
-const { glimmer } = require(`${cwd}/dist/glimmer.cjs`);
+const { glimmer } = require(`highlightjs-glimmer`);
 
 hljs.registerLanguage('glimmer', glimmer);
 

@@ -1,3 +1,4 @@
+import { describe, test, expect } from 'vitest';
 import { stripIndent } from 'common-tags';
 import { parse, tag } from '../-utils';
 
