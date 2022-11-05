@@ -28,10 +28,10 @@
     "node": "^14 || ^16 || ^18"
   },
   "devDependencies": {
-    "@babel/core": "^7.16.7",
-    "@babel/node": "^7.16.8",
-    "@babel/plugin-transform-modules-commonjs": "^7.16.8",
-    "@babel/preset-env": "^7.16.8",
+    "@babel/core": "^7.20.2",
+    "@babel/node": "^7.20.2",
+    "@babel/plugin-transform-modules-commonjs": "^7.19.6",
+    "@babel/preset-env": "^7.20.2",
     "@commitlint/cli": "^16.3.0",
     "@commitlint/config-conventional": "^16.2.4",
     "@nullvoxpopuli/eslint-configs": "^2.3.3",
