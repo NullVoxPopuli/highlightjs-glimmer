@@ -52,6 +52,10 @@
         return this.qps.get('debug') === 'true';
       }
 
+      get isEditing() {
+        return this.qps.get('edit') === 'true';
+      }
+
       get currentSampleKey() {
         let validKeys = Object.keys(samples);
         let fromQP = this.qps.get('sample');
@@ -64,6 +68,8 @@
       }
 
       navigateTo = (href, title = document.title) => {
+        if (location.href.endsWith(href)) return;
+
         history.pushState(null, title, href);
         renderer.render();
       };
@@ -71,23 +77,47 @@
 
     class Renderer {
       constructor() {
+        this._setupForm();
         this._setupSampleNav();
         this._setupDebug();
         this._updateSampleNav();
       }
 
       render = () => {
-        this._updatePreview();
-        this._updateDebug();
-        this._updateSampleNav();
-        this._updateHighlightDebug();
+        this._updateFromQPs();
       };
 
-      _updatePreview = () => {
-        let { sample, language } = state.currentSample;
+      _updateFromQPs = () => {
+        this._updateDebug();
+        this._updateSampleNav();
+        this._updateEditor();
+        this._updateHighlightDebug();
+        this._updatePreview();
+      }
+
+      _reHighlight = (code, language) => {
         let preview = document.querySelector('pre code');
 
-        preview.innerHTML = hljs.highlight(sample.trim(), { language }).value;
+        preview.innerHTML = hljs.highlight(code.trim(), { language }).value;
+      }
+
+      _handleInput = (event) => {
+        let formData = new FormData(event.currentTarget);
+        let data = Object.fromEntries(formData.entries());
+
+        console.log('FormData', { ...data });
+
+        this._removeQp('sample');
+        this._updateQp('code', data.code);
+        this._updateQp('language', data.language);
+
+        this._reHighlight(data.code, data.language);
+      }
+
+      _updatePreview = () => {
+        let form = document.querySelector('#editor');
+
+        form.dispatchEvent(new CustomEvent('submit', {cancelable: true}));
       };
 
       _setupSampleNav = () => {
@@ -112,12 +142,44 @@
         sampleNav.append(...sampleLinks);
       };
 
-      _setupDebug = () => {
-        document.querySelector('#dev a').addEventListener('click', (e) => {
-          e.preventDefault();
+      _setupForm = () => {
+        let form = document.querySelector('#editor');
 
-          state.navigateTo(e.target.href);
+        form.addEventListener('input', this._handleInput);
+        form.addEventListener('submit', (event) => {
+          event.preventDefault();
+          this._handleInput(event);
         });
+
+        let code = form.querySelector('textarea');
+        let language = form.querySelector('select');
+
+        if (state.qps.get('sample')) {
+          let info = state.currentSample;
+
+          code.value = info.sample;
+          language.value =  code.language;
+        }
+
+        if (state.qps.get('code')){
+          code.value = state.qps.get('code');
+        }
+
+        if (state.qps.get('language')){
+          language.value = state.qps.get('language');
+        }
+      }
+
+      _setupDebug = () => {
+        let debugLinks = document.querySelectorAll('#dev a');
+
+        for (let link of debugLinks) {
+          link.addEventListener('click', (e) => {
+            e.preventDefault();
+
+            state.navigateTo(e.target.href);
+          });
+        }
       };
 
       _updateSampleNav = () => {
@@ -137,14 +199,50 @@
         });
       };
 
+      _removeQp = (name) => {
+        let qps = new URLSearchParams(state.qps);
+
+        if (qps.get(name)) {
+          qps.delete(name);
+
+          state.navigateTo(`?${qps}`);
+        }
+      }
+
+      _updateQp = (name, value) => {
+        let qps = new URLSearchParams(state.qps);
+
+        if (qps.get('name') !== value) {
+          qps.set(name, value);
+
+          state.navigateTo(`?${qps}`);
+        }
+      }
+
       _updateDebug = () => {
-        let debugMode = document.querySelector('#dev a');
+        let debugMode = document.querySelector('#dev a.debug');
+        let editMode = document.querySelector('#dev a.edit');
 
-        let qps = state.qps;
-        qps.set('debug', !state.isDebugging);
+        let debugQps = state.qps;
+        let editQps = state.qps;
 
-        debugMode.href = `/?${qps}`;
+        debugQps.set('debug', !state.isDebugging);
+        editQps.set('edit', !state.isEditing);
+
+        editMode.href = `/?${editQps}`;
+        debugMode.href = `/?${debugQps}`;
       };
+
+      _updateEditor = () => {
+        let form = document.querySelector('#editor');
+        if (state.isEditing) {
+          form.classList.remove('hidden');
+        } else {
+          form.classList.add('hidden');
+        }
+
+      }
+
 
       _updateHighlightDebug = () => {
         if (state.isDebugging) {
@@ -234,6 +332,26 @@
       right: 1rem;
     }
 
+    #editor {
+      display: grid;
+      gap: 0.5rem;
+    }
+
+    #editor label {
+      display: flex;
+      gap: 0.5rem;
+    }
+
+    #editor [name="code"] {
+      width: 100%;
+      height: 350px;
+    }
+
+    #editor.hidden {
+      display: none;
+    }
+
+
     .debug-classes pre code span {
       display: inline-block;
       align-items: baseline;
@@ -292,13 +410,34 @@
     <nav id="samples">
       <span>Samples:</span>
     </nav>
+    <form id="editor" class="hidden">
+      <label>
+        Language
+        <select name="language">
+          <option value="glimmer-javascript">Glimmer JS</option>
+          <option value="glimmer-typescript">Glimmer TS</option>
+          <option value="javascript">JS</option>
+          <option value="typescript">TS</option>
+          <option value="handlebars">hbs</option>
+          <option value="glimmer">Glimmer</option>
+        </select>
+      </label>
+
+      <label>
+        Edit
+
+        <textarea name="code"></textarea>
+      </label>
+    </form>
   </section>
   <pre>
     <code class="language-glimmer hljs">
     </code>
   </pre>
   <div id="dev">
-    <a href="#">Debug</a>
+    <a class="debug" href="#">Debug</a>
+    |
+    <a class="edit" href="#">Edit</a>
   </div>
 </body>
 

@@ -4,6 +4,7 @@
   "type": "module",
   "scripts": {
     "test": "vitest run --coverage",
+    "test:dev": "vitest watch --coverage --ui --open=false",
     "lint:js": "eslint .",
     "lint:js:fix": "eslint . --fix",
     "lint": "eslint .",
@@ -15,6 +16,7 @@
   "devDependencies": {
     "@nullvoxpopuli/eslint-configs": "^2.3.3",
     "@vitest/coverage-c8": "^0.24.5",
+    "@vitest/ui": "^0.24.5",
     "common-tags": "^1.8.2",
     "concurrently": "^7.5.0",
     "eslint": "^8.26.0",

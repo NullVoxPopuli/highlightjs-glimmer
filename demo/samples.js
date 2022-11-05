@@ -114,21 +114,21 @@ export const gjsTemplateOnly = {
   name: 'template-only .gjs',
   language: 'js',
   sample: `import { helper } from '@ember/component/helper';
-  import { modifier } from 'ember-modifier';
+import { modifier } from 'ember-modifier';
 
-  const plusOne = helper(([num]) => num + 1);
+const plusOne = helper(([num]) => num + 1);
 
-  const setScrollPosition = modifier((element, [position]) => {
+const setScrollPosition = modifier((element, [position]) => {
   element.scrollTop = position
-  });
+});
 
-  <template>
+<template>
   <div class="scroll-container" {{setScrollPosition @scrollPos}}>
     {{#each @items as |item index|}}
       Item #{{plusOne index}}: {{item}}
     {{/each}}
   </div>
-  </template>
+</template>
   `,
 };
 

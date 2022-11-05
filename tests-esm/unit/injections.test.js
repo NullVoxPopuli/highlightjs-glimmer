@@ -1,6 +1,6 @@
 import { describe, test, expect } from 'vitest';
 import { stripIndent } from 'common-tags';
-import { parse, tag } from '../-utils';
+import { parse, tag, list } from '../-utils';
 
 describe('Injections | JS', () => {
   describe('hbs template literal', () => {
@@ -63,7 +63,16 @@ describe('Injections | JS', () => {
         'js'
       );
 
-      expect(result).toEqual();
+      console.log(result);
+      expect(result).toEqual(
+        list(
+          tag('hljs-keyword', 'export'),
+          ' ',
+          tag('hljs-keyword', 'default'),
+
+          tag('hljs-name', ['{{', tag('punctuation', '@'), tag('params', 'name'), '}}'])
+        )
+      );
     });
 
     test('with imports', () => {

@@ -12,3 +12,7 @@ export function tag(klass, children = []) {
 
   return `<span class="hljs-${klass}">${_children.join('')}</span>`;
 }
+
+export function list(children) {
+  return children.join('');
+}
