@@ -8,14 +8,14 @@ importers:
       '@babel/node': ^7.16.8
       '@babel/plugin-transform-modules-commonjs': ^7.16.8
       '@babel/preset-env': ^7.16.8
-      '@commitlint/cli': ^16.1.0
-      '@commitlint/config-conventional': ^16.0.0
+      '@commitlint/cli': ^16.3.0
+      '@commitlint/config-conventional': ^16.2.4
       '@nullvoxpopuli/eslint-configs': ^2.1.18
       '@semantic-release/changelog': ^6.0.1
       '@semantic-release/git': ^10.0.1
       common-tags: ^1.8.2
       esbuild: ^0.14.12
-      eslint: ^8.7.0
+      eslint: ^8.26.0
       eslint-plugin-html: ^6.2.0
       highlight.js: '>= 11.4.0'
       lowlight: ^2.7.0
@@ -43,7 +43,7 @@ importers:
       '@semantic-release/git': 10.0.1_semantic-release@19.0.5
       common-tags: 1.8.2
       esbuild: 0.14.54
-      eslint: 8.25.0
+      eslint: 8.26.0
       eslint-plugin-html: 6.2.0
       highlight.js: 11.6.0
       lowlight: 2.7.0
@@ -66,16 +66,16 @@ importers:
       '@vitest/coverage-c8': ^0.24.1
       common-tags: ^1.8.2
       concurrently: ^6.4.0
-      eslint: ^8.7.0
+      eslint: ^8.26.0
       highlight.js: ^11.4.0
       highlightjs-glimmer: workspace:../
       markdown-it: ^13.0.1
       rehype-highlight: ^4.0.0
       rehype-stringify: ^8.0.0
       remark-highlight.js: ^6.0.0
-      remark-html: ^13.0.0
+      remark-html: ^13.0.2
       remark-parse: ^9.0.0
-      remark-rehype: ^8.0.0
+      remark-rehype: ^8.1.0
       typescript: ^4.8.4
       unified: ^8.0.0
       vitest: ^0.24.1
@@ -86,7 +86,7 @@ importers:
       '@vitest/coverage-c8': 0.24.1
       common-tags: 1.8.2
       concurrently: 6.5.1
-      eslint: 8.25.0
+      eslint: 8.26.0
       highlight.js: 11.6.0
       markdown-it: 13.0.1
       rehype-highlight: 4.1.0
@@ -105,7 +105,7 @@ importers:
       '@vitest/coverage-c8': ^0.24.1
       common-tags: ^1.8.2
       concurrently: ^7.4.0
-      eslint: ^8.7.0
+      eslint: ^8.26.0
       highlight.js: '>= 11.4.0'
       highlightjs-glimmer: workspace:../
       markdown-it: ^13.0.1
@@ -125,7 +125,7 @@ importers:
       '@vitest/coverage-c8': 0.24.1
       common-tags: 1.8.2
       concurrently: 7.4.0
-      eslint: 8.25.0
+      eslint: 8.26.0
       highlight.js: 11.6.0
       markdown-it: 13.0.1
       rehype: 12.0.1
@@ -1592,8 +1592,8 @@ packages:
       - supports-color
     dev: true
 
-  /@humanwhocodes/config-array/0.10.7:
-    resolution: {integrity: sha512-MDl6D6sBsaV452/QSdX+4CXIjZhIcI0PELsxUjk4U828yd58vk3bTIvk/6w5FY+4hIy9sLW0sfrV7K7Kc++j/w==}
+  /@humanwhocodes/config-array/0.11.7:
+    resolution: {integrity: sha512-kBbPWzN8oVMLb0hOUYXhmxggL/1cJE6ydvjDIGi9EnAGUyA7cLVKQg+d/Dsm+KZwx2czGHrCmMVLiyg8s5JPKw==}
     engines: {node: '>=10.10.0'}
     dependencies:
       '@humanwhocodes/object-schema': 1.2.1
@@ -3836,13 +3836,13 @@ packages:
       eslint-visitor-keys: 2.1.0
     dev: true
 
-  /eslint-utils/3.0.0_eslint@8.25.0:
+  /eslint-utils/3.0.0_eslint@8.26.0:
     resolution: {integrity: sha512-uuQC43IGctw68pJA1RgbQS8/NP7rch6Cwd4j3ZBtgo4/8Flj4eGE7ZYSZRN3iq5pVUv6GPdW5Z1RFleo84uLDA==}
     engines: {node: ^10.0.0 || ^12.0.0 || >= 14.0.0}
     peerDependencies:
       eslint: '>=5'
     dependencies:
-      eslint: 8.25.0
+      eslint: 8.26.0
       eslint-visitor-keys: 2.1.0
     dev: true
 
@@ -3910,14 +3910,15 @@ packages:
       - supports-color
     dev: true
 
-  /eslint/8.25.0:
-    resolution: {integrity: sha512-DVlJOZ4Pn50zcKW5bYH7GQK/9MsoQG2d5eDH0ebEkE8PbgzTTmtt/VTH9GGJ4BfeZCpBLqFfvsjX35UacUL83A==}
+  /eslint/8.26.0:
+    resolution: {integrity: sha512-kzJkpaw1Bfwheq4VXUezFriD1GxszX6dUekM7Z3aC2o4hju+tsR/XyTC3RcoSD7jmy9VkPU3+N6YjVU2e96Oyg==}
     engines: {node: ^12.22.0 || ^14.17.0 || >=16.0.0}
     hasBin: true
     dependencies:
       '@eslint/eslintrc': 1.3.3
-      '@humanwhocodes/config-array': 0.10.7
+      '@humanwhocodes/config-array': 0.11.7
       '@humanwhocodes/module-importer': 1.0.1
+      '@nodelib/fs.walk': 1.2.8
       ajv: 6.12.6
       chalk: 4.1.2
       cross-spawn: 7.0.3
@@ -3925,7 +3926,7 @@ packages:
       doctrine: 3.0.0
       escape-string-regexp: 4.0.0
       eslint-scope: 7.1.1
-      eslint-utils: 3.0.0_eslint@8.25.0
+      eslint-utils: 3.0.0_eslint@8.26.0
       eslint-visitor-keys: 3.3.0
       espree: 9.4.0
       esquery: 1.4.0
@@ -3935,12 +3936,12 @@ packages:
       find-up: 5.0.0
       glob-parent: 6.0.2
       globals: 13.17.0
-      globby: 11.1.0
       grapheme-splitter: 1.0.4
       ignore: 5.2.0
       import-fresh: 3.3.0
       imurmurhash: 0.1.4
       is-glob: 4.0.3
+      is-path-inside: 3.0.3
       js-sdsl: 4.1.5
       js-yaml: 4.1.0
       json-stable-stringify-without-jsonify: 1.0.1
