@@ -1,3 +1,11 @@
+## [2.0.1](https://github.com/NullVoxPopuli/highlightjs-glimmer/compare/v2.0.0...v2.0.1) (2022-11-06)
+
+
+### Bug Fixes
+
+* **gjs:** consistently highlight gjs blocks ([abfdd2b](https://github.com/NullVoxPopuli/highlightjs-glimmer/commit/abfdd2bfa36d02c65981bf01042cee1f71d08060))
+* **template:** use more robust template tag identification ([b6f3e05](https://github.com/NullVoxPopuli/highlightjs-glimmer/commit/b6f3e05063fb040e3d157d64d336b08e48e70515))
+
 # [2.0.0](https://github.com/NullVoxPopuli/highlightjs-glimmer/compare/v1.4.1...v2.0.0) (2022-11-05)
 
 
