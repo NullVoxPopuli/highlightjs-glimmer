@@ -39,7 +39,7 @@
     "@semantic-release/git": "^10.0.1",
     "common-tags": "^1.8.2",
     "esbuild": "^0.15.13",
-    "eslint": "^8.26.0",
+    "eslint": "^8.27.0",
     "eslint-plugin-html": "^6.2.0",
     "lowlight": "^2.7.0",
     "highlight.js": ">= 11.6.0",
