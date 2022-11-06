@@ -65,7 +65,7 @@ importers:
       '@nullvoxpopuli/eslint-configs': ^2.3.3
       '@vitest/coverage-c8': ^0.24.5
       common-tags: ^1.8.2
-      concurrently: ^6.5.1
+      concurrently: ^7.5.0
       eslint: ^8.26.0
       highlight.js: ^11.6.0
       highlightjs-glimmer: workspace:../
@@ -85,7 +85,7 @@ importers:
       '@nullvoxpopuli/eslint-configs': 2.3.3_typescript@4.8.4
       '@vitest/coverage-c8': 0.24.5
       common-tags: 1.8.2
-      concurrently: 6.5.1
+      concurrently: 7.5.0
       eslint: 8.26.0
       highlight.js: 11.6.0
       markdown-it: 13.0.1
@@ -104,7 +104,7 @@ importers:
       '@nullvoxpopuli/eslint-configs': ^2.3.3
       '@vitest/coverage-c8': ^0.24.5
       common-tags: ^1.8.2
-      concurrently: ^7.4.0
+      concurrently: ^7.5.0
       eslint: ^8.26.0
       highlight.js: '>= 11.6.0'
       highlightjs-glimmer: workspace:../
@@ -124,7 +124,7 @@ importers:
       '@nullvoxpopuli/eslint-configs': 2.3.3_typescript@4.8.4
       '@vitest/coverage-c8': 0.24.5
       common-tags: 1.8.2
-      concurrently: 7.4.0
+      concurrently: 7.5.0
       eslint: 8.26.0
       highlight.js: 11.6.0
       markdown-it: 13.0.1
@@ -2954,23 +2954,8 @@ packages:
     resolution: {integrity: sha512-/Srv4dswyQNBfohGpz9o6Yb3Gz3SrUDqBH5rTuhGR7ahtlbYKnVxw2bCFMRljaA7EXHaXZ8wsHdodFvbkhKmqg==}
     dev: true
 
-  /concurrently/6.5.1:
-    resolution: {integrity: sha512-FlSwNpGjWQfRwPLXvJ/OgysbBxPkWpiVjy1042b0U7on7S7qwwMIILRj7WTN1mTgqa582bG6NFuScOoh6Zgdag==}
-    engines: {node: '>=10.0.0'}
-    hasBin: true
-    dependencies:
-      chalk: 4.1.2
-      date-fns: 2.29.3
-      lodash: 4.17.21
-      rxjs: 6.6.7
-      spawn-command: 0.0.2-1
-      supports-color: 8.1.1
-      tree-kill: 1.2.2
-      yargs: 16.2.0
-    dev: true
-
-  /concurrently/7.4.0:
-    resolution: {integrity: sha512-M6AfrueDt/GEna/Vg9BqQ+93yuvzkSKmoTixnwEJkH0LlcGrRC2eCmjeG1tLLHIYfpYJABokqSGyMcXjm96AFA==}
+  /concurrently/7.5.0:
+    resolution: {integrity: sha512-5E3mwiS+i2JYBzr5BpXkFxOnleZTMsG+WnE/dCG4/P+oiVXrbmrBwJ2ozn4SxwB2EZDrKR568X+puVohxz3/Mg==}
     engines: {node: ^12.20.0 || ^14.13.0 || >=16.0.0}
     hasBin: true
     dependencies:
@@ -6725,13 +6710,6 @@ packages:
     resolution: {integrity: sha512-5l4VyZR86LZ/lDxZTR6jqL8AFE2S0IFLMP26AbjsLVADxHdhB/c0GUsH+y39UfCi3dzz8OlQuPmnaJOMoDHQBA==}
     dependencies:
       queue-microtask: 1.2.3
-    dev: true
-
-  /rxjs/6.6.7:
-    resolution: {integrity: sha512-hTdwr+7yYNIT5n4AMYp85KA6yw2Va0FLa3Rguvbpa4W3I5xynaBZo41cM3XM+4Q6fRMj3sBYIR1VAmZMXYJvRQ==}
-    engines: {npm: '>=2.0.0'}
-    dependencies:
-      tslib: 1.14.1
     dev: true
 
   /rxjs/7.5.7:
