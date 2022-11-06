@@ -18,7 +18,7 @@
   "scripts": {
     "prepare": "node ./scripts/build.cjs",
     "build": "node ./scripts/build.cjs",
-    "debug": "npx html-pages .",
+    "debug": "npx html-pages . --no-cache",
     "lint:js": "eslint .",
     "lint:js:fix": "eslint . --fix",
     "lint": "pnpm lint:js && pnpm --filter '*' lint:js",

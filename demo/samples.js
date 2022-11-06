@@ -129,7 +129,36 @@ const setScrollPosition = modifier((element, [position]) => {
     {{/each}}
   </div>
 </template>
-`,
+  `,
+};
+
+export const multipleTemplateOnly = {
+  name: 'multiple template-only .gjs',
+  language: 'js',
+  sample: `import WeatherSummary from './weather-summary.js';
+
+const Greeting = <template>
+  <p>Hello, {{@name}}!</p>
+</template>;
+
+function isBirthday(dateOfBirth) {
+  const now = new Date();
+  return (
+    dateOfBirth.getDate() === now.getDate() &&
+    dateOfBirth.getMonth() === now.getMonth()
+  );
+}
+
+<template>
+  <div>
+    <Greeting @name="Chris" />
+    {{#if (isBirthday @user.dateOfBirth)}}
+      <Celebration type='birthday' />
+    {{/if}}
+    <WeatherSummary />
+  </div>
+</template>
+  `,
 };
 
 /** @type { Sample } */
