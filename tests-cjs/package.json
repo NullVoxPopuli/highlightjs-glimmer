@@ -17,7 +17,7 @@
     "@vitest/coverage-c8": "^0.24.5",
     "common-tags": "^1.8.2",
     "concurrently": "^7.5.0",
-    "eslint": "^8.26.0",
+    "eslint": "^8.27.0",
     "highlight.js": "^11.6.0",
     "markdown-it": "^13.0.1",
     "rehype-highlight": "^6.0.0",
