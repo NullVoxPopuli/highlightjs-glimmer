@@ -297,11 +297,64 @@ function registerJavaScriptInjections(hljs) {
     return;
   }
   js = js.rawDefinition(hljs);
+  setupHBSLiteral(hljs, js);
+  swapXMLForGlimmer(hljs, js);
+  setupTemplateTag(hljs, js);
+  hljs.registerLanguage("javascript", () => js);
+  hljs.registerLanguage("glimmer-javascript", () => js);
+}
+function setupHBSLiteral(hljs, js) {
   let cssIndex = js.contains.findIndex((rule) => (rule == null ? void 0 : rule.begin) === "css`");
   let css = js.contains[cssIndex];
-  js.contains.flatMap((contains) => (contains == null ? void 0 : contains.contains) || contains).filter((rule) => rule.subLanguage === "xml").forEach((rule) => rule.subLanguage = "glimmer");
   const HBS_TEMPLATE = hljs.inherit(css, { begin: /hbs`/ });
   HBS_TEMPLATE.starts.subLanguage = "glimmer";
   js.contains.splice(cssIndex, 0, HBS_TEMPLATE);
-  hljs.registerLanguage("javascript", () => js);
+}
+function swapXMLForGlimmer(_hljs, js) {
+  js.contains.flatMap((contains) => (contains == null ? void 0 : contains.contains) || contains).filter((rule) => rule.subLanguage === "xml").forEach((rule) => rule.subLanguage = "glimmer");
+}
+function setupTemplateTag(_hljs, js) {
+  const GLIMMER_TEMPLATE_TAG = {
+    begin: /<template>/,
+    end: /<\/template>/,
+    isTrulyOpeningTag: (match, response) => {
+      const afterMatchIndex = match[0].length + match.index;
+      const nextChar = match.input[afterMatchIndex];
+      if (nextChar === "<" || nextChar === ",") {
+        response.ignoreMatch();
+        return;
+      }
+      if (nextChar === ">") {
+        if (!hasClosingTag(match, { after: afterMatchIndex })) {
+          response.ignoreMatch();
+        }
+      }
+      let m;
+      const afterMatch = match.input.substring(afterMatchIndex);
+      if (m = afterMatch.match(/^\s+extends\s+/)) {
+        if (m.index === 0) {
+          response.ignoreMatch();
+          return;
+        }
+      }
+    }
+  };
+  js.contains.unshift({
+    variants: [
+      {
+        begin: GLIMMER_TEMPLATE_TAG.begin,
+        "on:begin": GLIMMER_TEMPLATE_TAG.isTrulyOpeningTag,
+        end: GLIMMER_TEMPLATE_TAG.end
+      }
+    ],
+    subLanguage: "glimmer",
+    contains: [
+      {
+        begin: GLIMMER_TEMPLATE_TAG.begin,
+        end: GLIMMER_TEMPLATE_TAG.end,
+        skip: true,
+        contains: ["self"]
+      }
+    ]
+  });
 }

@@ -34,14 +34,15 @@ function registerJavaScriptInjections(hljs) {
 
   js = js.rawDefinition(hljs);
 
-  setupHBSLiteral(js);
-  swapXMLForGlimmer(js);
-  setupTemplateTag(js);
+  setupHBSLiteral(hljs, js);
+  swapXMLForGlimmer(hljs, js);
+  setupTemplateTag(hljs, js);
 
   hljs.registerLanguage('javascript', () => js);
+  hljs.registerLanguage('glimmer-javascript', () => js);
 }
 
-function setupHBSLiteral(js) {
+function setupHBSLiteral(hljs, js) {
   let cssIndex = js.contains.findIndex((rule) => rule?.begin === 'css`');
   let css = js.contains[cssIndex];
 
@@ -52,7 +53,7 @@ function setupHBSLiteral(js) {
   js.contains.splice(cssIndex, 0, HBS_TEMPLATE);
 }
 
-function swapXMLForGlimmer(js) {
+function swapXMLForGlimmer(_hljs, js) {
   // The default JSX grammar is actually just XML, which... is also wrong :D
   js.contains
     .flatMap((contains) => contains?.contains || contains)
@@ -63,7 +64,7 @@ function swapXMLForGlimmer(js) {
 /**
  * A lot of this is stolen from XML
  */
-function setupTemplateTag(js) {
+function setupTemplateTag(_hljs, js) {
   const GLIMMER_TEMPLATE_TAG = {
     begin: /<template>/,
     end: /<\/template>/,

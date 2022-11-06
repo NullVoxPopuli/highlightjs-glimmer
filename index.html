@@ -93,13 +93,13 @@
         this._updateEditor();
         this._updateHighlightDebug();
         this._updatePreview();
-      }
+      };
 
       _reHighlight = (code, language) => {
         let preview = document.querySelector('pre code');
 
         preview.innerHTML = hljs.highlight(code.trim(), { language }).value;
-      }
+      };
 
       _handleInput = (event) => {
         let formData = new FormData(event.currentTarget);
@@ -112,12 +112,12 @@
         this._updateQp('language', data.language);
 
         this._reHighlight(data.code, data.language);
-      }
+      };
 
       _updatePreview = () => {
         let form = document.querySelector('#editor');
 
-        form.dispatchEvent(new CustomEvent('submit', {cancelable: true}));
+        form.dispatchEvent(new CustomEvent('submit', { cancelable: true }));
       };
 
       _setupSampleNav = () => {
@@ -158,17 +158,17 @@
           let info = state.currentSample;
 
           code.value = info.sample;
-          language.value =  code.language;
+          language.value = code.language;
         }
 
-        if (state.qps.get('code')){
+        if (state.qps.get('code')) {
           code.value = state.qps.get('code');
         }
 
-        if (state.qps.get('language')){
+        if (state.qps.get('language')) {
           language.value = state.qps.get('language');
         }
-      }
+      };
 
       _setupDebug = () => {
         let debugLinks = document.querySelectorAll('#dev a');
@@ -207,7 +207,7 @@
 
           state.navigateTo(`?${qps}`);
         }
-      }
+      };
 
       _updateQp = (name, value) => {
         let qps = new URLSearchParams(state.qps);
@@ -217,7 +217,7 @@
 
           state.navigateTo(`?${qps}`);
         }
-      }
+      };
 
       _updateDebug = () => {
         let debugMode = document.querySelector('#dev a.debug');
@@ -240,9 +240,7 @@
         } else {
           form.classList.add('hidden');
         }
-
-      }
-
+  };
 
       _updateHighlightDebug = () => {
         if (state.isDebugging) {
