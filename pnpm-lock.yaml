@@ -30,7 +30,7 @@ importers:
       semantic-release: ^19.0.5
       typescript: ^4.8.4
       unified: ^10.1.1
-      vfile: ^5.3.5
+      vfile: ^5.3.7
     devDependencies:
       '@babel/core': 7.20.2
       '@babel/node': 7.20.2_@babel+core@7.20.2
@@ -58,7 +58,7 @@ importers:
       semantic-release: 19.0.5
       typescript: 4.8.4
       unified: 10.1.2
-      vfile: 5.3.5
+      vfile: 5.3.7
 
   tests-cjs:
     specifiers:
@@ -4547,7 +4547,7 @@ packages:
       '@types/unist': 2.0.6
       hastscript: 7.1.0
       property-information: 6.1.1
-      vfile: 5.3.5
+      vfile: 5.3.7
       vfile-location: 4.0.1
       web-namespaces: 2.0.1
     dev: true
@@ -7412,7 +7412,7 @@ packages:
     resolution: {integrity: sha512-JDxPlTbZrZCQXogGheBHjbRWjESSPEak770XwWPfw5mTc1v1nWGLB/apzZxsx8a0SJVfF8HK8ql8RD308vXRUw==}
     dependencies:
       '@types/unist': 2.0.6
-      vfile: 5.3.5
+      vfile: 5.3.7
     dev: true
 
   /vfile-message/2.0.4:
@@ -7440,6 +7440,15 @@ packages:
 
   /vfile/5.3.5:
     resolution: {integrity: sha512-U1ho2ga33eZ8y8pkbQLH54uKqGhFJ6GYIHnnG5AhRpAh3OWjkrRHKa/KogbmQn8We+c0KVV3rTOgR9V/WowbXQ==}
+    dependencies:
+      '@types/unist': 2.0.6
+      is-buffer: 2.0.5
+      unist-util-stringify-position: 3.0.2
+      vfile-message: 3.1.2
+    dev: true
+
+  /vfile/5.3.7:
+    resolution: {integrity: sha512-r7qlzkgErKjobAmyNIkkSpizsFPYiUPuJb5pNW1RB4JcYVZhs4lIbVqk8XPk033CV/1z8ss5pkax8SuhGpcG8g==}
     dependencies:
       '@types/unist': 2.0.6
       is-buffer: 2.0.5
