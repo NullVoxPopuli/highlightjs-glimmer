@@ -14,7 +14,7 @@
     "highlightjs-glimmer": "workspace:../"
   },
   "devDependencies": {
-    "@nullvoxpopuli/eslint-configs": "^2.3.3",
+    "@nullvoxpopuli/eslint-configs": "^2.3.5",
     "@vitest/coverage-c8": "^0.25.1",
     "@vitest/ui": "^0.25.1",
     "common-tags": "^1.8.2",
