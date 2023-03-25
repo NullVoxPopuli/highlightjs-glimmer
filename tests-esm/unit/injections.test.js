@@ -1,24 +1,16 @@
-import { describe, test, expect } from "vitest";
-import { stripIndent } from "common-tags";
-import {
-  parse,
-  tag,
-  list,
-  glimmer,
-  template,
-  tags,
-  formattedEquals,
-  format,
-} from "../-utils";
+import { stripIndent } from 'common-tags';
+import { describe, expect, test } from 'vitest';
 
-describe("Injections | JS", () => {
-  describe("hbs template literal", () => {
-    test("basic", () => {
+import { format, formattedEquals, glimmer, list, parse, tag, tags, template } from '../-utils.js';
+
+describe('Injections | JS', () => {
+  describe('hbs template literal', () => {
+    test('basic', () => {
       let result = parse(
         stripIndent`
           const hbs\`{{foo}}\`
         `,
-        "js"
+        'js'
       );
 
       expect(result).toEqual(
@@ -27,68 +19,66 @@ describe("Injections | JS", () => {
     });
   });
 
-  describe("gjs / template tag", () => {
-    test("basic", () => {
+  describe('gjs / template tag', () => {
+    test('basic', () => {
       let result = parse(
         stripIndent`
           export const Name = <template>
             {{@name}}
           </template>;
         `,
-        "glimmer-javascript"
+        'glimmer-javascript'
       );
 
       expect(result).toEqual(
         list(
           tags.keyword.export,
-          " ",
+          ' ',
           tags.keyword.const,
-          " ",
-          tag("title class_", "Name"),
-          " = ",
-          glimmer(template(tags.mustache(tags.arg("name")))),
-          ";"
+          ' ',
+          tag('title class_', 'Name'),
+          ' = ',
+          glimmer(template(tags.mustache(tags.arg('name')))),
+          ';'
         )
       );
     });
 
-    test("implied default export", () => {
+    test('implied default export', () => {
       let result = parse(
         stripIndent`
           <template>
             {{@name}}
           </template>
         `,
-        "js"
+        'js'
       );
 
-      expect(result).toEqual(
-        glimmer(template(tags.mustache(tags.arg("name"))))
-      );
+      expect(result).toEqual(glimmer(template(tags.mustache(tags.arg('name')))));
     });
 
-    test("explicit default export", () => {
+    test('explicit default export', () => {
       let result = parse(
         stripIndent`
           export default <template>
             {{@name}}
           </template>
         `,
-        "javascript"
+        'javascript'
       );
 
       expect(result).toEqual(
         list(
           tags.keyword.export,
-          " ",
+          ' ',
           tags.keyword.default,
-          " ",
-          glimmer(template(tags.mustache(tags.arg("name"))))
+          ' ',
+          glimmer(template(tags.mustache(tags.arg('name'))))
         )
       );
     });
 
-    test("with imports", () => {
+    test('with imports', () => {
       let result = parse(
         stripIndent`
           import Greeting from './greeting.js';
@@ -101,7 +91,7 @@ describe("Injections | JS", () => {
             </div>
           </template>
         `,
-        "js"
+        'js'
       );
 
       formattedEquals(
@@ -109,21 +99,21 @@ describe("Injections | JS", () => {
         list(
           // These are JS and not tagged by us
           `<span class="hljs-keyword">import</span> <span class="hljs-title class_">Greeting</span> <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;./greeting.js&#x27;</span>;`,
-          "\n",
+          '\n',
           `<span class="hljs-keyword">import</span> <span class="hljs-title class_">WeatherSummary</span> <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;./weather-summary.js&#x27;</span>;`,
-          "\n",
-          "\n",
+          '\n',
+          '\n',
           glimmer(
             template(
-              tags.element("div", [
-                tags.selfClosing("Greeting", [
-                  " ",
-                  tags.arg("name"),
+              tags.element('div', [
+                tags.selfClosing('Greeting', [
+                  ' ',
+                  tags.arg('name'),
                   tags.operator.equals,
-                  tags.string("Chris"),
+                  tags.string('Chris'),
                 ]),
-                "\n",
-                tags.selfClosing("WeatherSummary"),
+                '\n',
+                tags.selfClosing('WeatherSummary'),
               ])
             )
           )
@@ -131,7 +121,7 @@ describe("Injections | JS", () => {
       );
     });
 
-    test("a setTimeout exists above the template", () => {
+    test('a setTimeout exists above the template', () => {
       let result = parse(
         stripIndent`
           const demo = new Demo();
@@ -149,7 +139,7 @@ describe("Injections | JS", () => {
       expect(result).toMatchSnapshot();
     });
 
-    test("a function exists above the template", () => {
+    test('a function exists above the template', () => {
       let result = parse(
         stripIndent`
           import Greeting from './greeting.js';
@@ -173,7 +163,7 @@ describe("Injections | JS", () => {
             </div>
           </template>
         `,
-        "js"
+        'js'
       );
 
       formattedEquals(
@@ -190,37 +180,37 @@ describe("Injections | JS", () => {
      dateOfBirth.<span class="hljs-title function_">getMonth</span>() === now.<span class="hljs-title function_">getMonth</span>()
    );
  }`,
-          "\n",
-          "\n",
+          '\n',
+          '\n',
           glimmer(
             template(
-              tags.element("div", [
-                tags.selfClosing("Greeting", [
-                  " ",
-                  tags.arg("name"),
+              tags.element('div', [
+                tags.selfClosing('Greeting', [
+                  ' ',
+                  tags.arg('name'),
                   tags.operator.equals,
-                  tags.string("Chris"),
+                  tags.string('Chris'),
                 ]),
-                "\n",
+                '\n',
                 tags.mustache(
-                  "#",
-                  tag("title", tag("built_in", "if")),
-                  tag("punctuation", "("),
-                  tag("title", "isBirthday"),
-                  " ",
-                  tag("punctuation", "@"),
-                  tag("params", "user"),
-                  tag("punctuation", "."),
-                  tag("title", "dateOfBirth"),
-                  tag("punctuation", ")")
+                  '#',
+                  tag('title', tag('built_in', 'if')),
+                  tag('punctuation', '('),
+                  tag('title', 'isBirthday'),
+                  ' ',
+                  tag('punctuation', '@'),
+                  tag('params', 'user'),
+                  tag('punctuation', '.'),
+                  tag('title', 'dateOfBirth'),
+                  tag('punctuation', ')')
                 ),
-                tags.selfClosing("Celebration", [
-                  tag("attribute", "type"),
+                tags.selfClosing('Celebration', [
+                  tag('attribute', 'type'),
                   tags.operator.equals,
-                  tag("string", ["&#x27;", "birthday", "&#x27;"]),
+                  tag('string', ['&#x27;', 'birthday', '&#x27;']),
                 ]),
-                tags.mustache("/", tag("title", tag("built_in", "if"))),
-                tags.selfClosing("WeatherSummary"),
+                tags.mustache('/', tag('title', tag('built_in', 'if'))),
+                tags.selfClosing('WeatherSummary'),
               ])
             )
           )
@@ -228,7 +218,7 @@ describe("Injections | JS", () => {
       );
     });
 
-    test("is embedded in a class", () => {
+    test('is embedded in a class', () => {
       let result = parse(
         stripIndent`
           import Component from '@glimmer/component';
@@ -265,13 +255,13 @@ describe("Injections | JS", () => {
             </template>
           }
         `,
-        "js"
+        'js'
       );
 
       expect(format(result)).toMatchSnapshot();
     });
 
-    test("multiple components", () => {
+    test('multiple components', () => {
       let result = parse(
         stripIndent`
           import WeatherSummary from './weather-summary.js';
@@ -298,7 +288,7 @@ describe("Injections | JS", () => {
             </div>
           </template>
         `,
-        "js"
+        'js'
       );
 
       expect(format(result)).toMatchSnapshot();

@@ -1,3 +1,4 @@
+/* globals describe, it, expect */
 const { stripIndent } = require('common-tags');
 const markdownIt = require('markdown-it');
 

@@ -102,7 +102,7 @@ function glimmer(hljs) {
   };
   const OPERATORS = {
     className: "operator",
-    match: /\=/
+    match: /=/
   };
   const ARGUMENTS = {
     className: {
@@ -259,7 +259,7 @@ function glimmer(hljs) {
     {
       className: "tag",
       begin: regex.concat(/<\/:?/, regex.lookahead(regex.concat(TAG_NAME, />/))),
-      end: /\>/,
+      end: />/,
       contains: [ABS_NAME]
     }
   ];
@@ -349,11 +349,6 @@ function setupTemplateTag(_hljs, js) {
       ) {
         response.ignoreMatch();
         return;
-      }
-      if (nextChar === ">") {
-        if (!hasClosingTag(match, { after: afterMatchIndex })) {
-          response.ignoreMatch();
-        }
       }
       let m;
       const afterMatch = match.input.substring(afterMatchIndex);

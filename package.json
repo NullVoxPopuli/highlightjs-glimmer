@@ -10,7 +10,7 @@
     "lint": "turbo lint",
     "test": "turbo test",
     "debug": "npx html-pages . --no-cache",
-    "lint:fix": "pnpm --filter '*' lint:js:fix"
+    "lint:fix": "pnpm --filter '*' lint:fix"
   },
   "devDependencies": {
     "@changesets/changelog-github": "^0.4.8",

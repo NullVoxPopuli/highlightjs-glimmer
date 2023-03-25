@@ -1,3 +1,4 @@
+/* globals describe, it, expect */
 'use strict';
 
 const { stripIndent } = require('common-tags');
