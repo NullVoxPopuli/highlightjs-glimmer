@@ -6,9 +6,15 @@ importers:
     specifiers:
       '@changesets/changelog-github': ^0.4.8
       '@changesets/cli': ^2.26.0
+      eslint: ^8.36.0
+      eslint-plugin-html: ^7.1.0
+      prettier: ^2.8.7
     devDependencies:
       '@changesets/changelog-github': 0.4.8
       '@changesets/cli': 2.26.1
+      eslint: 8.36.0
+      eslint-plugin-html: 7.1.0
+      prettier: 2.8.7
 
   highlightjs-glimmer:
     specifiers:
@@ -20,20 +26,9 @@ importers:
       common-tags: ^1.8.2
       esbuild: ^0.17.13
       eslint: ^8.36.0
-      eslint-plugin-html: ^7.1.0
       highlight.js: '>= 11.7.0'
-      lowlight: ^2.8.1
       prettier: ^2.8.7
-      rehype: ^12.0.1
-      rehype-highlight: ^6.0.0
-      rehype-stringify: ^9.0.3
-      remark-highlight.js: ^7.0.1
-      remark-html: ^15.0.2
-      remark-parse: ^10.0.1
-      remark-rehype: ^10.1.0
       typescript: ^4.9.5
-      unified: ^10.1.1
-      vfile: ^5.3.7
     devDependencies:
       '@babel/core': 7.20.2
       '@babel/node': 7.20.2_@babel+core@7.20.2
@@ -43,20 +38,9 @@ importers:
       common-tags: 1.8.2
       esbuild: 0.17.13
       eslint: 8.36.0
-      eslint-plugin-html: 7.1.0
       highlight.js: 11.7.0
-      lowlight: 2.8.1
       prettier: 2.8.7
-      rehype: 12.0.1
-      rehype-highlight: 6.0.0
-      rehype-stringify: 9.0.3
-      remark-highlight.js: 7.0.1
-      remark-html: 15.0.2
-      remark-parse: 10.0.1
-      remark-rehype: 10.1.0
       typescript: 4.9.5
-      unified: 10.1.2
-      vfile: 5.3.7
 
   tests-cjs:
     specifiers:
@@ -4940,14 +4924,6 @@ packages:
       highlight.js: 11.6.0
     dev: true
 
-  /lowlight/2.8.1:
-    resolution: {integrity: sha512-HCaGL61RKc1MYzEYn3rFoGkK0yslzCVDFJEanR19rc2L0mb8i58XM55jSRbzp9jcQrFzschPlwooC0vuNitk8Q==}
-    dependencies:
-      '@types/hast': 2.3.4
-      fault: 2.0.1
-      highlight.js: 11.7.0
-    dev: true
-
   /lru-cache/4.1.5:
     resolution: {integrity: sha512-sWZlbEP2OsHNkXrMl5GYk/jKk70MBng6UU4YI/qGDYbgf6YbP4EvmqISbXCoJiRKs+1bSpFHVgQxvJ17F2li5g==}
     dependencies:
@@ -5959,15 +5935,6 @@ packages:
     dependencies:
       lowlight: 1.20.0
       unist-util-visit: 2.0.3
-    dev: true
-
-  /remark-highlight.js/7.0.1:
-    resolution: {integrity: sha512-ihXPWmg4l55rZ/wREHtEdqXEuVHfE8TvS0UMCemd4lKA1t7ts13xvV3pVLK4vhaeDjSxOroo6U7E4Xxf2wVS4A==}
-    dependencies:
-      '@types/mdast': 3.0.10
-      lowlight: 2.8.1
-      unified: 10.1.2
-      unist-util-visit: 4.1.1
     dev: true
 
   /remark-html/13.0.2:
