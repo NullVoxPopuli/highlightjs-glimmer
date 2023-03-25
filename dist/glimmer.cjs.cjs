@@ -161,6 +161,7 @@ function glimmer(hljs) {
         end: /"/,
         contains: [
           XML_ENTITIES
+          /* MUSTACHE_EXPRESSION added later */
         ]
       },
       {
@@ -168,6 +169,7 @@ function glimmer(hljs) {
         end: /'/,
         contains: [
           XML_ENTITIES
+          /* MUSTACHE_EXPRESSION added later */
         ]
       }
     ]
@@ -180,8 +182,19 @@ function glimmer(hljs) {
     BLOCK_PARAMS,
     THIS_EXPRESSION,
     ATTRIBUTES,
+    // {
+    //   className: 'variable',
+    //   keywords: KEYWORDS,
+    //   match: /\s[\w\d-_^]+/
+    // },
+    // {
+    //   match: /\b[a-z][a-zA-Z0-9-]+\b/,
+    //   keywords: KEYWORDS,
+    //   className: 'keyword'
+    // },
     CURLY_NAME,
     STRING
+    // NAME,
   ];
   const SUB_EXPRESSION = {
     keywords: KEYWORDS,
@@ -189,6 +202,7 @@ function glimmer(hljs) {
       /\(/,
       regex.lookahead(
         regex.concat(
+          // /[^)]+/,
           /\)/
         )
       )
@@ -241,6 +255,7 @@ function glimmer(hljs) {
         ABS_NAME
       ]
     },
+    // close tag
     {
       className: "tag",
       begin: regex.concat(/<\/:?/, regex.lookahead(regex.concat(TAG_NAME, />/))),
@@ -317,10 +332,21 @@ function setupTemplateTag(_hljs, js) {
   const GLIMMER_TEMPLATE_TAG = {
     begin: /<template>/,
     end: /<\/template>/,
+    /**
+     * @param {RegExpMatchArray} match
+     * @param {CallbackResponse} response
+     */
     isTrulyOpeningTag: (match, response) => {
       const afterMatchIndex = match[0].length + match.index;
       const nextChar = match.input[afterMatchIndex];
-      if (nextChar === "<" || nextChar === ",") {
+      if (
+        // HTML should not include another raw `<` inside a tag
+        // nested type?
+        // `<Array<Array<number>>`, etc.
+        nextChar === "<" || // the , gives away that this is not HTML
+        // `<T, A extends keyof T, V>`
+        nextChar === ","
+      ) {
         response.ignoreMatch();
         return;
       }
@@ -343,6 +369,8 @@ function setupTemplateTag(_hljs, js) {
     variants: [
       {
         begin: GLIMMER_TEMPLATE_TAG.begin,
+        // we carefully check the opening tag to see if it truly
+        // is a tag and not a false positive
         "on:begin": GLIMMER_TEMPLATE_TAG.isTrulyOpeningTag,
         end: GLIMMER_TEMPLATE_TAG.end
       }
