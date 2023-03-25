@@ -29,7 +29,7 @@
     "remark-parse": "^9.0.0",
     "remark-rehype": "^9.1.0",
     "typescript": "^4.9.5",
-    "unified": "^8.4.2",
+    "unified": "^10.1.2",
     "vitest": "^0.29.7"
   },
   "engines": {
