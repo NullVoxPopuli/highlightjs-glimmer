@@ -65,7 +65,7 @@ importers:
       '@nullvoxpopuli/eslint-configs': ^2.3.5
       '@vitest/coverage-c8': ^0.25.1
       common-tags: ^1.8.2
-      concurrently: ^7.5.0
+      concurrently: ^7.6.0
       eslint: ^8.27.0
       highlight.js: ^11.6.0
       highlightjs-glimmer: workspace:../
@@ -85,7 +85,7 @@ importers:
       '@nullvoxpopuli/eslint-configs': 2.3.5_typescript@4.8.4
       '@vitest/coverage-c8': 0.25.1
       common-tags: 1.8.2
-      concurrently: 7.5.0
+      concurrently: 7.6.0
       eslint: 8.27.0
       highlight.js: 11.6.0
       markdown-it: 13.0.1
@@ -105,7 +105,7 @@ importers:
       '@vitest/coverage-c8': ^0.25.1
       '@vitest/ui': ^0.25.1
       common-tags: ^1.8.2
-      concurrently: ^7.5.0
+      concurrently: ^7.6.0
       eslint: ^8.27.0
       highlight.js: '>= 11.6.0'
       highlightjs-glimmer: workspace:../
@@ -127,7 +127,7 @@ importers:
       '@vitest/coverage-c8': 0.25.1_@vitest+ui@0.25.1
       '@vitest/ui': 0.25.1
       common-tags: 1.8.2
-      concurrently: 7.5.0
+      concurrently: 7.6.0
       eslint: 8.27.0
       highlight.js: 11.6.0
       markdown-it: 13.0.1
@@ -2896,8 +2896,8 @@ packages:
     resolution: {integrity: sha512-/Srv4dswyQNBfohGpz9o6Yb3Gz3SrUDqBH5rTuhGR7ahtlbYKnVxw2bCFMRljaA7EXHaXZ8wsHdodFvbkhKmqg==}
     dev: true
 
-  /concurrently/7.5.0:
-    resolution: {integrity: sha512-5E3mwiS+i2JYBzr5BpXkFxOnleZTMsG+WnE/dCG4/P+oiVXrbmrBwJ2ozn4SxwB2EZDrKR568X+puVohxz3/Mg==}
+  /concurrently/7.6.0:
+    resolution: {integrity: sha512-BKtRgvcJGeZ4XttiDiNcFiRlxoAeZOseqUvyYRUp/Vtd+9p1ULmeoSqGsDA+2ivdeDFpqrJvGvmI+StKfKl5hw==}
     engines: {node: ^12.20.0 || ^14.13.0 || >=16.0.0}
     hasBin: true
     dependencies:
