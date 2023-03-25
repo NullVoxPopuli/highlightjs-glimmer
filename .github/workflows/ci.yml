@@ -13,15 +13,31 @@ concurrency: ${{ github.workflow }}-${{ github.ref }}
 
 env:
   CI: true
+  TURBO_API: http://127.0.0.1:9080
+  TURBO_TOKEN: this-is-not-a-secret
+  TURBO_TEAM: myself
 
 jobs:
-  lint_source:
+  install_dependencies:
+    name: Install Dependencies
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    - uses: felixmosh/turborepo-gh-artifacts@v2
+      with:
+        repo-token: ${{ secrets.GITHUB_TOKEN }}
+    - uses: NullVoxPopuli/action-setup-pnpm@v1.1.0
+
+  lint:
     name: Lint Source
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
+      - uses: felixmosh/turborepo-gh-artifacts@v2
+        with:
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
       - uses: NullVoxPopuli/action-setup-pnpm@v1.1.0
-      - run: pnpm lint:js
+      - run: pnpm lint
 
   esm_tests:
     name: ESM Tests
@@ -35,6 +51,9 @@ jobs:
           - "18"
     steps:
       - uses: actions/checkout@v3
+      - uses: felixmosh/turborepo-gh-artifacts@v2
+        with:
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
       - uses: NullVoxPopuli/action-setup-pnpm@v1.1.0
       - name: Test Modules with ${{ matrix.node }}
         run: pnpm test
@@ -52,6 +71,9 @@ jobs:
           - "18"
     steps:
       - uses: actions/checkout@v3
+      - uses: felixmosh/turborepo-gh-artifacts@v2
+        with:
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
       - uses: NullVoxPopuli/action-setup-pnpm@v1.1.0
       - name: Test CJS with ${{ matrix.node }}
         run: pnpm test
@@ -64,8 +86,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - uses: ./.github/actions/pnpm
+      - uses: felixmosh/turborepo-gh-artifacts@v2
+        with:
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
+      - uses: NullVoxPopuli/action-setup-pnpm@v1.1.0
       - run: scripts/hljs-test.sh
+        working-directory: highlightjs-glimmer
 
   release:
     name: Release
@@ -74,6 +100,9 @@ jobs:
     needs: [esm_tests, cjs_tests, hljs_tests]
     steps:
       - uses: actions/checkout@v3
+      - uses: felixmosh/turborepo-gh-artifacts@v2
+        with:
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
       - uses: NullVoxPopuli/action-setup-pnpm@v1.1.0
       - name: Create Release Pull Request or Publish to npm
         id: changesets

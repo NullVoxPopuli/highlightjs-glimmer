@@ -6,18 +6,19 @@
   "scripts": {
     "release": "changeset publish",
     "prepare": "pnpm build",
-    "build": "pnpm --filter 'highlightjs-glimmer' build",
+    "build": "turbo build",
+    "lint": "turbo lint",
+    "test": "turbo test",
     "debug": "npx html-pages . --no-cache",
-    "lint": "pnpm --filter '*' lint",
-    "lint:fix": "pnpm --filter '*' lint:js:fix",
-    "test": "pnpm --filter '*' test"
+    "lint:fix": "pnpm --filter '*' lint:js:fix"
   },
   "devDependencies": {
     "@changesets/changelog-github": "^0.4.8",
     "@changesets/cli": "^2.26.0",
     "eslint": "^8.36.0",
     "eslint-plugin-html": "^7.1.0",
-    "prettier": "^2.8.7"
+    "prettier": "^2.8.7",
+    "turbo": "^1.8.5"
   },
   "pnpm": {
     "peerDependencyRules": {
