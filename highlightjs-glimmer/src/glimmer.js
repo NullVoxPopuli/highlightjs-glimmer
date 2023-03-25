@@ -104,7 +104,7 @@ export default function glimmer(hljs) {
 
   const OPERATORS = {
     className: 'operator',
-    match: /\=/,
+    match: /=/,
   };
 
   const ARGUMENTS = {
@@ -275,7 +275,7 @@ export default function glimmer(hljs) {
     {
       className: 'tag',
       begin: regex.concat(/<\/:?/, regex.lookahead(regex.concat(TAG_NAME, />/))),
-      end: /\>/,
+      end: />/,
       contains: [ABS_NAME],
     },
   ];

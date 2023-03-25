@@ -1,4 +1,4 @@
-"use strict";
+'use strict';
 
 /**
  * used only for jest, because apparently we can't have
@@ -9,9 +9,9 @@ module.exports = {
     test: {
       plugins: [
         [
-          require("@babel/plugin-transform-modules-commonjs"),
+          require('@babel/plugin-transform-modules-commonjs'),
           {
-            importInterop: "babel",
+            importInterop: 'babel',
           },
         ],
       ],
