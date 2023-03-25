@@ -9,6 +9,8 @@ on:
   schedule:
     - cron: "0 3 * * 0" # every Sunday at 3am
 
+concurrency: ${{ github.workflow }}-${{ github.ref }}
+
 env:
   CI: true
 
@@ -18,20 +20,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - uses: ./.github/actions/pnpm
+      - uses: NullVoxPopuli/action-setup-pnpm@v1.1.0
       - run: pnpm lint:js
-
-  commits:
-    name: Commit Messages
-    runs-on: ubuntu-latest
-    steps:
-    - uses: actions/checkout@v3
-      with:
-        fetch-depth: 0
-
-    - uses: volta-cli/action@v4
-    - uses: wagoid/commitlint-github-action@v5.3.1
-
 
   esm_tests:
     name: ESM Tests
@@ -45,12 +35,7 @@ jobs:
           - "18"
     steps:
       - uses: actions/checkout@v3
-      - uses: ./.github/actions/pnpm
-      - uses: actions/setup-node@v3
-        with:
-          node-version: ${{ matrix.node}}
-      - run: pnpm install
-
+      - uses: NullVoxPopuli/action-setup-pnpm@v1.1.0
       - name: Test Modules with ${{ matrix.node }}
         run: pnpm test
         working-directory: tests-esm
@@ -67,11 +52,7 @@ jobs:
           - "18"
     steps:
       - uses: actions/checkout@v3
-      - uses: ./.github/actions/pnpm
-      - uses: actions/setup-node@v3
-        with:
-          node-version: ${{ matrix.node}}
-      - run: pnpm install
+      - uses: NullVoxPopuli/action-setup-pnpm@v1.1.0
       - name: Test CJS with ${{ matrix.node }}
         run: pnpm test
         working-directory: tests-cjs
@@ -86,19 +67,20 @@ jobs:
       - uses: ./.github/actions/pnpm
       - run: scripts/hljs-test.sh
 
-  publish:
+  release:
     name: Release
     runs-on: ubuntu-latest
     if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/master'
     needs: [esm_tests, cjs_tests, hljs_tests]
-
     steps:
       - uses: actions/checkout@v3
+      - uses: NullVoxPopuli/action-setup-pnpm@v1.1.0
+      - name: Create Release Pull Request or Publish to npm
+        id: changesets
+        uses: changesets/action@v1
         with:
-          persist-credentials: false
-      - uses: ./.github/actions/pnpm
-      - name: Release
-        run: pnpm semantic-release
+          publish: pnpm release
+          title: "Release Preview"
         env:
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
