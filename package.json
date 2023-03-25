@@ -14,7 +14,7 @@
   },
   "devDependencies": {
     "@changesets/changelog-github": "^0.4.8",
-    "@changesets/cli": "^2.26.0",
+    "@changesets/cli": "^2.26.1",
     "eslint": "^8.36.0",
     "eslint-plugin-html": "^7.1.0",
     "prettier": "^2.8.7",
