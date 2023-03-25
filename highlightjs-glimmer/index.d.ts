@@ -1,4 +1,4 @@
-import type { HLJSApi, LanguageFn } from "highlight.js";
+import type { HLJSApi, LanguageFn } from 'highlight.js';
 
 export function setup(hljs: HLJSApi): void;
 export function registerLanguage(hljs: HLJSApi): void;

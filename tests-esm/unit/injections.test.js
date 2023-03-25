@@ -1,6 +1,7 @@
-import { describe, test, expect } from 'vitest';
 import { stripIndent } from 'common-tags';
-import { parse, tag, list, glimmer, template, tags, formattedEquals, format } from '../-utils';
+import { describe, expect, test } from 'vitest';
+
+import { format, formattedEquals, glimmer, list, parse, tag, tags, template } from '../-utils.js';
 
 describe('Injections | JS', () => {
   describe('hbs template literal', () => {
@@ -118,6 +119,24 @@ describe('Injections | JS', () => {
           )
         )
       );
+    });
+
+    test('a setTimeout exists above the template', () => {
+      let result = parse(
+        stripIndent`
+          const demo = new Demo();
+
+          setTimeout(() => { 
+            demo.theProperty = 2; 
+          }, 500);
+
+          <template>
+            {{demo.theProperty}}
+          </tepmlate>
+        `
+      );
+
+      expect(result).toMatchSnapshot();
     });
 
     test('a function exists above the template', () => {

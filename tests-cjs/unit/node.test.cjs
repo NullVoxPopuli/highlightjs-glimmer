@@ -1,3 +1,4 @@
+/* globals describe, it, expect */
 'use strict';
 
 const hljs = require('highlight.js');
@@ -11,7 +12,7 @@ function parse(code) {
 }
 
 describe('NodeJS // require', () => {
-  test('it works', () => {
+  it('works', () => {
     expect(parse('<A />')).toEqual(
       `<span class="hljs-tag">&lt;<span class="hljs-title">A</span> /&gt;</span>`
     );

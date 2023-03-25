@@ -1,6 +1,6 @@
-import { expect } from 'vitest';
 import hljs from 'highlight.js';
 import { setup } from 'highlightjs-glimmer';
+import { expect } from 'vitest';
 
 setup(hljs);
 

@@ -1,6 +1,7 @@
-import { describe, test, expect } from 'vitest';
 import { stripIndent } from 'common-tags';
-import { parse, tag } from '../-utils';
+import { describe, expect, test } from 'vitest';
+
+import { parse, tag } from '../-utils.js';
 
 describe('Component Invocation', () => {
   test('argument', () => {

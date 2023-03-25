@@ -92,13 +92,13 @@ function setupTemplateTag(_hljs, js) {
 
       // `<something>`
       // Quite possibly a tag, lets look for a matching closing tag...
-      if (nextChar === '>') {
-        // if we cannot find a matching closing tag, then we
-        // will ignore it
-        if (!hasClosingTag(match, { after: afterMatchIndex })) {
-          response.ignoreMatch();
-        }
-      }
+      // if (nextChar === '>') {
+      //   // if we cannot find a matching closing tag, then we
+      //   // will ignore it
+      //   if (!hasClosingTag(match, { after: afterMatchIndex })) {
+      //     response.ignoreMatch();
+      //   }
+      // }
 
       // `<blah />` (self-closing)
       // handled by simpleSelfClosing rule

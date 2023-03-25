@@ -1,16 +1,15 @@
 'use strict';
 
-import { describe, it, expect } from 'vitest';
-
-import { rehype } from 'rehype';
 import { stripIndent } from 'common-tags';
-import markdown from 'remark-parse';
-import remark2rehype from 'remark-rehype';
+import { externalSetup } from 'highlightjs-glimmer';
+import { rehype } from 'rehype';
 import highlight from 'rehype-highlight';
 import html from 'rehype-stringify';
+import markdown from 'remark-parse';
+import remark2rehype from 'remark-rehype';
+import { describe, expect, it } from 'vitest';
 
-import { externalSetup } from 'highlightjs-glimmer';
-import { tag } from '../-utils';
+import { tag } from '../-utils.js';
 
 function parse(text) {
   return rehype()

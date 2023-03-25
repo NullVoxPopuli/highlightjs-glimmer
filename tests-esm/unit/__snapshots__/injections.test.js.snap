@@ -1,4 +1,16 @@
-// Vitest Snapshot v1
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Injections | JS > gjs / template tag > a setTimeout exists above the template 1`] = `
+"const demo <span class=\\"hljs-operator\\">=</span> new Demo();
+
+setTimeout(() <span class=\\"hljs-operator\\">=</span>&gt; { 
+  demo.theProperty <span class=\\"hljs-operator\\">=</span> 2; 
+}, 500);
+
+<span class=\\"hljs-tag\\">&lt;<span class=\\"hljs-title\\">template</span>&gt;</span>
+  <span class=\\"hljs-punctuation mustache\\">{{<span class=\\"hljs-title\\">demo</span><span class=\\"hljs-punctuation\\">.</span><span class=\\"hljs-title\\">theProperty</span>}}</span>
+<span class=\\"hljs-tag\\">&lt;/<span class=\\"hljs-title\\">tepmlate</span>&gt;</span>"
+`;
 
 exports[`Injections | JS > gjs / template tag > is embedded in a class 1`] = `
 "<span class=\\"hljs-keyword\\">import</span>

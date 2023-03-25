@@ -1,11 +1,10 @@
-import { describe, it, expect } from 'vitest';
-
-import hljs from 'highlight.js';
 import { stripIndent } from 'common-tags';
-import markdownIt from 'markdown-it';
+import hljs from 'highlight.js';
 import { setup } from 'highlightjs-glimmer';
+import markdownIt from 'markdown-it';
+import { describe, expect, it } from 'vitest';
 
-import { tag } from '../-utils';
+import { tag } from '../-utils.js';
 
 setup(hljs);
 

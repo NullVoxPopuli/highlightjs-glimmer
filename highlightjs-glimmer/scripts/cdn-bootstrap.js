@@ -1,3 +1,4 @@
+/* global hljs */
 // requires hljs to be defined globally
 
 import glimmer from '../src/glimmer';
