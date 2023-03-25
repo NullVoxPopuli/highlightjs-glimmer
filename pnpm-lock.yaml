@@ -18,7 +18,7 @@ importers:
       eslint: ^8.27.0
       eslint-plugin-html: ^7.1.0
       highlight.js: '>= 11.7.0'
-      lowlight: ^2.7.0
+      lowlight: ^2.8.1
       prettier: ^2.7.1
       rehype: ^12.0.1
       rehype-highlight: ^6.0.0
@@ -46,7 +46,7 @@ importers:
       eslint: 8.27.0
       eslint-plugin-html: 7.1.0
       highlight.js: 11.7.0
-      lowlight: 2.7.0
+      lowlight: 2.8.1
       prettier: 2.7.1
       rehype: 12.0.1
       rehype-highlight: 6.0.0
@@ -5350,6 +5350,14 @@ packages:
       '@types/hast': 2.3.4
       fault: 2.0.1
       highlight.js: 11.6.0
+    dev: true
+
+  /lowlight/2.8.1:
+    resolution: {integrity: sha512-HCaGL61RKc1MYzEYn3rFoGkK0yslzCVDFJEanR19rc2L0mb8i58XM55jSRbzp9jcQrFzschPlwooC0vuNitk8Q==}
+    dependencies:
+      '@types/hast': 2.3.4
+      fault: 2.0.1
+      highlight.js: 11.7.0
     dev: true
 
   /lru-cache/6.0.0:
