@@ -1,4 +1,4 @@
 packages:
-  - '.'
+  - './highlightjs-glimmer'
   - './tests-esm'
   - './tests-cjs'

@@ -11,7 +11,7 @@
     "lint:fix": "eslint . --fix"
   },
   "dependencies": {
-    "highlightjs-glimmer": "workspace:../"
+    "highlightjs-glimmer": "workspace:../highlightjs-glimmer"
   },
   "devDependencies": {
     "@nullvoxpopuli/eslint-configs": "^2.3.5",

@@ -1,3 +1,5 @@
+# highlightjs-glimmer
+
 ## [2.0.1](https://github.com/NullVoxPopuli/highlightjs-glimmer/compare/v2.0.0...v2.0.1) (2022-11-06)
 
 
