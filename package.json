@@ -38,7 +38,7 @@
     "@semantic-release/changelog": "^6.0.3",
     "@semantic-release/git": "^10.0.1",
     "common-tags": "^1.8.2",
-    "esbuild": "^0.15.13",
+    "esbuild": "^0.17.13",
     "eslint": "^8.27.0",
     "eslint-plugin-html": "^7.1.0",
     "lowlight": "^2.7.0",
