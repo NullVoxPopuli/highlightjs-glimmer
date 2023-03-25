@@ -8,7 +8,7 @@
     "prepare": "pnpm build",
     "build": "pnpm --filter 'highlightjs-glimmer' build",
     "debug": "npx html-pages . --no-cache",
-    "lint": "pnpm --filter '*' lint:js",
+    "lint": "pnpm --filter '*' lint",
     "lint:fix": "pnpm --filter '*' lint:js:fix",
     "test": "pnpm --filter '*' test"
   },

@@ -4,10 +4,11 @@
   "type": "commonjs",
   "scripts": {
     "test": "vitest run --coverage",
+    "lint:fix": "concurrently 'npm:lint:*:fix' --names 'fix:'",
     "lint:js": "eslint .",
     "lint:js:fix": "eslint . --fix",
-    "lint": "eslint .",
-    "lint:fix": "eslint . --fix"
+    "lint:prettier": "prettier --check .",
+    "lint:prettier:fix": "prettier --write ."
   },
   "dependencies": {
     "highlightjs-glimmer": "workspace:../highlightjs-glimmer"
