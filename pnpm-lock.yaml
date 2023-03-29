@@ -44,8 +44,8 @@ importers:
         specifier: ^1.8.2
         version: 1.8.2
       concurrently:
-        specifier: ^7.6.0
-        version: 7.6.0
+        specifier: ^8.0.1
+        version: 8.0.1
       esbuild:
         specifier: ^0.17.14
         version: 0.17.14
@@ -78,8 +78,8 @@ importers:
         specifier: ^1.8.2
         version: 1.8.2
       concurrently:
-        specifier: ^7.6.0
-        version: 7.6.0
+        specifier: ^8.0.1
+        version: 8.0.1
       eslint:
         specifier: ^8.36.0
         version: 8.36.0
@@ -145,8 +145,8 @@ importers:
         specifier: ^1.8.2
         version: 1.8.2
       concurrently:
-        specifier: ^7.6.0
-        version: 7.6.0
+        specifier: ^8.0.1
+        version: 8.0.1
       eslint:
         specifier: ^8.36.0
         version: 8.36.0
@@ -3157,16 +3157,16 @@ packages:
     resolution: {integrity: sha512-/Srv4dswyQNBfohGpz9o6Yb3Gz3SrUDqBH5rTuhGR7ahtlbYKnVxw2bCFMRljaA7EXHaXZ8wsHdodFvbkhKmqg==}
     dev: true
 
-  /concurrently@7.6.0:
-    resolution: {integrity: sha512-BKtRgvcJGeZ4XttiDiNcFiRlxoAeZOseqUvyYRUp/Vtd+9p1ULmeoSqGsDA+2ivdeDFpqrJvGvmI+StKfKl5hw==}
-    engines: {node: ^12.20.0 || ^14.13.0 || >=16.0.0}
+  /concurrently@8.0.1:
+    resolution: {integrity: sha512-Sh8bGQMEL0TAmAm2meAXMjcASHZa7V0xXQVDBLknCPa9TPtkY9yYs+0cnGGgfdkW0SV1Mlg+hVGfXcoI8d3MJA==}
+    engines: {node: ^14.13.0 || >=16.0.0}
     hasBin: true
     dependencies:
       chalk: 4.1.2
       date-fns: 2.29.3
       lodash: 4.17.21
-      rxjs: 7.5.7
-      shell-quote: 1.7.3
+      rxjs: 7.8.0
+      shell-quote: 1.8.0
       spawn-command: 0.0.2-1
       supports-color: 8.1.1
       tree-kill: 1.2.2
@@ -6486,8 +6486,8 @@ packages:
       queue-microtask: 1.2.3
     dev: true
 
-  /rxjs@7.5.7:
-    resolution: {integrity: sha512-z9MzKh/UcOqB3i20H6rtrlaE/CgjLOvheWK/9ILrbhROGTweAi1BaFsTT9FbwZi5Trr1qNRs+MXkhmR06awzQA==}
+  /rxjs@7.8.0:
+    resolution: {integrity: sha512-F2+gxDshqmIub1KdvZkaEfGDwLNpPvk9Fs6LD/MyQxNgMds/WH9OdDDXOmxUZpME+iSK3rQCctkL0DYyytUqMg==}
     dependencies:
       tslib: 2.5.0
     dev: true
@@ -6564,8 +6564,8 @@ packages:
     engines: {node: '>=8'}
     dev: true
 
-  /shell-quote@1.7.3:
-    resolution: {integrity: sha512-Vpfqwm4EnqGdlsBFNmHhxhElJYrdfcxPThu+ryKS5J8L/fhAwLazFZtq+S+TWZ9ANj2piSQLGj6NQg+lKPmxrw==}
+  /shell-quote@1.8.0:
+    resolution: {integrity: sha512-QHsz8GgQIGKlRi24yFc6a6lN69Idnx634w49ay6+jA5yFh7a1UY+4Rp6HPx/L/1zcEDPEij8cIsiqR6bQsE5VQ==}
     dev: true
 
   /side-channel@1.0.4:
