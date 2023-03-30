@@ -18,7 +18,7 @@
     "eslint": "^8.36.0",
     "eslint-plugin-html": "^7.1.0",
     "prettier": "^2.8.7",
-    "turbo": "^1.8.6"
+    "turbo": "^1.8.8"
   },
   "pnpm": {
     "peerDependencyRules": {
