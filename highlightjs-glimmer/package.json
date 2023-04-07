@@ -40,7 +40,7 @@
     "eslint": "^8.37.0",
     "highlight.js": ">= 11.7.0",
     "prettier": "^2.8.7",
-    "typescript": "^5.0.3"
+    "typescript": "^5.0.4"
   },
   "peerDependencies": {
     "highlight.js": ">= 11.0.0"
