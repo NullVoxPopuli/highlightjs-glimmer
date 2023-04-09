@@ -18,7 +18,7 @@
     "@vitest/coverage-c8": "^0.30.0",
     "common-tags": "^1.8.2",
     "concurrently": "^8.0.1",
-    "eslint": "^8.37.0",
+    "eslint": "^8.38.0",
     "highlight.js": "^11.7.0",
     "markdown-it": "^13.0.1",
     "prettier": "^2.8.7",
