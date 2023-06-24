@@ -139,6 +139,10 @@
           for (let [key, value] of qps.entries()) {
             this.qps.set(key, value);
           }
+
+          if (this.isEditing) {
+            this.qps.set('code', this.currentSample?.sample);
+          }
         };
       }
 
@@ -167,7 +171,11 @@
       });
 
       DEBUG_RENDERER.render({
-        render: () => state.isDebugging,
+        render: () => {
+          console.log('isDebugging', [...state.qps.entries()]);
+
+          return state.isDebugging;
+        },
         debug: (isDebugging) => {
           if (isDebugging) {
             document.body.classList.add('debug-classes');
@@ -179,31 +187,45 @@
         },
       });
 
+      function setFormState() {
+        let form = document.querySelector('#editor');
+
+        // Push the current code in to the editable var, `code`
+        state.qps.set('code', state.code);
+
+        // Populate form state
+        let code = form.querySelector('textarea');
+        let language = form.querySelector('select');
+
+        if (state.qps.get('sample')) {
+          let info = state.currentSample;
+
+          code.value = info.sample;
+          language.value = code.language;
+        }
+
+        if (state.qps.get('code')) {
+          code.value = state.qps.get('code');
+        }
+
+        if (state.qps.get('language')) {
+          language.value = state.qps.get('language');
+        }
+      }
+
       DEBUG_RENDERER.render({
-        render: () => state.isEditing,
+        render: () => {
+          console.log('isEditing', [...state.qps.entries()]);
+
+          return state.isEditing;
+        },
         debug: (isEditing) => {
           let form = document.querySelector('#editor');
 
           if (isEditing) {
             form.classList.remove('hidden');
 
-            let code = form.querySelector('textarea');
-            let language = form.querySelector('select');
-
-            if (state.qps.get('sample')) {
-              let info = state.currentSample;
-
-              code.value = info.sample;
-              language.value = code.language;
-            }
-
-            if (state.qps.get('code')) {
-              code.value = state.qps.get('code');
-            }
-
-            if (state.qps.get('language')) {
-              language.value = state.qps.get('language');
-            }
+            setFormState();
           } else {
             form.classList.add('hidden');
           }
@@ -213,21 +235,23 @@
       DEBUG_RENDERER.render({
         render: () => {
           return `
-          <span>Samples:</span>
-          ${Object.entries(samples)
-            .map(([key, data]) => {
-              let qps = new URLSearchParams(state.qps.entries());
+            <span>Samples:</span>
 
-              qps.set('sample', key);
+            ${Object.entries(samples)
+              .map(([key, data]) => {
+                // Each link needs its own copy of the qps
+                let qps = new URLSearchParams(state.qps.entries());
 
-              return `
-              <a href="?${qps}" data-name="${data.name}">
-                ${data.name}
-              </a>
-            `;
-            })
-            .join('')}
-        `;
+                qps.set('sample', key);
+
+                return `
+                <a href="?${qps}" data-name="${data.name}">
+                  ${data.name}
+                </a>
+              `;
+              })
+              .join('')}
+          `;
         },
         debug: (html) => {
           document.getElementById('samples').innerHTML = html;
@@ -246,10 +270,10 @@
           let debugHref = `/?${debugQps}`;
 
           return `
-          <a class="debug" href="${debugHref}">Debug</a>
-          |
-          <a class="edit" href="${editHref}">Edit</a>
-        `;
+            <a class="debug" href="${debugHref}">Debug</a>
+            |
+            <a class="edit" href="${editHref}">Edit</a>
+          `;
         },
         debug: (html) => {
           document.getElementById('dev').innerHTML = html;
@@ -266,7 +290,7 @@
           //        - qps.get('code')
           //     - true:
           //        - qps.get('sample')
-          console.log([...state.qps.entries()]);
+          console.log('Highlighting', [...state.qps.entries()]);
 
           return {
             code: state.code,
