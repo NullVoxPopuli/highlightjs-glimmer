@@ -235,7 +235,61 @@ function glimmer(hljs) {
     }
   ];
   STRING.variants.forEach((variant) => variant.contains.push(...MUSTACHE_EXPRESSION));
+  const XML_IDENT_RE = /[\p{L}0-9._:-]+/u;
+  const TAG_INTERNALS = {
+    endsWithParent: true,
+    illegal: /</,
+    relevance: 0,
+    contains: [
+      {
+        className: "attr",
+        begin: XML_IDENT_RE,
+        relevance: 0
+      },
+      {
+        begin: /=\s*/,
+        relevance: 0,
+        contains: [
+          {
+            className: "string",
+            endsParent: true,
+            variants: [
+              {
+                begin: /"/,
+                end: /"/,
+                contains: [XML_ENTITIES]
+              },
+              {
+                begin: /'/,
+                end: /'/,
+                contains: [XML_ENTITIES]
+              },
+              { begin: /[^\s"'=<>`]+/ }
+            ]
+          }
+        ]
+      }
+    ]
+  };
+  const STYLE_TAG = {
+    className: "tag",
+    /*
+        The lookahead pattern (?=...) ensures that 'begin' only matches
+        '<style' as a single word, followed by a whitespace or an
+        ending bracket.
+        */
+    begin: /<style(?=\s|>)/,
+    end: />/,
+    keywords: { name: "style" },
+    contains: [TAG_INTERNALS],
+    starts: {
+      end: /<\/style>/,
+      returnEnd: true,
+      subLanguage: ["css", "xml"]
+    }
+  };
   const ANGLE_BRACKET_BLOCK = [
+    STYLE_TAG,
     {
       className: "tag",
       begin: regex.concat(
