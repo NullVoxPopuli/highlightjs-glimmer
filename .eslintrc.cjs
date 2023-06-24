@@ -1,33 +1,34 @@
 // .eslintrc.js
 'use strict';
 
-const { configs } = require('@nullvoxpopuli/eslint-configs');
-const {
-  jsBase,
-  moduleBase,
-  baseRulesAppliedLast,
-} = require('@nullvoxpopuli/eslint-configs/configs/base');
+const { configBuilder } = require('@nullvoxpopuli/eslint-configs/configs/node');
+const { forFiles } = require('@nullvoxpopuli/eslint-configs/configs/-utils');
 
-const mjs = configs.node();
+const config = configBuilder();
+const modulesBase = config.modules.js;
 
 module.exports = {
-  ...mjs,
   overrides: [
-    ...mjs.overrides,
     // pull this in to eslint-configs?
     {
-      ...jsBase,
       files: ['*.html'],
-      plugins: [moduleBase.plugins, 'html'].flat(),
+      plugins: [modulesBase.plugins, 'html'].flat(),
+      parser: '@babel/eslint-parser',
       parserOptions: {
+        requireConfigFile: false,
         sourceType: 'module',
         ecmaVersion: 2021,
       },
+      env: {
+        browser: true,
+        node: false,
+      },
       extends: ['eslint:recommended', 'prettier'],
       rules: {
-        ...jsBase.rules,
-        ...baseRulesAppliedLast,
+        ...modulesBase.rules,
+        'no-console': 'off',
       },
     },
+    forFiles('*.cjs', config.commonjs.js),
   ],
 };

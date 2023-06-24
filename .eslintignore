@@ -1,6 +1,12 @@
 dist/
-vendor/
+demo/
+highlight
 coverage/
 node_modules/
 .git/
 .github/
+
+# All folders
+*/
+.github/
+.changeset/

@@ -1,0 +1,7 @@
+# All folders
+*/
+.github/
+.changeset/
+*.md
+*.json5
+*.yaml

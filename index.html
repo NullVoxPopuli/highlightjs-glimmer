@@ -1,156 +1,199 @@
 <html lang="en">
+  <head>
+    <title>Glimmer w/ Highlight.js</title>
 
-<head>
-  <title>Glimmer w/ Highlight.js</title>
+    <meta charset="utf-8" />
+    <meta name="description" content="Glimmer syntax highlighting powered by Highlight.js" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-  <meta charset="utf-8">
-  <meta name="description" content="Glimmer syntax highlighting powered by Highlight.js" />
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Highlight.JS does not ship ES Modules to CDNs... yet! -->
+    <script src="https://cdn.jsdelivr.net/npm/@highlightjs/cdn-assets@11.0.0-alpha0/highlight.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@highlightjs/cdn-assets@11.0.0-alpha0/languages/javascript.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@highlightjs/cdn-assets@11.0.0-alpha0/languages/css.min.js"></script>
 
-  <!-- Highlight.JS does not ship ES Modules to CDNs... yet! -->
-  <script src="https://cdn.jsdelivr.net/npm/@highlightjs/cdn-assets@11.0.0-alpha0/highlight.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/@highlightjs/cdn-assets@11.0.0-alpha0/languages/javascript.min.js"></script>
+    <!-- Hybrid Theme! -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/@highlightjs/cdn-assets@11.0.0-alpha0/styles/tomorrow-night.min.css"
+      integrity="sha256-SamwRCKvsKZ8zqKto5n4ytPPKOhPbBTbJdhJJK4Fjhw="
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/@highlightjs/cdn-assets@11.0.0-alpha0/styles/atom-one-dark-reasonable.min.css"
+      integrity="sha256-4rrI7w9n2l7crFHzQhumwTmY2FsIUlDA5JlQ8bRicmc="
+      crossorigin="anonymous"
+    />
 
+    <!-- We need to highlight some new features of hljs -->
+    <style type="text/css">
+      .hljs-punctuation {
+        color: #a9c;
+      }
+      .hljs-attribute {
+        color: #d38fae;
+      }
+      .hljs-property {
+        color: #feb39f;
+      }
+      .hljs-class {
+        color: #88f;
+      }
+      .hljs-operator {
+        color: #959;
+      }
+      .hljs-comment {
+        color: #888;
+      }
+    </style>
 
-  <!-- Hybrid Theme! -->
-  <link
-    rel="stylesheet"
-    href="https://cdn.jsdelivr.net/npm/@highlightjs/cdn-assets@11.0.0-alpha0/styles/tomorrow-night.min.css"
-    integrity="sha256-SamwRCKvsKZ8zqKto5n4ytPPKOhPbBTbJdhJJK4Fjhw="
-    crossorigin="anonymous">
-  <link
-    rel="stylesheet"
-    href="https://cdn.jsdelivr.net/npm/@highlightjs/cdn-assets@11.0.0-alpha0/styles/atom-one-dark-reasonable.min.css"
-    integrity="sha256-4rrI7w9n2l7crFHzQhumwTmY2FsIUlDA5JlQ8bRicmc="
-    crossorigin="anonymous">
+    <script type="importmap">
+      {
+        "imports": {
+          "@starbeam/collections": "https://esm.run/@starbeam/collections@0.8.9",
+          "@starbeam/universal": "https://esm.run/@starbeam/universal@0.8.9",
+          "@starbeam/js": "https://esm.run/@starbeam/js@0.8.9",
+          "highlightjs-glimmer": "./highlightjs-glimmer/src/index.js"
+        }
+      }
+    </script>
 
-  <!-- We need to highlight some new features of hljs -->
-  <style type="text/css">
-    .hljs-punctuation { color: #a9c; }
-    .hljs-attribute { color: #d38fae; }
-    .hljs-property { color: #feb39f; }
-    .hljs-class { color: #88f; }
-    .hljs-operator { color: #959; }
-    .hljs-comment { color: #888; }
-  </style>
+    <!-- For testing this library -->
+    <script type="module">
+      // import { reactive } from "@starbeam/collections";
+      import { reactive } from '@starbeam/js';
+      import { Cell, DEBUG_RENDERER } from '@starbeam/universal';
+      import { setup } from 'highlightjs-glimmer';
 
+      /* global hljs */
+      import * as samples from './demo/samples.js';
 
-  <!-- For testing this library -->
-  <script type="module">
-    /* global hljs */
-    import * as samples from './demo/samples.js';
-    import { setup } from './highlightjs-glimmer/src/index.js';
+      setup(hljs);
 
-    setup(hljs);
+      function QPs() {
+        let parsed = new URLSearchParams(location.search);
 
-    class State {
-      get qps() {
-        return new URLSearchParams(location.search);
+        let data = reactive.Map();
+
+        for (let [key, value] of parsed.entries()) {
+          data.set(key, value);
+        }
+
+        return data;
       }
 
-      get isDebugging() {
-        return this.qps.get('debug') === 'true';
+      class State {
+        qps = QPs();
+        #title = Cell('highlight.js Glimmer');
+        get title() {
+          return this.#title.current;
+        }
+        set title(value) {
+          this.#title.set(value);
+        }
+
+        get isDebugging() {
+          return this.qps.get('debug') === 'true';
+        }
+
+        get isEditing() {
+          return this.qps.get('edit') === 'true';
+        }
+
+        get code() {
+          if (this.isEditing) {
+            return this.qps.get('code');
+          }
+
+          return this.currentSample?.sample;
+        }
+
+        get language() {
+          if (this.qps.get('language')) {
+            return this.qps.get('language');
+          }
+
+          return this.currentSample?.language;
+        }
+
+        get currentSampleKey() {
+          let validKeys = Object.keys(samples);
+          let fromQP = this.qps.get('sample');
+
+          return validKeys.includes(fromQP) ? fromQP : 'glimmer';
+        }
+
+        get currentSample() {
+          return samples[this.currentSampleKey];
+        }
+
+        navigateTo = (href, title = document.title) => {
+          if (location.href.endsWith(href)) return;
+
+          this.title = title;
+
+          let qps = new URLSearchParams(new URL(href).search);
+
+          this.qps.clear();
+
+          for (let [key, value] of qps.entries()) {
+            this.qps.set(key, value);
+          }
+
+          if (this.isEditing) {
+            this.qps.set('code', this.currentSample?.sample);
+          }
+        };
       }
 
-      get isEditing() {
-        return this.qps.get('edit') === 'true';
-      }
+      let state = new State();
 
-      get currentSampleKey() {
-        let validKeys = Object.keys(samples);
-        let fromQP = this.qps.get('sample');
+      // for debugging / inspecting
+      Object.assign(window, { hljs, state });
 
-        return validKeys.includes(fromQP) ? fromQP : 'glimmer';
-      }
+      // Update Query Params
+      // We have a reactive implementation,
+      // but we don't read from the URL except initilly
+      // this exists to keep the URL updated so that we can refresh
+      // and expect the same page as before the refresh
+      DEBUG_RENDERER.render({
+        render: () => {
+          let qps = new URLSearchParams(state.qps.entries());
 
-      get currentSample() {
-        return samples[this.currentSampleKey];
-      }
+          return {
+            href: `?${qps}`,
+            title: state.title,
+          };
+        },
+        debug: (data) => {
+          history.pushState(null, data.title, data.href);
+        },
+      });
 
-      navigateTo = (href, title = document.title) => {
-        if (location.href.endsWith(href)) return;
+      DEBUG_RENDERER.render({
+        render: () => {
+          console.log('isDebugging', [...state.qps.entries()]);
 
-        history.pushState(null, title, href);
-        renderer.render();
-      };
-    }
+          return state.isDebugging;
+        },
+        debug: (isDebugging) => {
+          if (isDebugging) {
+            document.body.classList.add('debug-classes');
 
-    class Renderer {
-      constructor() {
-        this._setupForm();
-        this._setupSampleNav();
-        this._setupDebug();
-        this._updateSampleNav();
-      }
+            return;
+          }
 
-      render = () => {
-        this._updateFromQPs();
-      };
+          document.body.classList.remove('debug-classes');
+        },
+      });
 
-      _updateFromQPs = () => {
-        this._updateDebug();
-        this._updateSampleNav();
-        this._updateEditor();
-        this._updateHighlightDebug();
-        this._updatePreview();
-      };
-
-      _reHighlight = (code, language) => {
-        let preview = document.querySelector('pre code');
-
-        preview.innerHTML = hljs.highlight(code.trim(), { language }).value;
-      };
-
-      _handleInput = (event) => {
-        let formData = new FormData(event.currentTarget);
-        let data = Object.fromEntries(formData.entries());
-
-        console.log('FormData', { ...data });
-
-        this._removeQp('sample');
-        this._updateQp('code', data.code);
-        this._updateQp('language', data.language);
-
-        this._reHighlight(data.code, data.language);
-      };
-
-      _updatePreview = () => {
+      function setFormState() {
         let form = document.querySelector('#editor');
 
-        form.dispatchEvent(new CustomEvent('submit', { cancelable: true }));
-      };
+        // Push the current code in to the editable var, `code`
+        state.qps.set('code', state.code);
 
-      _setupSampleNav = () => {
-        let sampleNav = document.querySelector('#samples');
-        let sampleLinks = Object.entries(samples).map(([key, data]) => {
-          let link = document.createElement('a');
-          let qps = new URLSearchParams(location.search);
-
-          qps.set('sample', key);
-
-          link.href = `?${qps}`;
-          link.innerText = data.name;
-          link.addEventListener('click', (e) => {
-            e.preventDefault();
-
-            state.navigateTo(e.target.href, data.name);
-          });
-
-          return link;
-        });
-
-        sampleNav.append(...sampleLinks);
-      };
-
-      _setupForm = () => {
-        let form = document.querySelector('#editor');
-
-        form.addEventListener('input', this._handleInput);
-        form.addEventListener('submit', (event) => {
-          event.preventDefault();
-          this._handleInput(event);
-        });
-
+        // Populate form state
         let code = form.querySelector('textarea');
         let language = form.querySelector('select');
 
@@ -163,285 +206,326 @@
 
         if (state.qps.get('code')) {
           code.value = state.qps.get('code');
-        } else {
-          code.value = state.currentSample.sample;
-          language.value = state.currentSample.language;
-
-          return;
         }
 
         if (state.qps.get('language')) {
           language.value = state.qps.get('language');
         }
-      };
+      }
 
-      _setupDebug = () => {
-        let debugLinks = document.querySelectorAll('#dev a');
+      DEBUG_RENDERER.render({
+        render: () => {
+          console.log('isEditing', [...state.qps.entries()]);
 
-        for (let link of debugLinks) {
-          link.addEventListener('click', (e) => {
-            e.preventDefault();
+          return state.isEditing;
+        },
+        debug: (isEditing) => {
+          let form = document.querySelector('#editor');
 
-            state.navigateTo(e.target.href);
-          });
-        }
-      };
+          if (isEditing) {
+            form.classList.remove('hidden');
 
-      _updateSampleNav = () => {
-        document.querySelectorAll('#samples a').forEach((link) => {
-          let qps = new URLSearchParams(state.qps);
-          let linkQPs = new URLSearchParams(new URL(link.href).search);
-          let sampleKey = linkQPs.get('sample');
-
-          qps.set('sample', sampleKey);
-          link.href = `?${qps}`;
-
-          if (sampleKey === state.currentSampleKey) {
-            return link.classList.add('active');
+            setFormState();
+          } else {
+            form.classList.add('hidden');
           }
+        },
+      });
 
-          link.classList.remove('active');
-        });
-      };
+      DEBUG_RENDERER.render({
+        render: () => {
+          return `
+            <span>Samples:</span>
 
-      _removeQp = (name) => {
-        let qps = new URLSearchParams(state.qps);
+            ${Object.entries(samples)
+              .map(([key, data]) => {
+                // Each link needs its own copy of the qps
+                let qps = new URLSearchParams(state.qps.entries());
 
-        if (qps.get(name)) {
-          qps.delete(name);
+                qps.set('sample', key);
 
-          state.navigateTo(`?${qps}`);
+                return `
+                <a href="?${qps}" data-name="${data.name}">
+                  ${data.name}
+                </a>
+              `;
+              })
+              .join('')}
+          `;
+        },
+        debug: (html) => {
+          document.getElementById('samples').innerHTML = html;
+        },
+      });
+
+      DEBUG_RENDERER.render({
+        render: () => {
+          let debugQps = new URLSearchParams(state.qps);
+          let editQps = new URLSearchParams(state.qps);
+
+          debugQps.set('debug', !state.isDebugging);
+          editQps.set('edit', !state.isEditing);
+
+          let editHref = `/?${editQps}`;
+          let debugHref = `/?${debugQps}`;
+
+          return `
+            <a class="debug" href="${debugHref}">Debug</a>
+            |
+            <a class="edit" href="${editHref}">Edit</a>
+          `;
+        },
+        debug: (html) => {
+          document.getElementById('dev').innerHTML = html;
+        },
+      });
+
+      DEBUG_RENDERER.render({
+        render: () => {
+          // Something is wrong with reactive.Map or the renderer,
+          // When there is no sample, we still ask for:
+          // - state.code:
+          //   - qps.get('edit')
+          //     - false:
+          //        - qps.get('code')
+          //     - true:
+          //        - qps.get('sample')
+          console.log('Highlighting', [...state.qps.entries()]);
+
+          return {
+            code: state.code,
+            language: state.language,
+          };
+        },
+        debug: ({ code, language }) => {
+          let output = document.getElementById('sample-output');
+          let preview = output.querySelector('code');
+          let existingLanguage = [...preview.classList].find((cssClass) =>
+            cssClass.startsWith('language-')
+          );
+
+          preview.classList.remove(existingLanguage);
+          preview.classList.add(`language-${language}`);
+          preview.innerHTML = hljs.highlight(code.trim(), { language }).value;
+        },
+      });
+
+      /**
+       * No need to add event listeners and manage removing them on
+       * state updates when we can just use event delegation
+       */
+      document.addEventListener('click', (e) => {
+        if (e.target instanceof HTMLAnchorElement) {
+          let url = new URL(e.target.href);
+
+          if (url.origin !== location.origin) return;
+
+          e.preventDefault();
+
+          let name = e.target.getAttribute('data-name');
+
+          if (name) {
+            state.navigateTo(e.target.href, name);
+          } else {
+            state.navigateTo(e.target.href);
+          }
         }
-      };
+      });
 
-      _updateQp = (name, value) => {
-        let qps = new URLSearchParams(state.qps);
+      function _handleInput(event) {
+        let formData = new FormData(event.currentTarget);
+        let data = Object.fromEntries(formData.entries());
 
-        if (qps.get('name') !== value) {
-          qps.set(name, value);
+        console.log('FormData', { ...data });
 
-          state.navigateTo(`?${qps}`);
-        }
-      };
+        state.qps.delete('sample');
+        state.qps.set('code', data.code);
+        state.qps.set('language', data.language);
+      }
 
-      _updateDebug = () => {
-        let debugMode = document.querySelector('#dev a.debug');
-        let editMode = document.querySelector('#dev a.edit');
+      let formElement = document.querySelector('#editor');
 
-        let debugQps = state.qps;
-        let editQps = state.qps;
+      formElement.addEventListener('input', _handleInput);
+      formElement.addEventListener('submit', (event) => {
+        event.preventDefault();
+        _handleInput(event);
+      });
+    </script>
+    <style>
+      @font-face {
+        font-family: dejavu-sans-mono;
+        src: url('./demo/DejaVuSansMono.ttf');
+      }
 
-        debugQps.set('debug', !state.isDebugging);
-        editQps.set('edit', !state.isEditing);
+      html,
+      body {
+        background-color: #181c24;
+        color: white;
+        padding: 0;
+        margin: 0;
+        font-family: system-ui, arial, sans-serif;
+        line-height: 1.35rem;
+      }
 
-        editMode.href = `/?${editQps}`;
-        debugMode.href = `/?${debugQps}`;
-      };
+      code {
+        font-family: dejavu-sans-mono, ui-monospace, monospace, sans-serif;
+      }
 
-      _updateEditor = () => {
-        let form = document.querySelector('#editor');
-        if (state.isEditing) {
-          form.classList.remove('hidden');
-        } else {
-          form.classList.add('hidden');
-        }
-  };
+      pre {
+        margin: 0;
+      }
 
-      _updateHighlightDebug = () => {
-        if (state.isDebugging) {
-          document.body.classList.add('debug-classes');
-          return;
-        }
+      pre code.hljs {
+        padding: 1rem;
+      }
 
-        document.body.classList.remove('debug-classes');
-      };
-    }
+      section {
+        padding: 1rem;
+      }
 
-    let state = new State();
-    let renderer = new Renderer();
+      section nav {
+        display: flex;
+        gap: 0.5rem;
+      }
 
-    // for debugging / inspecting
-    Object.assign(window, { hljs, state, renderer });
+      section div {
+        display: flex;
+        gap: 1rem;
+        align-items: center;
+        flex-wrap: wrap;
+      }
 
-    renderer.render();
-  </script>
-  <style>
-    @font-face {
-      font-family: dejavu-sans-mono;
-      src: url('./demo/DejaVuSansMono.ttf');
-    }
+      a {
+        color: #61aeee;
+      }
 
-    html,
-    body {
-      background-color: #181c24;
-      color: white;
-      padding: 0;
-      margin: 0;
-      font-family: system-ui, arial, sans-serif;
-      line-height: 1.35rem;
-    }
+      a.active {
+        color: #71beae;
+      }
 
-    code {
-      font-family: dejavu-sans-mono, ui-monospace, monospace, sans-serif;
-    }
+      hr {
+        margin: 1rem 0;
+        border: 1px solid black;
+      }
 
-    pre {
-      margin: 0;
-    }
+      #samples {
+        display: flex;
+        flex-direction: row;
+        gap: 1rem;
+        flex-wrap: wrap;
+      }
 
-    pre code.hljs {
-      padding: 1rem;
-    }
+      #dev {
+        position: fixed;
+        bottom: 1rem;
+        right: 1rem;
+      }
 
-    section {
-      padding: 1rem;
-    }
+      #editor {
+        display: grid;
+        gap: 0.5rem;
+      }
 
-    section nav {
-      display: flex;
-      gap: 0.5rem;
-    }
+      #editor label {
+        display: flex;
+        gap: 0.5rem;
+      }
 
-    section div {
-      display: flex;
-      gap: 1rem;
-      align-items: center;
-      flex-wrap: wrap;
-    }
+      #editor [name='code'] {
+        width: 100%;
+        height: 350px;
+      }
 
-    a {
-      color: #61aeee;
-    }
+      #editor.hidden {
+        display: none;
+      }
 
-    a.active {
-      color: #71beae;
-    }
+      .debug-classes pre code span {
+        display: inline-block;
+        align-items: baseline;
+        padding: 0.25rem;
+        padding-bottom: 0.125rem;
+        padding-top: 0.5rem;
+        margin: 0.5rem 0.25rem 0rem 0.25rem;
+        border: 1px dashed #777;
+        border-radius: 5px;
+        white-space: pre;
+        position: relative;
+      }
 
-    hr {
-      margin: 1rem 0;
-      border: 1px solid black;
-    }
+      .debug-classes pre code span:before {
+        display: inline-block;
+        content: attr(class);
+        font-size: 70%;
+        background: #693;
+        line-height: 1rem;
+        padding: 1px 4px;
+        border-radius: 2px;
+        color: white;
+        margin-right: 0.25rem;
+        font-weight: normal;
+        position: absolute;
+        top: -0.5rem;
+        left: -0.25rem;
+      }
 
-    #samples {
-      display: flex;
-      flex-direction: row;
-      gap: 1rem;
-      flex-wrap: wrap;
-    }
-
-    #dev {
-      position: fixed;
-      bottom: 1rem;
-      right: 1rem;
-    }
-
-    #editor {
-      display: grid;
-      gap: 0.5rem;
-    }
-
-    #editor label {
-      display: flex;
-      gap: 0.5rem;
-    }
-
-    #editor [name="code"] {
-      width: 100%;
-      height: 350px;
-    }
-
-    #editor.hidden {
-      display: none;
-    }
-
-
-    .debug-classes pre code span {
-      display: inline-block;
-      align-items: baseline;
-      padding: 0.25rem;
-      padding-bottom: 0.125rem;
-      padding-top: 0.5rem;
-      margin: 0.5rem 0.25rem 0.0rem 0.25rem;
-      border: 1px dashed #777;
-      border-radius: 5px;
-      white-space: pre;
-      position: relative;
-    }
-
-    .debug-classes pre code span:before {
-      display: inline-block;
-      content: attr(class);
-      font-size: 70%;
-      background: #693;
-      line-height: 1rem;
-      padding:1px 4px;
-      border-radius: 2px;
-      color:white;
-      margin-right:0.25rem;
-      font-weight: normal;
-      position: absolute;
-      top: -0.5rem;
-      left: -0.25rem;
-    }
-
-    .debug-classes pre code span:after {
-      /* this hidden element is for stretching the span
+      .debug-classes pre code span:after {
+        /* this hidden element is for stretching the span
          to be at least the width of the before pseudo element */
-      display: block;
-      opacity: 0;
-      font-size: 70%;
-      content: attr(class);
-      margin-top: -1.4rem;
-      position: relative;
-      top: -1rem;
-      left: -100%;
-    }
-  </style>
-</head>
+        display: block;
+        opacity: 0;
+        font-size: 70%;
+        content: attr(class);
+        margin-top: -1.4rem;
+        position: relative;
+        top: -1rem;
+        left: -100%;
+      }
+    </style>
+  </head>
 
-<body>
-  <section>
-    <h1>Glimmer for highlight.js</h1>
-    <div>
-      <nav>
-        <a href="https://github.com/NullVoxPopuli/highlightjs-glimmer">GitHub</a>
-        <a href="https://www.npmjs.com/package/highlightjs-glimmer">NPM</a>
+  <body>
+    <section>
+      <h1>Glimmer for highlight.js</h1>
+      <div>
+        <nav>
+          <a href="https://github.com/NullVoxPopuli/highlightjs-glimmer" target="_blank">GitHub</a>
+          <a href="https://www.npmjs.com/package/highlightjs-glimmer" target="_blank">NPM</a>
+        </nav>
+        <code>npm install highlightjs-glimmer</code>
+      </div>
+      <hr />
+      <nav id="samples">
+        <span>Samples:</span>
       </nav>
-      <code>npm install highlightjs-glimmer</code>
-    </div>
-    <hr />
-    <nav id="samples">
-      <span>Samples:</span>
-    </nav>
-    <form id="editor" class="hidden">
-      <label>
-        Language
-        <select name="language">
-          <option value="glimmer-javascript">Glimmer JS</option>
-          <option value="glimmer-typescript">Glimmer TS</option>
-          <option value="javascript">JS</option>
-          <option value="typescript">TS</option>
-          <option value="handlebars">hbs</option>
-          <option value="glimmer">Glimmer</option>
-        </select>
-      </label>
+      <form id="editor" class="hidden">
+        <label>
+          Language
+          <select name="language">
+            <option value="glimmer-javascript">Glimmer JS</option>
+            <option value="glimmer-typescript">Glimmer TS</option>
+            <option value="javascript">JS</option>
+            <option value="typescript">TS</option>
+            <option value="handlebars">hbs</option>
+            <option value="glimmer">Glimmer</option>
+          </select>
+        </label>
 
-      <label>
-        Edit
+        <label>
+          Edit
 
-        <textarea name="code"></textarea>
-      </label>
-    </form>
-  </section>
-  <pre>
+          <textarea name="code"></textarea>
+        </label>
+      </form>
+    </section>
+    <pre id="sample-output">
     <code class="language-glimmer hljs">
     </code>
   </pre>
-  <div id="dev">
-    <a class="debug" href="#">Debug</a>
-    |
-    <a class="edit" href="#">Edit</a>
-  </div>
-</body>
-
+    <div id="dev">
+      <a class="debug" href="#">Debug</a>
+      |
+      <a class="edit" href="#">Edit</a>
+    </div>
+  </body>
 </html>

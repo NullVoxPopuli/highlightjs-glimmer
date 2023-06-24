@@ -1,4 +1,5 @@
 // @ts-check
+/* eslint-disable no-useless-escape */
 
 /**
  * @typedef {Object} Sample
@@ -84,6 +85,20 @@ export const glimmer = {
     {{textarea}}
   {{/if}}
 {{/block-component}}
+
+
+<style data-demo="true" data-x={{(foo "bar")}}>
+  button {
+    font-weight: bold;
+    text-decoration: underline;
+    color: red;
+    background: #554433;
+  }
+
+  [type="button"] {
+    border: 1px solid;
+  }
+</style>
 `,
 };
 
@@ -104,6 +119,12 @@ export default class Hello {
     <button {{on 'click' @onClick}}>
       Hello, <Name @name={{this.name}} />!
     </button>
+
+    <style scoped>
+      button {
+        background: transparent;
+      }
+    </style>
   </template>
 }
 `,
@@ -128,6 +149,12 @@ const setScrollPosition = modifier((element, [position]) => {
       Item #{{plusOne index}}: {{item}}
     {{/each}}
   </div>
+
+  <style>
+    .scroll-container {
+      border: 1px solid;
+    }
+  </style>
 </template>
   `,
 };

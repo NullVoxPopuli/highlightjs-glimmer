@@ -251,7 +251,40 @@ export default function glimmer(hljs) {
 
   STRING.variants.forEach((variant) => variant.contains.push(...MUSTACHE_EXPRESSION));
 
+  const STYLE_TAG = {
+    className: 'tag',
+    /*
+        The lookahead pattern (?=...) ensures that 'begin' only matches
+        '<style' as a single word, followed by a whitespace or an
+        ending bracket.
+        */
+    begin: regex.concat(
+      /<:?/,
+      regex.lookahead(regex.concat('style', regex.either(/\/>/, />/, /\s/)))
+    ),
+    end: /\/?>/,
+    contains: [
+      OPERATORS,
+      ARGUMENTS,
+      TAG_COMMENT,
+      BLOCK_PARAMS,
+      THIS_EXPRESSION,
+      ...MUSTACHE_EXPRESSION,
+      ATTRIBUTES,
+      STRING,
+      ABS_NAME,
+    ],
+    starts: {
+      className: 'tag',
+      end: /<\/style>/,
+      returnEnd: true,
+      excludeEnd: false,
+      subLanguage: ['css', 'glimmer'],
+    },
+  };
+
   const ANGLE_BRACKET_BLOCK = [
+    STYLE_TAG,
     {
       className: 'tag',
       begin: regex.concat(
