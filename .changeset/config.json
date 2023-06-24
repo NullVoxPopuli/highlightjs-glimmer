@@ -10,5 +10,5 @@
   "access": "public",
   "baseBranch": "main",
   "updateInternalDependencies": "patch",
-  "ignore": ["hljs-glimmer-tests-cjs", "hljs-glimmer-tests-esm", "demo", "root"]
+  "ignore": ["hljs-glimmer-tests-cjs", "hljs-glimmer-tests-esm"]
 }
