@@ -85,6 +85,20 @@ export const glimmer = {
     {{textarea}}
   {{/if}}
 {{/block-component}}
+
+
+<style data-demo="true" data-x={{(foo "bar")}}>
+  button {
+    font-weight: bold;
+    text-decoration: underline;
+    color: red;
+    background: #554433;
+  }
+
+  [type="button"] {
+    border: 1px solid;
+  }
+</style>
 `,
 };
 
@@ -106,7 +120,7 @@ export default class Hello {
       Hello, <Name @name={{this.name}} />!
     </button>
 
-    <style>
+    <style scoped>
       button {
         background: transparent;
       }
