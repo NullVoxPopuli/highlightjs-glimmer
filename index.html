@@ -1,496 +1,506 @@
 <html lang="en">
+  <head>
+    <title>Glimmer w/ Highlight.js</title>
 
-<head>
-  <title>Glimmer w/ Highlight.js</title>
+    <meta charset="utf-8" />
+    <meta name="description" content="Glimmer syntax highlighting powered by Highlight.js" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-  <meta charset="utf-8">
-  <meta name="description" content="Glimmer syntax highlighting powered by Highlight.js" />
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Highlight.JS does not ship ES Modules to CDNs... yet! -->
+    <script src="https://cdn.jsdelivr.net/npm/@highlightjs/cdn-assets@11.0.0-alpha0/highlight.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@highlightjs/cdn-assets@11.0.0-alpha0/languages/javascript.min.js"></script>
 
-  <!-- Highlight.JS does not ship ES Modules to CDNs... yet! -->
-  <script src="https://cdn.jsdelivr.net/npm/@highlightjs/cdn-assets@11.0.0-alpha0/highlight.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/@highlightjs/cdn-assets@11.0.0-alpha0/languages/javascript.min.js"></script>
+    <!-- Hybrid Theme! -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/@highlightjs/cdn-assets@11.0.0-alpha0/styles/tomorrow-night.min.css"
+      integrity="sha256-SamwRCKvsKZ8zqKto5n4ytPPKOhPbBTbJdhJJK4Fjhw="
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/@highlightjs/cdn-assets@11.0.0-alpha0/styles/atom-one-dark-reasonable.min.css"
+      integrity="sha256-4rrI7w9n2l7crFHzQhumwTmY2FsIUlDA5JlQ8bRicmc="
+      crossorigin="anonymous"
+    />
 
-
-  <!-- Hybrid Theme! -->
-  <link
-    rel="stylesheet"
-    href="https://cdn.jsdelivr.net/npm/@highlightjs/cdn-assets@11.0.0-alpha0/styles/tomorrow-night.min.css"
-    integrity="sha256-SamwRCKvsKZ8zqKto5n4ytPPKOhPbBTbJdhJJK4Fjhw="
-    crossorigin="anonymous">
-  <link
-    rel="stylesheet"
-    href="https://cdn.jsdelivr.net/npm/@highlightjs/cdn-assets@11.0.0-alpha0/styles/atom-one-dark-reasonable.min.css"
-    integrity="sha256-4rrI7w9n2l7crFHzQhumwTmY2FsIUlDA5JlQ8bRicmc="
-    crossorigin="anonymous">
-
-  <!-- We need to highlight some new features of hljs -->
-  <style type="text/css">
-    .hljs-punctuation { color: #a9c; }
-    .hljs-attribute { color: #d38fae; }
-    .hljs-property { color: #feb39f; }
-    .hljs-class { color: #88f; }
-    .hljs-operator { color: #959; }
-    .hljs-comment { color: #888; }
-  </style>
-
-  <script type="importmap">
-    {
-      "imports": {
-        "@starbeam/collections": "https://esm.run/@starbeam/collections@0.8.9",
-        "@starbeam/universal": "https://esm.run/@starbeam/universal@0.8.9",
-        "@starbeam/js": "https://esm.run/@starbeam/js@0.8.9",
-        "highlightjs-glimmer": "./highlightjs-glimmer/src/index.js"
+    <!-- We need to highlight some new features of hljs -->
+    <style type="text/css">
+      .hljs-punctuation {
+        color: #a9c;
       }
-    }
-  </script>
-
-
-  <!-- For testing this library -->
-  <script type="module">
-    // import { reactive } from "@starbeam/collections";
-    import { Cell, DEBUG_RENDERER } from "@starbeam/universal";
-    import { reactive } from "@starbeam/js";
-
-    /* global hljs */
-    import * as samples from './demo/samples.js';
-    import { setup } from 'highlightjs-glimmer';
-
-    setup(hljs);
-
-    function QPs() {
-      let parsed = new URLSearchParams(location.search);
-
-      let data = reactive.Map();
-
-      for (let [key, value] of parsed.entries()) {
-        data.set(key, value);
+      .hljs-attribute {
+        color: #d38fae;
       }
-
-      return data;
-    }
-
-
-    class State {
-      qps = QPs();
-      #title = Cell('highlight.js Glimmer'); 
-      get title() {
-        return this.#title.current;
+      .hljs-property {
+        color: #feb39f;
       }
-      set title(value) {
-        this.#title.set(value);
+      .hljs-class {
+        color: #88f;
       }
-
-
-      get isDebugging() {
-        return this.qps.get('debug') === 'true';
+      .hljs-operator {
+        color: #959;
       }
-
-      get isEditing() {
-        return this.qps.get('edit') === 'true';
+      .hljs-comment {
+        color: #888;
       }
+    </style>
 
-      get code() {
-        if (this.isEditing) {
-          return this.qps.get('code');
-        } 
-
-        return this.currentSample?.sample;
+    <script type="importmap">
+      {
+        "imports": {
+          "@starbeam/collections": "https://esm.run/@starbeam/collections@0.8.9",
+          "@starbeam/universal": "https://esm.run/@starbeam/universal@0.8.9",
+          "@starbeam/js": "https://esm.run/@starbeam/js@0.8.9",
+          "highlightjs-glimmer": "./highlightjs-glimmer/src/index.js"
+        }
       }
+    </script>
 
-      get language() {
-        if (this.qps.get('language')) {
-          return this.qps.get('language');
+    <!-- For testing this library -->
+    <script type="module">
+      // import { reactive } from "@starbeam/collections";
+      import { reactive } from '@starbeam/js';
+      import { Cell, DEBUG_RENDERER } from '@starbeam/universal';
+      import { setup } from 'highlightjs-glimmer';
+
+      /* global hljs */
+      import * as samples from './demo/samples.js';
+
+      setup(hljs);
+
+      function QPs() {
+        let parsed = new URLSearchParams(location.search);
+
+        let data = reactive.Map();
+
+        for (let [key, value] of parsed.entries()) {
+          data.set(key, value);
         }
 
-        return this.currentSample?.language;
+        return data;
       }
 
-      get currentSampleKey() {
-        let validKeys = Object.keys(samples);
-        let fromQP = this.qps.get('sample');
-
-        return validKeys.includes(fromQP) ? fromQP : 'glimmer';
-      }
-
-      get currentSample() {
-        return samples[this.currentSampleKey];
-      }
-
-      navigateTo = (href, title = document.title) => {
-        if (location.href.endsWith(href)) return;
-
-        this.title = title;
-
-        let qps = new URLSearchParams(new URL(href).search);
-
-        this.qps.clear();
-        for (let [key, value] of qps.entries()) {
-          this.qps.set(key, value);
+      class State {
+        qps = QPs();
+        #title = Cell('highlight.js Glimmer');
+        get title() {
+          return this.#title.current;
         }
-      };
-    }
-
-    let state = new State();
-
-    // for debugging / inspecting
-    Object.assign(window, { hljs, state });
-
-
-    // Update Query Params
-    // We have a reactive implementation,
-    // but we don't read from the URL except initilly
-    // this exists to keep the URL updated so that we can refresh
-    // and expect the same page as before the refresh
-    DEBUG_RENDERER.render({
-      render: () => {
-        let qps = new URLSearchParams(state.qps.entries());
-        return {
-          href: `?${qps}`,
-          title: state.title,
-        }
-      },
-      debug: (data) => {
-        history.pushState(null, data.title, data.href);
-      }
-    });
-
-    DEBUG_RENDERER.render({
-      render: () => state.isDebugging,
-      debug: (isDebugging) => {
-        if (isDebugging) {
-          document.body.classList.add('debug-classes');
-          return;
+        set title(value) {
+          this.#title.set(value);
         }
 
-        document.body.classList.remove('debug-classes');
-      }
-    });
+        get isDebugging() {
+          return this.qps.get('debug') === 'true';
+        }
 
-    DEBUG_RENDERER.render({
-      render: () => state.isEditing,
-      debug: (isEditing) => {
-        let form = document.querySelector('#editor');
-        if (isEditing) {
-          form.classList.remove('hidden');
+        get isEditing() {
+          return this.qps.get('edit') === 'true';
+        }
 
-          let code = form.querySelector('textarea');
-          let language = form.querySelector('select');
-
-          if (state.qps.get('sample')) {
-            let info = state.currentSample;
-
-            code.value = info.sample;
-            language.value = code.language;
+        get code() {
+          if (this.isEditing) {
+            return this.qps.get('code');
           }
 
-          if (state.qps.get('code')) {
-            code.value = state.qps.get('code');
-          }
-
-          if (state.qps.get('language')) {
-            language.value = state.qps.get('language');
-          }
-        } else {
-          form.classList.add('hidden');
+          return this.currentSample?.sample;
         }
-      }
-    });
 
-    DEBUG_RENDERER.render({ 
-      render: () => {
-        return `
+        get language() {
+          if (this.qps.get('language')) {
+            return this.qps.get('language');
+          }
+
+          return this.currentSample?.language;
+        }
+
+        get currentSampleKey() {
+          let validKeys = Object.keys(samples);
+          let fromQP = this.qps.get('sample');
+
+          return validKeys.includes(fromQP) ? fromQP : 'glimmer';
+        }
+
+        get currentSample() {
+          return samples[this.currentSampleKey];
+        }
+
+        navigateTo = (href, title = document.title) => {
+          if (location.href.endsWith(href)) return;
+
+          this.title = title;
+
+          let qps = new URLSearchParams(new URL(href).search);
+
+          this.qps.clear();
+
+          for (let [key, value] of qps.entries()) {
+            this.qps.set(key, value);
+          }
+        };
+      }
+
+      let state = new State();
+
+      // for debugging / inspecting
+      Object.assign(window, { hljs, state });
+
+      // Update Query Params
+      // We have a reactive implementation,
+      // but we don't read from the URL except initilly
+      // this exists to keep the URL updated so that we can refresh
+      // and expect the same page as before the refresh
+      DEBUG_RENDERER.render({
+        render: () => {
+          let qps = new URLSearchParams(state.qps.entries());
+
+          return {
+            href: `?${qps}`,
+            title: state.title,
+          };
+        },
+        debug: (data) => {
+          history.pushState(null, data.title, data.href);
+        },
+      });
+
+      DEBUG_RENDERER.render({
+        render: () => state.isDebugging,
+        debug: (isDebugging) => {
+          if (isDebugging) {
+            document.body.classList.add('debug-classes');
+
+            return;
+          }
+
+          document.body.classList.remove('debug-classes');
+        },
+      });
+
+      DEBUG_RENDERER.render({
+        render: () => state.isEditing,
+        debug: (isEditing) => {
+          let form = document.querySelector('#editor');
+
+          if (isEditing) {
+            form.classList.remove('hidden');
+
+            let code = form.querySelector('textarea');
+            let language = form.querySelector('select');
+
+            if (state.qps.get('sample')) {
+              let info = state.currentSample;
+
+              code.value = info.sample;
+              language.value = code.language;
+            }
+
+            if (state.qps.get('code')) {
+              code.value = state.qps.get('code');
+            }
+
+            if (state.qps.get('language')) {
+              language.value = state.qps.get('language');
+            }
+          } else {
+            form.classList.add('hidden');
+          }
+        },
+      });
+
+      DEBUG_RENDERER.render({
+        render: () => {
+          return `
           <span>Samples:</span>
-          ${Object.entries(samples).map(([key, data]) => {
-            let qps = new URLSearchParams(state.qps.entries());
+          ${Object.entries(samples)
+            .map(([key, data]) => {
+              let qps = new URLSearchParams(state.qps.entries());
 
-            qps.set('sample', key);
+              qps.set('sample', key);
 
-            return `
+              return `
               <a href="?${qps}" data-name="${data.name}">
                 ${data.name}
               </a>
             `;
-          }).join('')}
+            })
+            .join('')}
         `;
-      },
-      debug: (html) => {
-        document.getElementById('samples').innerHTML = html;
-      }
-    });
+        },
+        debug: (html) => {
+          document.getElementById('samples').innerHTML = html;
+        },
+      });
 
-    DEBUG_RENDERER.render({
-      render: () => {
-        let debugQps = new URLSearchParams(state.qps);
-        let editQps = new URLSearchParams(state.qps);
+      DEBUG_RENDERER.render({
+        render: () => {
+          let debugQps = new URLSearchParams(state.qps);
+          let editQps = new URLSearchParams(state.qps);
 
-        debugQps.set('debug', !state.isDebugging);
-        editQps.set('edit', !state.isEditing);
+          debugQps.set('debug', !state.isDebugging);
+          editQps.set('edit', !state.isEditing);
 
-        let editHref = `/?${editQps}`;
-        let debugHref = `/?${debugQps}`;
+          let editHref = `/?${editQps}`;
+          let debugHref = `/?${debugQps}`;
 
-        return `
+          return `
           <a class="debug" href="${debugHref}">Debug</a>
           |
           <a class="edit" href="${editHref}">Edit</a>
-        `
-      },
-      debug: (html) => {
-        document.getElementById('dev').innerHTML = html;
-      }
-    });
+        `;
+        },
+        debug: (html) => {
+          document.getElementById('dev').innerHTML = html;
+        },
+      });
 
-    DEBUG_RENDERER.render({ 
-      render: () => {
-        // Something is wrong with reactive.Map or the renderer,
-        // When there is no sample, we still ask for:
-        // - state.code:
-        //   - qps.get('edit')
-        //     - false:
-        //        - qps.get('code')
-        //     - true:
-        //        - qps.get('sample')
-        console.log([...state.qps.entries()]);
-        return {
-          code: state.code,
-          language: state.language,
-        };
-      },
-      debug: ({ code, language }) => {
-        let output = document.getElementById('sample-output');
-        let preview = output.querySelector('code');
-        let existingLanguage = [...preview.classList]
-          .find(cssClass => cssClass.startsWith('language-'))
+      DEBUG_RENDERER.render({
+        render: () => {
+          // Something is wrong with reactive.Map or the renderer,
+          // When there is no sample, we still ask for:
+          // - state.code:
+          //   - qps.get('edit')
+          //     - false:
+          //        - qps.get('code')
+          //     - true:
+          //        - qps.get('sample')
+          console.log([...state.qps.entries()]);
 
-        preview.classList.remove(existingLanguage);
-        preview.classList.add(`language-${language}`);
-        preview.innerHTML = hljs.highlight(code.trim(), { language }).value;
-      }
-    });
+          return {
+            code: state.code,
+            language: state.language,
+          };
+        },
+        debug: ({ code, language }) => {
+          let output = document.getElementById('sample-output');
+          let preview = output.querySelector('code');
+          let existingLanguage = [...preview.classList].find((cssClass) =>
+            cssClass.startsWith('language-')
+          );
 
+          preview.classList.remove(existingLanguage);
+          preview.classList.add(`language-${language}`);
+          preview.innerHTML = hljs.highlight(code.trim(), { language }).value;
+        },
+      });
 
-    /**
-     * No need to add event listeners and manage removing them on 
-     * state updates when we can just use event delegation
-     */
-    document.addEventListener('click',(e) => {
-      if (e.target instanceof HTMLAnchorElement) {
-        let url = new URL(e.target.href);
+      /**
+       * No need to add event listeners and manage removing them on
+       * state updates when we can just use event delegation
+       */
+      document.addEventListener('click', (e) => {
+        if (e.target instanceof HTMLAnchorElement) {
+          let url = new URL(e.target.href);
 
-        if (url.origin !== location.origin) return;
+          if (url.origin !== location.origin) return;
 
-        e.preventDefault();
+          e.preventDefault();
 
-        let name = e.target.getAttribute('data-name');
+          let name = e.target.getAttribute('data-name');
 
-        if (name) {
-          state.navigateTo(e.target.href, name);
-        } else {
-          state.navigateTo(e.target.href);
+          if (name) {
+            state.navigateTo(e.target.href, name);
+          } else {
+            state.navigateTo(e.target.href);
+          }
         }
+      });
+
+      function _handleInput(event) {
+        let formData = new FormData(event.currentTarget);
+        let data = Object.fromEntries(formData.entries());
+
+        console.log('FormData', { ...data });
+
+        state.qps.delete('sample');
+        state.qps.set('code', data.code);
+        state.qps.set('language', data.language);
       }
-    });
 
+      let formElement = document.querySelector('#editor');
 
-   function _handleInput(event) {
-      let formData = new FormData(event.currentTarget);
-      let data = Object.fromEntries(formData.entries());
+      formElement.addEventListener('input', _handleInput);
+      formElement.addEventListener('submit', (event) => {
+        event.preventDefault();
+        _handleInput(event);
+      });
+    </script>
+    <style>
+      @font-face {
+        font-family: dejavu-sans-mono;
+        src: url('./demo/DejaVuSansMono.ttf');
+      }
 
-      console.log('FormData', { ...data });
+      html,
+      body {
+        background-color: #181c24;
+        color: white;
+        padding: 0;
+        margin: 0;
+        font-family: system-ui, arial, sans-serif;
+        line-height: 1.35rem;
+      }
 
-      state.qps.delete('sample');
-      state.qps.set('code', data.code);
-      state.qps.set('language', data.language);
-    }
+      code {
+        font-family: dejavu-sans-mono, ui-monospace, monospace, sans-serif;
+      }
 
+      pre {
+        margin: 0;
+      }
 
-    let formElement = document.querySelector('#editor');
+      pre code.hljs {
+        padding: 1rem;
+      }
 
-    formElement.addEventListener('input', _handleInput);
-    formElement.addEventListener('submit', (event) => {
-      event.preventDefault();
-      _handleInput(event);
-    });
+      section {
+        padding: 1rem;
+      }
 
-  </script>
-  <style>
-    @font-face {
-      font-family: dejavu-sans-mono;
-      src: url('./demo/DejaVuSansMono.ttf');
-    }
+      section nav {
+        display: flex;
+        gap: 0.5rem;
+      }
 
-    html,
-    body {
-      background-color: #181c24;
-      color: white;
-      padding: 0;
-      margin: 0;
-      font-family: system-ui, arial, sans-serif;
-      line-height: 1.35rem;
-    }
+      section div {
+        display: flex;
+        gap: 1rem;
+        align-items: center;
+        flex-wrap: wrap;
+      }
 
-    code {
-      font-family: dejavu-sans-mono, ui-monospace, monospace, sans-serif;
-    }
+      a {
+        color: #61aeee;
+      }
 
-    pre {
-      margin: 0;
-    }
+      a.active {
+        color: #71beae;
+      }
 
-    pre code.hljs {
-      padding: 1rem;
-    }
+      hr {
+        margin: 1rem 0;
+        border: 1px solid black;
+      }
 
-    section {
-      padding: 1rem;
-    }
+      #samples {
+        display: flex;
+        flex-direction: row;
+        gap: 1rem;
+        flex-wrap: wrap;
+      }
 
-    section nav {
-      display: flex;
-      gap: 0.5rem;
-    }
+      #dev {
+        position: fixed;
+        bottom: 1rem;
+        right: 1rem;
+      }
 
-    section div {
-      display: flex;
-      gap: 1rem;
-      align-items: center;
-      flex-wrap: wrap;
-    }
+      #editor {
+        display: grid;
+        gap: 0.5rem;
+      }
 
-    a {
-      color: #61aeee;
-    }
+      #editor label {
+        display: flex;
+        gap: 0.5rem;
+      }
 
-    a.active {
-      color: #71beae;
-    }
+      #editor [name='code'] {
+        width: 100%;
+        height: 350px;
+      }
 
-    hr {
-      margin: 1rem 0;
-      border: 1px solid black;
-    }
+      #editor.hidden {
+        display: none;
+      }
 
-    #samples {
-      display: flex;
-      flex-direction: row;
-      gap: 1rem;
-      flex-wrap: wrap;
-    }
+      .debug-classes pre code span {
+        display: inline-block;
+        align-items: baseline;
+        padding: 0.25rem;
+        padding-bottom: 0.125rem;
+        padding-top: 0.5rem;
+        margin: 0.5rem 0.25rem 0rem 0.25rem;
+        border: 1px dashed #777;
+        border-radius: 5px;
+        white-space: pre;
+        position: relative;
+      }
 
-    #dev {
-      position: fixed;
-      bottom: 1rem;
-      right: 1rem;
-    }
+      .debug-classes pre code span:before {
+        display: inline-block;
+        content: attr(class);
+        font-size: 70%;
+        background: #693;
+        line-height: 1rem;
+        padding: 1px 4px;
+        border-radius: 2px;
+        color: white;
+        margin-right: 0.25rem;
+        font-weight: normal;
+        position: absolute;
+        top: -0.5rem;
+        left: -0.25rem;
+      }
 
-    #editor {
-      display: grid;
-      gap: 0.5rem;
-    }
-
-    #editor label {
-      display: flex;
-      gap: 0.5rem;
-    }
-
-    #editor [name="code"] {
-      width: 100%;
-      height: 350px;
-    }
-
-    #editor.hidden {
-      display: none;
-    }
-
-
-    .debug-classes pre code span {
-      display: inline-block;
-      align-items: baseline;
-      padding: 0.25rem;
-      padding-bottom: 0.125rem;
-      padding-top: 0.5rem;
-      margin: 0.5rem 0.25rem 0.0rem 0.25rem;
-      border: 1px dashed #777;
-      border-radius: 5px;
-      white-space: pre;
-      position: relative;
-    }
-
-    .debug-classes pre code span:before {
-      display: inline-block;
-      content: attr(class);
-      font-size: 70%;
-      background: #693;
-      line-height: 1rem;
-      padding:1px 4px;
-      border-radius: 2px;
-      color:white;
-      margin-right:0.25rem;
-      font-weight: normal;
-      position: absolute;
-      top: -0.5rem;
-      left: -0.25rem;
-    }
-
-    .debug-classes pre code span:after {
-      /* this hidden element is for stretching the span
+      .debug-classes pre code span:after {
+        /* this hidden element is for stretching the span
          to be at least the width of the before pseudo element */
-      display: block;
-      opacity: 0;
-      font-size: 70%;
-      content: attr(class);
-      margin-top: -1.4rem;
-      position: relative;
-      top: -1rem;
-      left: -100%;
-    }
-  </style>
-</head>
+        display: block;
+        opacity: 0;
+        font-size: 70%;
+        content: attr(class);
+        margin-top: -1.4rem;
+        position: relative;
+        top: -1rem;
+        left: -100%;
+      }
+    </style>
+  </head>
 
-<body>
-  <section>
-    <h1>Glimmer for highlight.js</h1>
-    <div>
-      <nav>
-        <a href="https://github.com/NullVoxPopuli/highlightjs-glimmer" target="_blank">GitHub</a>
-        <a href="https://www.npmjs.com/package/highlightjs-glimmer" target="_blank">NPM</a>
+  <body>
+    <section>
+      <h1>Glimmer for highlight.js</h1>
+      <div>
+        <nav>
+          <a href="https://github.com/NullVoxPopuli/highlightjs-glimmer" target="_blank">GitHub</a>
+          <a href="https://www.npmjs.com/package/highlightjs-glimmer" target="_blank">NPM</a>
+        </nav>
+        <code>npm install highlightjs-glimmer</code>
+      </div>
+      <hr />
+      <nav id="samples">
+        <span>Samples:</span>
       </nav>
-      <code>npm install highlightjs-glimmer</code>
-    </div>
-    <hr />
-    <nav id="samples">
-      <span>Samples:</span>
-    </nav>
-    <form id="editor" class="hidden">
-      <label>
-        Language
-        <select name="language">
-          <option value="glimmer-javascript">Glimmer JS</option>
-          <option value="glimmer-typescript">Glimmer TS</option>
-          <option value="javascript">JS</option>
-          <option value="typescript">TS</option>
-          <option value="handlebars">hbs</option>
-          <option value="glimmer">Glimmer</option>
-        </select>
-      </label>
+      <form id="editor" class="hidden">
+        <label>
+          Language
+          <select name="language">
+            <option value="glimmer-javascript">Glimmer JS</option>
+            <option value="glimmer-typescript">Glimmer TS</option>
+            <option value="javascript">JS</option>
+            <option value="typescript">TS</option>
+            <option value="handlebars">hbs</option>
+            <option value="glimmer">Glimmer</option>
+          </select>
+        </label>
 
-      <label>
-        Edit
+        <label>
+          Edit
 
-        <textarea name="code"></textarea>
-      </label>
-    </form>
-  </section>
-  <pre id="sample-output">
+          <textarea name="code"></textarea>
+        </label>
+      </form>
+    </section>
+    <pre id="sample-output">
     <code class="language-glimmer hljs">
     </code>
   </pre>
-  <div id="dev">
-    <a class="debug" href="#">Debug</a>
-    |
-    <a class="edit" href="#">Edit</a>
-  </div>
-</body>
-
+    <div id="dev">
+      <a class="debug" href="#">Debug</a>
+      |
+      <a class="edit" href="#">Edit</a>
+    </div>
+  </body>
 </html>
