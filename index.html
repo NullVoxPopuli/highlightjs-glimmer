@@ -163,6 +163,11 @@
 
         if (state.qps.get('code')) {
           code.value = state.qps.get('code');
+        } else {
+          code.value = state.currentSample.sample;
+          language.value = state.currentSample.language;
+
+          return;
         }
 
         if (state.qps.get('language')) {
