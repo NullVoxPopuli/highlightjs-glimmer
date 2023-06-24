@@ -7,8 +7,8 @@
   "commit": false,
   "fixed": [],
   "linked": [],
-  "access": "restricted",
+  "access": "public",
   "baseBranch": "main",
   "updateInternalDependencies": "patch",
-  "ignore": ["hljs-glimmer-tests-cjs", "hljs-glimmer-tests-esm"]
+  "ignore": ["hljs-glimmer-tests-cjs", "hljs-glimmer-tests-esm", "demo", "root"]
 }
