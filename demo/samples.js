@@ -10,8 +10,8 @@
 
 /** @type { Sample } */
 export const glimmer = {
-  name: 'Glimmer',
-  language: 'glimmer',
+  name: "Glimmer",
+  language: "glimmer",
   sample: `<Nested::Component
   class="some classes
     {{if (this.someHelper this.foo 12)
@@ -89,8 +89,8 @@ export const glimmer = {
 
 /** @type { Sample } */
 export const gjs = {
-  name: '.gjs',
-  language: 'js',
+  name: ".gjs",
+  language: "js",
   sample: `import { on } from '@ember/modifier';
 
 export const Name = <template>
@@ -104,6 +104,12 @@ export default class Hello {
     <button {{on 'click' @onClick}}>
       Hello, <Name @name={{this.name}} />!
     </button>
+
+    <style>
+      button {
+        background: transparent;
+      }
+    </style>
   </template>
 }
 `,
@@ -111,8 +117,8 @@ export default class Hello {
 
 /** @type { Sample } */
 export const gjsTemplateOnly = {
-  name: 'template-only .gjs',
-  language: 'js',
+  name: "template-only .gjs",
+  language: "js",
   sample: `import { helper } from '@ember/component/helper';
 import { modifier } from 'ember-modifier';
 
@@ -128,13 +134,19 @@ const setScrollPosition = modifier((element, [position]) => {
       Item #{{plusOne index}}: {{item}}
     {{/each}}
   </div>
+
+  <style>
+    .scroll-container {
+      border: 1px solid;
+    }
+  </style>
 </template>
   `,
 };
 
 export const multipleTemplateOnly = {
-  name: 'multiple template-only .gjs',
-  language: 'js',
+  name: "multiple template-only .gjs",
+  language: "js",
   sample: `import WeatherSummary from './weather-summary.js';
 
 const Greeting = <template>
@@ -163,8 +175,8 @@ function isBirthday(dateOfBirth) {
 
 /** @type { Sample } */
 export const jsWithHbs = {
-  name: 'hbs template string literal',
-  language: 'js',
+  name: "hbs template string literal",
+  language: "js",
   sample: `import { hbs } from 'ember-template-imports';
 
 const Option = hbs\`
