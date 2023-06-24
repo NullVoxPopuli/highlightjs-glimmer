@@ -1,6 +1,7 @@
 {
   "name": "demo",
   "private": true,
+  "version": "0.0.0",
   "type": "module",
   "scripts": {
     "lint:fix": "concurrently 'npm:lint:*:fix' --names 'fix:'",
