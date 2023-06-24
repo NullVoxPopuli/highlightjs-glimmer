@@ -235,7 +235,6 @@ function glimmer(hljs) {
     }
   ];
   STRING.variants.forEach((variant) => variant.contains.push(...MUSTACHE_EXPRESSION));
-  const XML_IDENT_RE = /[\p{L}0-9._:-]+/u;
   const STYLE_TAG = {
     className: "tag",
     /*
