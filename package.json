@@ -22,7 +22,7 @@
     "@babel/eslint-parser": "^7.22.5",
     "@changesets/changelog-github": "^0.4.8",
     "@changesets/cli": "^2.26.2",
-    "@nullvoxpopuli/eslint-configs": "^3.1.3",
+    "@nullvoxpopuli/eslint-configs": "^3.1.4",
     "concurrently": "^8.2.0",
     "eslint": "^8.43.0",
     "eslint-config-prettier": "^8.8.0",
