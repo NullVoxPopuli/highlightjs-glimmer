@@ -37,7 +37,7 @@
     "common-tags": "^1.8.2",
     "concurrently": "^8.2.1",
     "esbuild": "^0.19.3",
-    "eslint": "^8.49.0",
+    "eslint": "^8.50.0",
     "highlight.js": ">= 11.8.0",
     "prettier": "^2.8.8",
     "typescript": "^5.2.2"
