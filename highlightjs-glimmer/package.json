@@ -29,9 +29,9 @@
     "node": "^14 || ^16 || ^18"
   },
   "devDependencies": {
-    "@babel/core": "^7.22.20",
+    "@babel/core": "^7.23.0",
     "@babel/node": "^7.22.19",
-    "@babel/plugin-transform-modules-commonjs": "^7.22.15",
+    "@babel/plugin-transform-modules-commonjs": "^7.23.0",
     "@babel/preset-env": "^7.22.20",
     "@nullvoxpopuli/eslint-configs": "^3.2.2",
     "common-tags": "^1.8.2",
