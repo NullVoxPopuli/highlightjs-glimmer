@@ -69,8 +69,8 @@ importers:
         specifier: ^8.51.0
         version: 8.51.0
       highlight.js:
-        specifier: '>= 11.8.0'
-        version: 11.8.0
+        specifier: '>= 11.9.0'
+        version: 11.9.0
       prettier:
         specifier: ^2.8.8
         version: 2.8.8
@@ -100,8 +100,8 @@ importers:
         specifier: ^8.51.0
         version: 8.51.0
       highlight.js:
-        specifier: ^11.8.0
-        version: 11.8.0
+        specifier: ^11.9.0
+        version: 11.9.0
       markdown-it:
         specifier: ^13.0.2
         version: 13.0.2
@@ -167,8 +167,8 @@ importers:
         specifier: ^8.51.0
         version: 8.51.0
       highlight.js:
-        specifier: '>= 11.8.0'
-        version: 11.8.0
+        specifier: '>= 11.9.0'
+        version: 11.9.0
       markdown-it:
         specifier: ^13.0.2
         version: 13.0.2
@@ -4918,8 +4918,8 @@ packages:
     engines: {node: '>=12.0.0'}
     dev: true
 
-  /highlight.js@11.8.0:
-    resolution: {integrity: sha512-MedQhoqVdr0U6SSnWPzfiadUcDHfN/Wzq25AkXiQv9oiOO/sG0S7XkvpFIqWBl9Yq1UYyYOOVORs5UW2XlPyzg==}
+  /highlight.js@11.9.0:
+    resolution: {integrity: sha512-fJ7cW7fQGCYAkgv4CPfwFHrfd/cLS4Hau96JuJ+ZTOWhjnhoeN1ub1tFmALm/+lW5z4WCAuAV9bm05AP0mS6Gw==}
     engines: {node: '>=12.0.0'}
     dev: true
 
