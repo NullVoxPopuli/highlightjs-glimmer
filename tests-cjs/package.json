@@ -17,7 +17,7 @@
     "@nullvoxpopuli/eslint-configs": "^3.2.2",
     "@vitest/coverage-c8": "^0.31.4",
     "common-tags": "^1.8.2",
-    "concurrently": "^8.2.1",
+    "concurrently": "^8.2.2",
     "eslint": "^8.51.0",
     "highlight.js": "^11.9.0",
     "markdown-it": "^13.0.2",
