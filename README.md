@@ -103,18 +103,23 @@ highlight();
 
 - `registerLanguage`
 
-    Convenience method for registering the glimmer syntax with
+    Convenience method for registering the glimmer template syntax with
     highlight.js under the name "glimmer"
 
 - `registerInjections`
 
-    Configures injections in supported languages where it's common to use glimmer
-    syntax.
+    Registers the glimmer-javascript grammar, and installes `javascript`, `js`, `mjs` and `cjs`
+    as aliases of it
 
 - `glimmer`
 
-    The highlight.js grammar function. This can be used to register
-    the glimmer grammar under a name other than "glimmer".
+    The highlight.js grammar function for glimmer templates. This can be used to register
+    the glimmer grammar without using the provided setup methods.
+
+- `glimmerJavascript`
+
+    The highlight.js grammar function for glimmer-javascript (gjs) files. This can be used to register
+    the glimmer-javascript grammar without using the provided setup methods.
 
 ## CDN Usage
 
