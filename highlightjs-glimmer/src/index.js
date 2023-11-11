@@ -41,7 +41,9 @@ export function registerInjections(hljs) {
 function registerGlimmerJsWithJsOverrides(hljs) {
   hljs.registerLanguage('glimmer-javascript', (hljs) => {
     const definition = glimmerJavascript(hljs);
+
     definition.aliases.push('javascript', 'js', 'mjs', 'cjs');
+
     return definition;
   });
 }

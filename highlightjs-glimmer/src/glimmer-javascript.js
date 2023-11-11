@@ -93,6 +93,7 @@ export default function glimmerJavascript(hljs) {
 
   if (!js) {
     console.warn(`JavaScript grammar not loaded. Cannot initialize glimmerJavascript.`);
+
     return;
   }
 
