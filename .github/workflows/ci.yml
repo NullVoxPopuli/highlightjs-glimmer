@@ -51,6 +51,7 @@ jobs:
           - "14"
           - "16"
           - "18"
+          - "20"
     steps:
       - uses: actions/checkout@v4
       - uses: felixmosh/turborepo-gh-artifacts@v2
@@ -72,6 +73,7 @@ jobs:
           - "14"
           - "16"
           - "18"
+          - "20"
     steps:
       - uses: actions/checkout@v4
       - uses: felixmosh/turborepo-gh-artifacts@v2
