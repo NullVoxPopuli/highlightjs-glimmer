@@ -39,11 +39,16 @@ export function registerInjections(hljs) {
 }
 
 function registerGlimmerJsWithJsOverrides(hljs) {
+  const newJsLanguageName = "_js-in-gjs";
+
+  // Rename original language so that we can still use it
+  let js = hljs.getLanguage('javascript');
+  hljs.registerLanguage(newJsLanguageName, (hljs) => js.rawDefinition(hljs));
+  hljs.unregisterLanguage("javascript");
+
   hljs.registerLanguage('glimmer-javascript', (hljs) => {
-    const definition = glimmerJavascript(hljs);
-
-    definition.aliases.push('javascript', 'js', 'mjs', 'cjs');
-
+    const definition = glimmerJavascript(hljs, newJsLanguageName);
+    definition.aliases.push('javascript', 'js', 'mjs', 'cjs', 'mjs');
     return definition;
   });
 }

@@ -88,8 +88,8 @@ const GLIMMER_TEMPLATE_TAG_RULE = {
   ],
 };
 
-export default function glimmerJavascript(hljs) {
-  let js = hljs.getLanguage('javascript');
+export default function glimmerJavascript(hljs, jsLanguageName="javascript") {
+  const js = hljs.getLanguage(jsLanguageName);
 
   if (!js) {
     console.warn(`JavaScript grammar not loaded. Cannot initialize glimmerJavascript.`);
@@ -100,7 +100,7 @@ export default function glimmerJavascript(hljs) {
   return {
     name: 'glimmer-javascript',
     aliases: ['glimmer-js', 'gjs'],
-    subLanguage: 'javascript',
+    subLanguage: jsLanguageName,
     contains: [GLIMMER_TEMPLATE_TAG_RULE, buildHbsLiteralRule(hljs, js)],
   };
 }
