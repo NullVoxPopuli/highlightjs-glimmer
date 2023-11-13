@@ -32,4 +32,4 @@ setup(hljs);
 hljs.highlightAll();
 ```
 
-Has been unchanged in this release, but is likely to change in a major so that the default / recommended APIs don't take away from the possibility of using other languages in the same document.
+Have been unchanged in this release, but are likely to change in the next major so that the default / recommended APIs don't take away from the possibility of using other languages in the same document.
