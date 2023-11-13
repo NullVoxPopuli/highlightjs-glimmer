@@ -8,30 +8,27 @@
 
   This change refactors things so that glimmer-javascript is defined and exported as a standalone grammar. Instead of patching the standard javascript grammar, it uses the `subLanguage` feature to extend it cleanly. hbs-literal and template-tag support are added via additional 'contains' rules.
 
-  To maintain the existing 'override javascript grammar' behavior for existing consumers of this package, the setup APIs will register `javascript`, `js`, `mjs` and `cjs` as aliases of the new `glimmer-javascript` grammar. Consumers who want to take advantage of the standalone grammar can import it and register using the standard `hljs.registerLanguage` technique.
+
+  To maintain the existing 'override javascript grammar' behavior for existing consumers of this package, the setup APIs will unregister the default `javascript` grammar, and register `javascript`, `js`, `mjs` and `cjs` as aliases of the new `glimmer-javascript` grammar. Consumers who want to take advantage of the standalone grammar can import it and register using the standard `hljs.registerLanguage` technique.
 
   For example:
-
+  
   ```js
   import hljs from 'highlight.js';
   import { glimmerJavascript } from 'highlightjs-glimmer';
-
+  
   // 'javascript' must also be registered prior to running this
-  hljs.registerLanguage('glimmer-javascript', (hljs) => {
-    const definition = glimmerJavascript(hljs, 'glimmer-javascript');
-
-    return definition;
-  });
+  hljs.registerLanguage('glimmer-javascript', glimmerJavascript);
   ```
-
+  
   The old usage, `setup` and other methods,
-
+  
   ```js
   import hljs from 'highlight.js';
   import { setup } from 'highlightjs-glimmer';
-
+  
   setup(hljs);
-
+  
   hljs.highlightAll();
   ```
 
