@@ -88,7 +88,7 @@ const GLIMMER_TEMPLATE_TAG_RULE = {
   ],
 };
 
-export default function glimmerJavascript(hljs, jsLanguageName="javascript") {
+export default function glimmerJavascript(hljs, jsLanguageName = 'javascript') {
   const js = hljs.getLanguage(jsLanguageName);
 
   if (!js) {
