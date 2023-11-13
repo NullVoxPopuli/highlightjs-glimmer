@@ -14,6 +14,7 @@ For example:
 import hljs from 'highlight.js';
 import { glimmerJavascript } from 'highlightjs-glimmer';
 
+// 'javascript' must also be registered prior to running this
 hljs.registerLanguage('glimmer-javascript', (hljs) => {
   const definition = glimmerJavascript(hljs, 'glimmer-javascript');
 
