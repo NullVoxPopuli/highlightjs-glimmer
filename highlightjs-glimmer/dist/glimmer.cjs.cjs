@@ -21,6 +21,7 @@ var src_exports = {};
 __export(src_exports, {
   externalSetup: () => externalSetup,
   glimmer: () => glimmer2,
+  glimmerJavascript: () => glimmerJavascript2,
   registerInjections: () => registerInjections,
   registerLanguage: () => registerLanguage,
   setup: () => setup
@@ -320,8 +321,82 @@ function source(re) {
 }
 var regex = { lookahead, either, optional, concat };
 
+// src/glimmer-javascript.js
+function buildHbsLiteralRule(hljs, js) {
+  const rawJs = js.rawDefinition(hljs);
+  const css = rawJs.contains.find((rule2) => (rule2 == null ? void 0 : rule2.begin) === "css`");
+  const rule = hljs.inherit(css, { begin: /hbs`/ });
+  rule.starts.subLanguage = "glimmer";
+  return rule;
+}
+var GLIMMER_TEMPLATE_TAG = {
+  begin: /<template>/,
+  end: /<\/template>/,
+  /**
+   * @param {RegExpMatchArray} match
+   * @param {CallbackResponse} response
+   */
+  isTrulyOpeningTag: (match, response) => {
+    const afterMatchIndex = match[0].length + match.index;
+    const nextChar = match.input[afterMatchIndex];
+    if (
+      // HTML should not include another raw `<` inside a tag
+      // nested type?
+      // `<Array<Array<number>>`, etc.
+      nextChar === "<" || // the , gives away that this is not HTML
+      // `<T, A extends keyof T, V>`
+      nextChar === ","
+    ) {
+      response.ignoreMatch();
+      return;
+    }
+    let m;
+    const afterMatch = match.input.substring(afterMatchIndex);
+    if (m = afterMatch.match(/^\s+extends\s+/)) {
+      if (m.index === 0) {
+        response.ignoreMatch();
+        return;
+      }
+    }
+  }
+};
+var GLIMMER_TEMPLATE_TAG_RULE = {
+  variants: [
+    {
+      begin: GLIMMER_TEMPLATE_TAG.begin,
+      // we carefully check the opening tag to see if it truly
+      // is a tag and not a false positive
+      "on:begin": GLIMMER_TEMPLATE_TAG.isTrulyOpeningTag,
+      end: GLIMMER_TEMPLATE_TAG.end
+    }
+  ],
+  subLanguage: "glimmer",
+  contains: [
+    {
+      begin: GLIMMER_TEMPLATE_TAG.begin,
+      end: GLIMMER_TEMPLATE_TAG.end,
+      skip: true,
+      contains: ["self"]
+    }
+  ]
+};
+function glimmerJavascript(hljs, jsLanguageName = "javascript") {
+  const js = hljs.getLanguage(jsLanguageName);
+  if (!js) {
+    console.warn(`JavaScript grammar not loaded. Cannot initialize glimmerJavascript.`);
+    return;
+  }
+  return {
+    name: "glimmer-javascript",
+    aliases: ["glimmer-js", "gjs"],
+    subLanguage: jsLanguageName,
+    contains: [GLIMMER_TEMPLATE_TAG_RULE, buildHbsLiteralRule(hljs, js)]
+  };
+}
+
 // src/index.js
 var glimmer2 = glimmer;
+var glimmerJavascript2 = glimmerJavascript;
 function setup(hljs) {
   registerLanguage(hljs);
   registerInjections(hljs);
@@ -335,81 +410,16 @@ function registerLanguage(hljs) {
   return hljs.registerLanguage("glimmer", glimmer);
 }
 function registerInjections(hljs) {
-  registerJavaScriptInjections(hljs);
+  registerGlimmerJsWithJsOverrides(hljs);
 }
-function registerJavaScriptInjections(hljs) {
+function registerGlimmerJsWithJsOverrides(hljs) {
+  const newJsLanguageName = "_js-in-gjs";
   let js = hljs.getLanguage("javascript");
-  if (!js) {
-    console.warn(`JavaScript grammar not loaded`);
-    return;
-  }
-  js = js.rawDefinition(hljs);
-  setupHBSLiteral(hljs, js);
-  swapXMLForGlimmer(hljs, js);
-  setupTemplateTag(hljs, js);
-  hljs.registerLanguage("javascript", () => js);
-  hljs.registerLanguage("glimmer-javascript", () => js);
-}
-function setupHBSLiteral(hljs, js) {
-  let cssIndex = js.contains.findIndex((rule) => (rule == null ? void 0 : rule.begin) === "css`");
-  let css = js.contains[cssIndex];
-  const HBS_TEMPLATE = hljs.inherit(css, { begin: /hbs`/ });
-  HBS_TEMPLATE.starts.subLanguage = "glimmer";
-  js.contains.splice(cssIndex, 0, HBS_TEMPLATE);
-}
-function swapXMLForGlimmer(_hljs, js) {
-  js.contains.flatMap((contains) => (contains == null ? void 0 : contains.contains) || contains).filter((rule) => rule.subLanguage === "xml").forEach((rule) => rule.subLanguage = "glimmer");
-}
-function setupTemplateTag(_hljs, js) {
-  const GLIMMER_TEMPLATE_TAG = {
-    begin: /<template>/,
-    end: /<\/template>/,
-    /**
-     * @param {RegExpMatchArray} match
-     * @param {CallbackResponse} response
-     */
-    isTrulyOpeningTag: (match, response) => {
-      const afterMatchIndex = match[0].length + match.index;
-      const nextChar = match.input[afterMatchIndex];
-      if (
-        // HTML should not include another raw `<` inside a tag
-        // nested type?
-        // `<Array<Array<number>>`, etc.
-        nextChar === "<" || // the , gives away that this is not HTML
-        // `<T, A extends keyof T, V>`
-        nextChar === ","
-      ) {
-        response.ignoreMatch();
-        return;
-      }
-      let m;
-      const afterMatch = match.input.substring(afterMatchIndex);
-      if (m = afterMatch.match(/^\s+extends\s+/)) {
-        if (m.index === 0) {
-          response.ignoreMatch();
-          return;
-        }
-      }
-    }
-  };
-  js.contains.unshift({
-    variants: [
-      {
-        begin: GLIMMER_TEMPLATE_TAG.begin,
-        // we carefully check the opening tag to see if it truly
-        // is a tag and not a false positive
-        "on:begin": GLIMMER_TEMPLATE_TAG.isTrulyOpeningTag,
-        end: GLIMMER_TEMPLATE_TAG.end
-      }
-    ],
-    subLanguage: "glimmer",
-    contains: [
-      {
-        begin: GLIMMER_TEMPLATE_TAG.begin,
-        end: GLIMMER_TEMPLATE_TAG.end,
-        skip: true,
-        contains: ["self"]
-      }
-    ]
+  hljs.registerLanguage(newJsLanguageName, (hljs2) => js.rawDefinition(hljs2));
+  hljs.unregisterLanguage("javascript");
+  hljs.registerLanguage("glimmer-javascript", (hljs2) => {
+    const definition = glimmerJavascript2(hljs2, newJsLanguageName);
+    definition.aliases.push("javascript", "js", "mjs", "cjs", "mjs");
+    return definition;
   });
 }
