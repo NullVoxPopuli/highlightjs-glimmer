@@ -26,7 +26,7 @@
     "lint:prettier:fix": "prettier --write ."
   },
   "engines": {
-    "node": "^14 || ^16 || ^18"
+    "node": "^14 || ^16 || ^18 || >= 20"
   },
   "devDependencies": {
     "@babel/core": "^7.23.3",
