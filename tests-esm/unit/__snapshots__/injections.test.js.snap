@@ -13,67 +13,68 @@ setTimeout(() <span class=\\"hljs-operator\\">=</span>&gt; {
 `;
 
 exports[`Injections | JS > gjs / template tag > is embedded in a class 1`] = `
-"<span class=\\"hljs-keyword\\">import</span>
-<span class=\\"hljs-title class_\\">Component</span>
-<span class=\\"hljs-keyword\\">from</span>
-<span class=\\"hljs-string\\">&#x27;@glimmer/component&#x27;</span>
-;
-<span class=\\"hljs-keyword\\">import</span>
-{ gt, lt }
-<span class=\\"hljs-keyword\\">from</span>
-<span class=\\"hljs-string\\">&#x27;@glimmer/helper&#x27;</span>
-;
+"<span class=\\"language-_js-in-gjs\\">
+  <span class=\\"hljs-keyword\\">import</span>
+  <span class=\\"hljs-title class_\\">Component</span>
+  <span class=\\"hljs-keyword\\">from</span>
+  <span class=\\"hljs-string\\">&#x27;@glimmer/component&#x27;</span>
+  ;
+  <span class=\\"hljs-keyword\\">import</span>
+  { gt, lt }
+  <span class=\\"hljs-keyword\\">from</span>
+  <span class=\\"hljs-string\\">&#x27;@glimmer/helper&#x27;</span>
+  ;
 
-<span class=\\"hljs-keyword\\">export</span>
-<span class=\\"hljs-keyword\\">default</span>
-<span class=\\"hljs-keyword\\">class</span>
-<span class=\\"hljs-title class_\\">WeatherSummary</span>
-<span class=\\"hljs-keyword\\">extends</span>
-<span class=\\"hljs-title class_ inherited__\\">Component</span>
-{ @tracked currentTemp; interval; getWeather =
-<span class=\\"hljs-function\\">() =&gt;</span>
-{
-<span class=\\"hljs-variable language_\\">this</span>
-.
-<span class=\\"hljs-property\\">currentTemp</span>
-=
-<span class=\\"hljs-comment\\">// something</span>
-}
+  <span class=\\"hljs-keyword\\">export</span>
+  <span class=\\"hljs-keyword\\">default</span>
+  <span class=\\"hljs-keyword\\">class</span>
+  <span class=\\"hljs-title class_\\">WeatherSummary</span>
+  <span class=\\"hljs-keyword\\">extends</span>
+  <span class=\\"hljs-title class_ inherited__\\">Component</span>
+  { @tracked currentTemp; interval; getWeather =
+  <span class=\\"hljs-function\\">() =&gt;</span>
+  {
+  <span class=\\"hljs-variable language_\\">this</span>
+  .
+  <span class=\\"hljs-property\\">currentTemp</span>
+  =
+  <span class=\\"hljs-comment\\">// something</span>
+  }
 
-<span class=\\"hljs-title function_\\">constructor</span>
-(
-<span class=\\"hljs-params\\">owner, args</span>
-) {
-<span class=\\"hljs-variable language_\\">super</span>
-(owner, args);
-<span class=\\"hljs-variable language_\\">this</span>
-.
-<span class=\\"hljs-property\\">interval</span>
-=
-<span class=\\"hljs-built_in\\">setInterval</span>
-(
-<span class=\\"hljs-variable language_\\">this</span>
-.
-<span class=\\"hljs-property\\">getWeather</span>
-,
-<span class=\\"hljs-number\\">10000</span>
-); }
+  <span class=\\"hljs-title function_\\">constructor</span>
+  (
+  <span class=\\"hljs-params\\">owner, args</span>
+  ) {
+  <span class=\\"hljs-variable language_\\">super</span>
+  (owner, args);
+  <span class=\\"hljs-variable language_\\">this</span>
+  .
+  <span class=\\"hljs-property\\">interval</span>
+  =
+  <span class=\\"hljs-built_in\\">setInterval</span>
+  (
+  <span class=\\"hljs-variable language_\\">this</span>
+  .
+  <span class=\\"hljs-property\\">getWeather</span>
+  ,
+  <span class=\\"hljs-number\\">10000</span>
+  ); }
 
-<span class=\\"hljs-title function_\\">willDestroy</span>
-(
-<span class=\\"hljs-params\\"></span>
-) {
-<span class=\\"hljs-variable language_\\">super</span>
-.
-<span class=\\"hljs-title function_\\">willDestroy</span>
-();
-<span class=\\"hljs-built_in\\">clearInterval</span>
-(
-<span class=\\"hljs-variable language_\\">this</span>
-.
-<span class=\\"hljs-property\\">interval</span>
-); }
-
+  <span class=\\"hljs-title function_\\">willDestroy</span>
+  (
+  <span class=\\"hljs-params\\"></span>
+  ) {
+  <span class=\\"hljs-variable language_\\">super</span>
+  .
+  <span class=\\"hljs-title function_\\">willDestroy</span>
+  ();
+  <span class=\\"hljs-built_in\\">clearInterval</span>
+  (
+  <span class=\\"hljs-variable language_\\">this</span>
+  .
+  <span class=\\"hljs-property\\">interval</span>
+  ); }
+</span>
 <span class=\\"language-glimmer\\">
   <span class=\\"hljs-tag\\">
     &lt;
@@ -135,20 +136,22 @@ exports[`Injections | JS > gjs / template tag > is embedded in a class 1`] = `
     &gt;
   </span>
 </span>
-}
+<span class=\\"language-_js-in-gjs\\">}</span>
 "
 `;
 
 exports[`Injections | JS > gjs / template tag > multiple components 1`] = `
-"<span class=\\"hljs-keyword\\">import</span>
-<span class=\\"hljs-title class_\\">WeatherSummary</span>
-<span class=\\"hljs-keyword\\">from</span>
-<span class=\\"hljs-string\\">&#x27;./weather-summary.js&#x27;</span>
-;
+"<span class=\\"language-_js-in-gjs\\">
+  <span class=\\"hljs-keyword\\">import</span>
+  <span class=\\"hljs-title class_\\">WeatherSummary</span>
+  <span class=\\"hljs-keyword\\">from</span>
+  <span class=\\"hljs-string\\">&#x27;./weather-summary.js&#x27;</span>
+  ;
 
-<span class=\\"hljs-keyword\\">const</span>
-<span class=\\"hljs-title class_\\">Greeting</span>
-=
+  <span class=\\"hljs-keyword\\">const</span>
+  <span class=\\"hljs-title class_\\">Greeting</span>
+  =
+</span>
 <span class=\\"language-glimmer\\">
   <span class=\\"hljs-tag\\">
     &lt;
@@ -179,29 +182,30 @@ exports[`Injections | JS > gjs / template tag > multiple components 1`] = `
     &gt;
   </span>
 </span>
-;
+<span class=\\"language-_js-in-gjs\\">
+  ;
 
-<span class=\\"hljs-keyword\\">function</span>
-<span class=\\"hljs-title function_\\">isBirthday</span>
-(
-<span class=\\"hljs-params\\">dateOfBirth</span>
-) {
-<span class=\\"hljs-keyword\\">const</span>
-now =
-<span class=\\"hljs-keyword\\">new</span>
-<span class=\\"hljs-title class_\\">Date</span>
-();
-<span class=\\"hljs-keyword\\">return</span>
-( dateOfBirth.
-<span class=\\"hljs-title function_\\">getDate</span>
-() === now.
-<span class=\\"hljs-title function_\\">getDate</span>
-() &amp;&amp; dateOfBirth.
-<span class=\\"hljs-title function_\\">getMonth</span>
-() === now.
-<span class=\\"hljs-title function_\\">getMonth</span>
-() ); }
-
+  <span class=\\"hljs-keyword\\">function</span>
+  <span class=\\"hljs-title function_\\">isBirthday</span>
+  (
+  <span class=\\"hljs-params\\">dateOfBirth</span>
+  ) {
+  <span class=\\"hljs-keyword\\">const</span>
+  now =
+  <span class=\\"hljs-keyword\\">new</span>
+  <span class=\\"hljs-title class_\\">Date</span>
+  ();
+  <span class=\\"hljs-keyword\\">return</span>
+  ( dateOfBirth.
+  <span class=\\"hljs-title function_\\">getDate</span>
+  () === now.
+  <span class=\\"hljs-title function_\\">getDate</span>
+  () &amp;&amp; dateOfBirth.
+  <span class=\\"hljs-title function_\\">getMonth</span>
+  () === now.
+  <span class=\\"hljs-title function_\\">getMonth</span>
+  () ); }
+</span>
 <span class=\\"language-glimmer\\">
   <span class=\\"hljs-tag\\">
     &lt;

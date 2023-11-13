@@ -14,7 +14,7 @@ describe('Injections | JS', () => {
       );
 
       expect(result).toEqual(
-        '<span class="hljs-keyword">const</span> hbs`<span class="language-glimmer"><span class="hljs-punctuation mustache">{{<span class="hljs-title">foo</span>}}</span>`</span>'
+        '<span class="language-_js-in-gjs"><span class="hljs-keyword">const</span> </span>hbs`<span class="language-glimmer"><span class="hljs-punctuation mustache">{{<span class="hljs-title">foo</span>}}</span>`</span>'
       );
     });
   });
@@ -32,14 +32,16 @@ describe('Injections | JS', () => {
 
       expect(result).toEqual(
         list(
+          '<span class="language-_js-in-gjs">',
           tags.keyword.export,
           ' ',
           tags.keyword.const,
           ' ',
           tag('title class_', 'Name'),
           ' = ',
+          '</span>',
           glimmer(template(tags.mustache(tags.arg('name')))),
-          ';'
+          '<span class="language-_js-in-gjs">;</span>'
         )
       );
     });
@@ -69,10 +71,12 @@ describe('Injections | JS', () => {
 
       expect(result).toEqual(
         list(
+          '<span class="language-_js-in-gjs">',
           tags.keyword.export,
           ' ',
           tags.keyword.default,
           ' ',
+          '</span>',
           glimmer(template(tags.mustache(tags.arg('name'))))
         )
       );
@@ -98,10 +102,9 @@ describe('Injections | JS', () => {
         result,
         list(
           // These are JS and not tagged by us
-          `<span class="hljs-keyword">import</span> <span class="hljs-title class_">Greeting</span> <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;./greeting.js&#x27;</span>;`,
+          `<span class="language-_js-in-gjs"><span class="hljs-keyword">import</span> <span class="hljs-title class_">Greeting</span> <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;./greeting.js&#x27;</span>;`,
           '\n',
-          `<span class="hljs-keyword">import</span> <span class="hljs-title class_">WeatherSummary</span> <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;./weather-summary.js&#x27;</span>;`,
-          '\n',
+          `<span class="hljs-keyword">import</span> <span class="hljs-title class_">WeatherSummary</span> <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;./weather-summary.js&#x27;</span>;</span>`,
           '\n',
           glimmer(
             template(
@@ -170,7 +173,7 @@ describe('Injections | JS', () => {
         result,
         list(
           // These are JS and not tagged by us
-          `<span class="hljs-keyword">import</span> <span class="hljs-title class_">Greeting</span> <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;./greeting.js&#x27;</span>;
+          `<span class="language-_js-in-gjs"><span class="hljs-keyword">import</span> <span class="hljs-title class_">Greeting</span> <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;./greeting.js&#x27;</span>;
  <span class="hljs-keyword">import</span> <span class="hljs-title class_">WeatherSummary</span> <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;./weather-summary.js&#x27;</span>;
 
  <span class="hljs-keyword">function</span> <span class="hljs-title function_">isBirthday</span>(<span class="hljs-params">dateOfBirth</span>) {
@@ -182,6 +185,7 @@ describe('Injections | JS', () => {
  }`,
           '\n',
           '\n',
+          '</span>',
           glimmer(
             template(
               tags.element('div', [
