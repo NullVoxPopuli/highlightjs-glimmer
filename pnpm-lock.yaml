@@ -15,8 +15,8 @@ importers:
         specifier: ^0.5.0
         version: 0.5.0
       '@changesets/cli':
-        specifier: ^2.27.0
-        version: 2.27.0
+        specifier: ^2.27.1
+        version: 2.27.1
       '@nullvoxpopuli/eslint-configs':
         specifier: ^3.2.2
         version: 3.2.2(@babel/core@7.23.3)(@babel/eslint-parser@7.23.3)(eslint-config-prettier@8.10.0)(eslint@8.54.0)(prettier@2.8.8)
@@ -1563,8 +1563,8 @@ packages:
       - encoding
     dev: true
 
-  /@changesets/cli@2.27.0:
-    resolution: {integrity: sha512-PHIvSMQVghKcAewsE4XRCD/n+KiqC4fuVbUb3LWEs+SsNSUyaxex4RfVwmz8YIXYiB3qwFQrD9gq3ZLG4JYkyA==}
+  /@changesets/cli@2.27.1:
+    resolution: {integrity: sha512-iJ91xlvRnnrJnELTp4eJJEOPjgpF3NOh4qeQehM6Ugiz9gJPRZ2t+TsXun6E3AMN4hScZKjqVXl0TX+C7AB3ZQ==}
     hasBin: true
     dependencies:
       '@babel/runtime': 7.21.0
@@ -4751,7 +4751,7 @@ packages:
     dependencies:
       array-union: 2.1.0
       dir-glob: 3.0.1
-      fast-glob: 3.2.12
+      fast-glob: 3.3.1
       ignore: 5.2.4
       merge2: 1.4.1
       slash: 3.0.0
