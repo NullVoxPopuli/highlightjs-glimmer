@@ -8,6 +8,7 @@
   "automerge": true,
   "masterIssue": true,
   "rangeStrategy": "bump",
+  "schedule": ["after 11pm on sunday"],
   "packageRules": [
     ////////////////////////////////////////
     // Grouping namespaced packages together
