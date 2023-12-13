@@ -25,9 +25,9 @@
     "@nullvoxpopuli/eslint-configs": "^3.2.2",
     "concurrently": "^8.2.2",
     "eslint": "^8.55.0",
-    "eslint-config-prettier": "^8.10.0",
+    "eslint-config-prettier": "^9.1.0",
     "eslint-plugin-html": "^7.1.0",
-    "prettier": "^2.8.8",
+    "prettier": "^3.1.1",
     "turbo": "^1.11.2"
   },
   "pnpm": {
