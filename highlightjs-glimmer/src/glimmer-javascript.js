@@ -1,6 +1,11 @@
+const CSS_RULE_BEGIN = [
+  'css`', // hljs <= 11.9.0
+  '.?css`', // hljs >= 11.10.0
+];
+
 function buildHbsLiteralRule(hljs, js) {
   const rawJs = js.rawDefinition(hljs);
-  const css = rawJs.contains.find((rule) => rule?.begin === 'css`');
+  const css = rawJs.contains.find((rule) => CSS_RULE_BEGIN.includes(rule?.begin));
 
   const rule = hljs.inherit(css, { begin: /hbs`/ });
 

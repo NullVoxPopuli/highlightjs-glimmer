@@ -100,8 +100,8 @@ importers:
         specifier: ^8.55.0
         version: 8.56.0
       highlight.js:
-        specifier: ^11.9.0
-        version: 11.9.0
+        specifier: ^11.10.0
+        version: 11.10.0
       markdown-it:
         specifier: ^14.0.0
         version: 14.0.0
@@ -167,8 +167,8 @@ importers:
         specifier: ^8.55.0
         version: 8.56.0
       highlight.js:
-        specifier: '>= 11.9.0'
-        version: 11.9.0
+        specifier: '>= 11.10.0'
+        version: 11.10.0
       markdown-it:
         specifier: ^14.0.0
         version: 14.0.0
@@ -4929,6 +4929,11 @@ packages:
 
   /highlight.js@10.7.3:
     resolution: {integrity: sha512-tzcUFauisWKNHaRkN4Wjl/ZA07gENAjFl3J/c480dprkGTg5EQstgaNFqBfUqCq54kZRIEcreTsAgF/m2quD7A==}
+    dev: true
+
+  /highlight.js@11.10.0:
+    resolution: {integrity: sha512-SYVnVFswQER+zu1laSya563s+F8VDGt7o35d4utbamowvUNLLMovFqwCLSocpZTz3MgaSRA1IbqRWZv97dtErQ==}
+    engines: {node: '>=12.0.0'}
     dev: true
 
   /highlight.js@11.8.0:

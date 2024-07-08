@@ -19,7 +19,7 @@
     "common-tags": "^1.8.2",
     "concurrently": "^8.2.2",
     "eslint": "^8.55.0",
-    "highlight.js": "^11.9.0",
+    "highlight.js": "^11.10.0",
     "markdown-it": "^14.0.0",
     "prettier": "^2.8.8",
     "rehype-highlight": "^6.0.0",
