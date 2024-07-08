@@ -1,5 +1,11 @@
 # highlightjs-glimmer
 
+## 2.2.2
+
+### Patch Changes
+
+- [#476](https://github.com/NullVoxPopuli/highlightjs-glimmer/pull/476) [`c6bf513`](https://github.com/NullVoxPopuli/highlightjs-glimmer/commit/c6bf513ebc75cc72eb43e0ecfc578e25aec90d8e) Thanks [@davidtaylorhq](https://github.com/davidtaylorhq)! - Fix compatibility with highlight-js 11.10.0
+
 ## 2.2.1
 
 ### Patch Changes
