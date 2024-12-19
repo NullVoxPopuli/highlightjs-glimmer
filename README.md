@@ -108,7 +108,7 @@ highlight();
 
 - `registerInjections`
 
-    Registers the glimmer-javascript grammar, and installes `javascript`, `js`, `mjs` and `cjs`
+    Registers the glimmer-javascript grammar, and installs `javascript`, `js`, `mjs` and `cjs`
     as aliases of it
 
 - `glimmer`
