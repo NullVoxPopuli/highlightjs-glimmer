@@ -22,7 +22,7 @@ jobs:
     name: Install Dependencies
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v5
+    - uses: actions/checkout@v6
     - uses: felixmosh/turborepo-gh-artifacts@v3
       with:
         repo-token: ${{ secrets.GITHUB_TOKEN }}
@@ -33,7 +33,7 @@ jobs:
     runs-on: ubuntu-latest
     needs: [install_dependencies]
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v6
       - uses: felixmosh/turborepo-gh-artifacts@v3
         with:
           repo-token: ${{ secrets.GITHUB_TOKEN }}
@@ -53,7 +53,7 @@ jobs:
           - "18"
           - "20"
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v6
       - uses: felixmosh/turborepo-gh-artifacts@v3
         with:
           repo-token: ${{ secrets.GITHUB_TOKEN }}
@@ -75,7 +75,7 @@ jobs:
           - "18"
           - "20"
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v6
       - uses: felixmosh/turborepo-gh-artifacts@v3
         with:
           repo-token: ${{ secrets.GITHUB_TOKEN }}
@@ -91,7 +91,7 @@ jobs:
     runs-on: ubuntu-latest
     needs: [install_dependencies]
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v6
       - uses: felixmosh/turborepo-gh-artifacts@v3
         with:
           repo-token: ${{ secrets.GITHUB_TOKEN }}
