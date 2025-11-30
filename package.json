@@ -1,0 +1,51 @@
+{
+  "name": "highlightjs-glimmer",
+  "version": "2.2.2",
+  "description": "Glimmer syntax highlighting with Highlight.JS",
+  "main": "dist/glimmer.cjs.cjs",
+  "browser": "dist/glimmer.esm.min.js",
+  "type": "module",
+  "repository": "git@github.com:NullVoxPopuli/highlightjs-glimmer.git",
+  "author": "NullVoxPopuli",
+  "license": "MIT",
+  "exports": {
+    ".": {
+      "import": "./dist/glimmer.esm.min.js",
+      "require": "./dist/glimmer.cjs.cjs",
+      "types": "./index.d.ts"
+    }
+  },
+  "scripts": {
+    "release": "changeset publish",
+    "prepare": "node ./scripts/build.cjs",
+    "build": "node ./scripts/build.cjs",
+    "lint:fix": "concurrently 'npm:lint:*:fix' --names 'fix:'",
+    "lint:js": "eslint .",
+    "lint:js:fix": "eslint . --fix",
+    "lint:prettier": "prettier --check .",
+    "lint:prettier:fix": "prettier --write ."
+  },
+  "engines": {
+    "node": "^14 || ^16 || ^18 || >= 20"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.23.5",
+    "@babel/node": "^7.22.19",
+    "@babel/plugin-transform-modules-commonjs": "^7.23.3",
+    "@babel/preset-env": "^7.23.5",
+    "@nullvoxpopuli/eslint-configs": "^3.2.2",
+    "common-tags": "^1.8.2",
+    "concurrently": "^8.2.2",
+    "esbuild": "^0.19.9",
+    "eslint": "^8.55.0",
+    "highlight.js": ">= 11.9.0",
+    "prettier": "^2.8.8",
+    "typescript": "^5.3.3"
+  },
+  "peerDependencies": {
+    "highlight.js": ">= 11.0.0"
+  },
+  "volta": {
+    "extends": "../package.json"
+  }
+}
