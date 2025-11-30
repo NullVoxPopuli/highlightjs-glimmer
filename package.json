@@ -22,13 +22,13 @@
     "@babel/eslint-parser": "^7.23.3",
     "@changesets/changelog-github": "^0.5.0",
     "@changesets/cli": "^2.27.1",
-    "@nullvoxpopuli/eslint-configs": "^3.2.2",
-    "concurrently": "^8.2.2",
-    "eslint": "^8.55.0",
-    "eslint-config-prettier": "^8.10.0",
-    "eslint-plugin-html": "^7.1.0",
-    "prettier": "^2.8.8",
-    "turbo": "^1.11.2"
+    "@nullvoxpopuli/eslint-configs": "^5.0.0",
+    "concurrently": "^9.0.0",
+    "eslint": "^9.0.0",
+    "eslint-config-prettier": "^10.0.0",
+    "eslint-plugin-html": "^8.0.0",
+    "prettier": "^3.0.0",
+    "turbo": "^2.0.0"
   },
   "pnpm": {
     "peerDependencyRules": {
