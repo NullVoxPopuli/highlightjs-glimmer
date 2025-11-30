@@ -15,7 +15,7 @@
   },
   "devDependencies": {
     "@nullvoxpopuli/eslint-configs": "^3.2.2",
-    "@vitest/coverage-c8": "^0.31.4",
+    "@vitest/coverage-c8": "^0.33.0",
     "common-tags": "^1.8.2",
     "concurrently": "^8.2.2",
     "eslint": "^8.55.0",
@@ -30,7 +30,7 @@
     "remark-rehype": "^9.1.0",
     "typescript": "^5.3.3",
     "unified": "^8.4.2",
-    "vitest": "^0.31.4"
+    "vitest": "^0.34.0"
   },
   "engines": {
     "node": ">= 18.0.0"
