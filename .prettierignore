@@ -1,0 +1,7 @@
+dist/
+vendor/
+coverage/
+node_modules/
+.git/
+.github/
+*.md
