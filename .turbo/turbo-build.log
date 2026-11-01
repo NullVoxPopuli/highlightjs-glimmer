@@ -1,0 +1,4 @@
+
+> highlightjs-glimmer@2.2.2 build /home/runner/work/highlightjs-glimmer/highlightjs-glimmer/highlightjs-glimmer
+> node ./scripts/build.cjs
+
